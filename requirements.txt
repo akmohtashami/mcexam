@@ -1,5 +1,4 @@
 Django==1.7.2
-Khayyam==1.0.1
 argparse==1.2.1
 convertdate==2.1.3.3
 dj-database-url==0.3.0
