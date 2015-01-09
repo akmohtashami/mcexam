@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils import timezone
-from django_jalali.db import models as jmodels
 from django.utils.translation import ugettext as _
 from django.core.exceptions import ValidationError
 from users.models import Member
