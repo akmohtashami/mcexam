@@ -34,7 +34,7 @@ class MemberManager(auth.models.BaseUserManager):
         return user
 
     def create_superuser(self, username, email, first_name, last_name, first_name_en, last_name_en, password):
-        user = self.create_user(username, email, first_name, last_name, first_name_en, last_name_en, password)
+        user = self.create_user(username, email, first_name, last_name, first_name_en, last_name_en, True, True, password)
         user.verify()
         user.is_admin = True
         user.save()
