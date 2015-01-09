@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load base_filters %}
+{% load tz %}
+
+
+{% block main_content %}
+    <h1> {{ exam.name }}</h1>
+    {% with exam_start_date=exam.start_date|localtime|jalali_date:"Y/m/d H:i:s" exam_end_date=exam.end_date|localtime|jalali_date:"Y/m/d H:i:s" %}
+        {% if exam.stage == -1 %}
+            {% blocktrans %}
+                This exam has not started yet. It will start at {{ exam_start_date }} and will end at {{ exam_end_date }}
+            {% endblocktrans %}
+        {% elif exam.stage == 1 %}
+            {% blocktrans %}
+                This exam is over. It ended at {{ exam_end_date }}
+            {% endblocktrans %}
+        {% else %}
+            {% blocktrans with exam_start_date=exam.start_date|date:"Y/m/d H:i:s" exam_end_date=exam.end_date|date:"Y/m/d H:i:s" %}
+                This exam is running. It started at {{ exam_start_date }} and will end at {{ exam_end_date }}
+            {% endblocktrans %}
+        {% endif %}
+    {% endwith %}
+
+{% endblock %}

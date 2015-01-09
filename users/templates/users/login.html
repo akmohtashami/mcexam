@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block main_content %}
+    <div class='panel'>
+        <div class='panel-title'> {% trans 'Login' %} </div>
+        <div class='panel-body'>
+            <form action="" method="post">
+                {% csrf_token %}
+                {% trans 'Login' as login %}
+                {% include 'forms.html' with form=login_form submit_value=login submit_name='login_button' %}
+            </form>
+        </div>
+    </div>
+    <div class='panel'>
+        <div class='panel-title'> {% trans 'Resend Verification Email' %} </div>
+        <div class='panel-body'>
+            {% blocktrans %}
+                If you haven't received an email containing a verification url, please use the following form to ask for a new mail.<br />
+                Please note that receiving the verification email can take up to 24 hours.
+            {% endblocktrans %}
+            <form action="{% url 'users:login' %}" method="post">
+                {% csrf_token %}
+                {% include 'forms.html' with form=resend_verification_mail_form submit_name='resend_verification_mail_button' %}
+            </form>
+        </div>
+    </div>
+{% endblock %}

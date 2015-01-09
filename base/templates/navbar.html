@@ -1,0 +1,17 @@
+{% load i18n %}
+<ul class='list-inline pull-left flip'>
+
+{% if user.is_authenticated %}
+    <li><a href='{% url "users:edit_profile" %}'>{{ user.first_name }} {{ user.last_name }} </a><li>
+    <li><a href='{% url "users:logout" %}'> {% trans 'Logout' %} </a><li>
+{% else %}
+    <li><a href='{% url "users:register" %}'> {% trans 'Register' %}</a></li>
+    <li><a href='{% url "users:login" %}'> {% trans 'Login' %}</a></li>
+{% endif %}
+    <li><a href='{% url "index" %}'> {% trans 'Index' %} </a></li>
+{% if perms.exams.can_view %}
+    <li><a href='{% url "exams:list" %}'> {% trans 'Exams' %} </a></li>
+{% endif %}
+</ul>
+
+

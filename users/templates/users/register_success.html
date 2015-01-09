@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block main_content %}
+<div class='alert alert-success text-success'>
+{% blocktrans with site_name=request.site.name%}
+    You've successfully registered at {{site_name}}.
+{% endblocktrans %}
+{% trans 'A confirmation mail has been sent to your email. Please use the verification link inside it to activate your user.' %}
+{% endblock %}
+

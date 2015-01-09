@@ -1,0 +1,6 @@
+mcexamvenc
+*.pyc
+db.sqlite3
+resources
+locale2
+

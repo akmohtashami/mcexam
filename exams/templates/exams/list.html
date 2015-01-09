@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block main_content %}
+    <h1>{% trans "Exams List" %}</h1>
+    {% if exams_list %}
+        <ul>
+            {% for exam in exams_list %}
+                <li><a href="{% url 'exams:detail' exam.id %}"> {{ exam.name }} </a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        {% trans "No exams are available." %}
+    {% endif %}
+{% endblock %}

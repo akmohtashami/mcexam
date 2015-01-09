@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load base_filters %}
+{% load exams_filters %}
+{% block extrahead %}
+  {{ form.media }}
+{% endblock %}
+{% block main_content %}
+    <div class='row'><h2 class='page-header'>{{ exam.name }}</h2></div>
+    <form method="post" action="{% url 'exams:detail' exam.id %}">
+        {{formset.management_form}}
+        {% csrf_token %}
+        <div class='row answer-sheet'>
+            {% for page in pages %}
+                <div class='col-md-5'>
+                    {% for form in page %}
+                        <div class='row'>
+                            {{form.0.question}}
+                            <div class='col-md-1'>{{form.1}}- </div>
+                            {{form.0.answer}}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+        <br />
+        <div class='text-center'><input class='btn btn-primary' type='submit' value='{% trans "Save current answers" %}' /></div>
+    </form>
+{% endblock %}
+

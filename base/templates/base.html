@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+{% load i18n %}
+{% load staticfiles %}
+{% get_current_language_bidi as IS_RTL %}
+
+<html>
+    <head lang="fa">
+        <meta charset="UTF-8">
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta http-equiv="pragma" content="no-cache" />
+
+        <title> {% block title %} mcexam {% endblock %}</title>
+        <!-- Bootstrap -->
+        <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+        <link href="{% static 'bootstrap/css/bootstrap-theme.css' %}" rel="stylesheet">
+        <link href="{% static 'jGrowl/css/jquery.jgrowl.min.css' %}" rel="stylesheet">
+        <link href="{% static 'css/main.css' %}" rel="stylesheet">
+        {% if IS_RTL %}
+            <link href="{% static 'bootstrap-rtl/css/bootstrap-rtl.css' %}" rel = "stylesheet">
+        {% endif %}
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+
+        <div class="jumbotron header">
+            <div class="container text-center">
+                <img class='img-rounded' src="{% static 'images/logo.png' %}" />
+                <p> {{request.site.name}} </p>
+            </div>
+        </div>
+        <nav class="user-nav">
+            <div class="container">
+                {% include 'navbar.html' %}
+            </div>
+        </nav>
+        <br />
+        <div class="container">
+            {% block main_content %}
+            {% endblock %}
+        </div>
+        <footer class="footer text-center">
+            <div class="container">
+                {% trans 'Developed by Amir Keivan Mohtashami' %}
+            </div>
+        </footer>
+        <script src="{% static 'js/jquery-1.11.2.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'bootstrap/js/bootstrap.js' %}" type="text/javascript"></script>
+        <script src="{% static 'jGrowl/js/jquery.jgrowl.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'js/exams.js' %}" type="text/javascript"></script>
+        <script src="{% static 'js/messages.js' %}" type="text/javascript"></script>
+        {% if messages %}
+            <script type="text/javascript">
+                {% for message in messages %}
+                    show_message("{{message.tags}}", "{{message}}");
+                {% endfor %}
+            </script>
+        {% endif %}
+    </body>
+</html>
