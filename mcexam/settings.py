@@ -49,7 +49,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sites.middleware.CurrentSiteMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    'django.contrib.auth.middleware.SessionAutheticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'base.middleware.TimeZoneMiddleware',
@@ -62,15 +62,14 @@ WSGI_APPLICATION = 'mcexam.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-"""
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-"""
-DATABASES["default"] = dj_database_url.config()
+
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.auth.context_processors.auth",
@@ -126,3 +125,9 @@ EMAIL_HOST_USER='sh44zzz@gmail.com'
 EMAIL_HOST_PASSWORD='idontforgetonce'
 EMAIL_USE_TLS= True
 EMAIL_SENDER = 'sh44zzz@gmail.com'
+
+#Heroku settings
+import dj_database_url
+DATABASES["default"] = dj_database_url.config()
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
