@@ -40,7 +40,6 @@ INSTALLED_APPS = (
     'base',
     'exams',
     'users',
-    'rosetta',
 )
 
 MIDDLEWARE_CLASSES = (
