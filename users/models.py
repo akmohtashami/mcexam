@@ -27,8 +27,6 @@ class MemberManager(auth.models.BaseUserManager):
             is_active=is_active,
             is_superuser=is_superuser,
             )
-        user.create_verification_code()
-        user.send_verification_mail()
         user.set_password(password)
         user.save()
         return user
