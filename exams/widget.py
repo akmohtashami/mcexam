@@ -1,4 +1,3 @@
-#encoding=utf8
 from django.forms.widgets import Widget
 from django.utils.html import format_html, mark_safe
 from django.utils.encoding import smart_text

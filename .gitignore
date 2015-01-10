@@ -1,4 +1,4 @@
-mcexamvenc
+mcexamvenv
 *.pyc
 db.sqlite3
 resources

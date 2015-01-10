@@ -35,6 +35,8 @@ class FullMemberChangeForm(forms.ModelForm):
             'last_name',
             'first_name_en',
             'last_name_en',
+            'school',
+            'grade',
             ]
 
     def clean(self):
@@ -74,6 +76,8 @@ class RestrictedMemberChangeForm(FullMemberChangeForm):
             'last_name',
             'first_name_en',
             'last_name_en',
+            'school',
+            'grade',
             'old_password',
             ]
 
@@ -110,6 +114,8 @@ class MemberRegisterForm(FullMemberChangeForm):
             'last_name',
             'first_name_en',
             'last_name_en',
+            'school',
+            'grade',
             ]
 
     def save(self, commit=True):
@@ -127,8 +133,6 @@ class MemberAdminChangeForm(FullMemberChangeForm):
                                    required=False,
     )
 
-
-
     class Meta:
         model = Member
         fields = [
@@ -140,6 +144,8 @@ class MemberAdminChangeForm(FullMemberChangeForm):
             'last_name',
             'first_name_en',
             'last_name_en',
+            'school',
+            'grade',
             'is_active',
             'is_superuser',
             'groups',
@@ -167,6 +173,8 @@ class MemberAdminAddForm(FullMemberChangeForm):
             'last_name',
             'first_name_en',
             'last_name_en',
+            'school',
+            'grade',
             'is_active',
             'is_superuser',
         ]
@@ -192,7 +200,7 @@ class MemberLoginForm(forms.Form):
                 raise forms.ValidationError(_("Provided username and password are not correct"), code='invalid_credentials')
             elif not user.is_active:
                 raise forms.ValidationError(_("This user is deactivated by administrator."), code='deactivated_user')
-            elif not user.is_verified:
+            elif not user.is_verified():
                 raise forms.ValidationError(_("This user is not verified. Please verify your user"),
                                             code='not_verified_user')
             else:
@@ -212,7 +220,7 @@ class MemberResendVerificationMailForm(forms.Form):
         if self.cleaned_data.get("email"):
             try:
                 user = Member.objects.get(email=self.cleaned_data["email"])
-                if user.is_verified:
+                if user.is_verified():
                     raise forms.ValidationError(_("This user has been already verified"),
                                                 code='already_verified')
             except Member.DoesNotExist:

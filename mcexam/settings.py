@@ -95,6 +95,27 @@ USE_L10N = True
 USE_TZ = True
 
 
+#Heroku settings
+import dj_database_url
+DATABASES["default"] = dj_database_url.config()
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
+
+# Static asset configuration
+import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = 'staticfiles'
+STATIC_URL = '/static/'
+
+DEBUG = False
+
+TEMPLATE_DEBUG = False
+
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
@@ -125,21 +146,3 @@ EMAIL_HOST_PASSWORD='idontforgetonce'
 EMAIL_USE_TLS= True
 EMAIL_SENDER = 'sh44zzz@gmail.com'
 
-#Heroku settings
-import dj_database_url
-DATABASES["default"] = dj_database_url.config()
-
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-# Allow all host headers
-ALLOWED_HOSTS = ['*']
-
-# Static asset configuration
-import os
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = 'staticfiles'
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)

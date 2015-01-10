@@ -15,10 +15,6 @@
             {% blocktrans %}
                 This exam is over. It ended at {{ exam_end_date }}
             {% endblocktrans %}
-        {% else %}
-            {% blocktrans with exam_start_date=exam.start_date|date:"Y/m/d H:i:s" exam_end_date=exam.end_date|date:"Y/m/d H:i:s" %}
-                This exam is running. It started at {{ exam_start_date }} and will end at {{ exam_end_date }}
-            {% endblocktrans %}
         {% endif %}
     {% endwith %}
 

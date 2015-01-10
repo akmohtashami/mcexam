@@ -36,7 +36,6 @@ def get_next_page(request, default_redirect=reverse("index")):
 
 
 def login(request):
-    print request
     redirect_to = get_next_page(request)
     if request.user.is_authenticated():
         return HttpResponseRedirect(redirect_to)

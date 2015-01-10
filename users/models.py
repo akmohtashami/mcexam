@@ -5,6 +5,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.utils.translation import ugettext as _
+from django.utils.encoding import smart_text
 
 import hashlib
 import random
@@ -40,15 +41,26 @@ class MemberManager(auth.models.BaseUserManager):
 
 
 class Member(auth.models.AbstractBaseUser, auth.models.PermissionsMixin):
-    username = models.CharField(max_length=200, unique=True, verbose_name=_("Username"))
-    email = models.EmailField(max_length=255, unique=True, verbose_name=_("Email"))
-    first_name = models.CharField(max_length=1000, verbose_name=_("First Name (Native)"))
-    last_name = models.CharField(max_length=1000, verbose_name=_("Last Name (Native)"))
-    first_name_en = models.CharField(max_length=1000, verbose_name=_("(First Name (English)"))
-    last_name_en = models.CharField(max_length=1000, verbose_name=_("Last Name (English)"))
+    username = models.CharField(max_length=250, unique=True, verbose_name=_("Username"))
+    email = models.EmailField(max_length=250, unique=True, verbose_name=_("Email"))
+    first_name = models.CharField(max_length=250, verbose_name=_("First Name (Native)"))
+    last_name = models.CharField(max_length=250, verbose_name=_("Last Name (Native)"))
+    first_name_en = models.CharField(max_length=250, verbose_name=_("(First Name (English)"))
+    last_name_en = models.CharField(max_length=250, verbose_name=_("Last Name (English)"))
     is_active = models.BooleanField(default=True, verbose_name=_("Active"))
-
     verification_code = models.CharField(max_length=128, editable=False)
+
+    #Extra fields
+    GRADE_IN_SCHOOL = (
+        ('before', _("Before High School")),
+        ('first', _("First Grade")),
+        ('second', _("Second Grade")),
+        ('third', _("Third Grade")),
+        ('past', _("After Third Grade"))
+    )
+    grade = models.CharField(max_length=6, choices=GRADE_IN_SCHOOL, verbose_name=_("Grade"), blank=True, null=True)
+    school = models.CharField(max_length=250, verbose_name=_("School"), blank=True, null=True)
+
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email', 'first_name', 'last_name', 'first_name_en', 'last_name_en']
@@ -73,8 +85,8 @@ class Member(auth.models.AbstractBaseUser, auth.models.PermissionsMixin):
 
     def send_verification_mail(self):
         current_site = Site.objects.get_current()
-        subject = render_to_string("users/activation_email_subject.txt", {"cur_user": self, "site": current_site})
-        text = render_to_string("users/activation_email_text.txt", {"cur_user": self, "site": current_site})
+        subject = smart_text(render_to_string("users/activation_email_subject.txt", {"cur_user": self, "site": current_site}))
+        text = smart_text(render_to_string("users/activation_email_text.txt", {"cur_user": self, "site": current_site}))
         send_mail(subject, text, settings.EMAIL_SENDER, [self.email], False)
 
     def verify(self):
@@ -92,7 +104,7 @@ class Member(auth.models.AbstractBaseUser, auth.models.PermissionsMixin):
     is_staff.boolean = True
 
     def has_perm(self, perm, obj=None):
-        if not self.is_verified:
+        if not self.is_verified():
             return False
         return super(Member, self).has_perm(perm, obj)
 

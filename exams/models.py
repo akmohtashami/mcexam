@@ -38,7 +38,7 @@ class Question(models.Model):
     statement = models.CharField(max_length=10000, verbose_name=_("Question's Statement"))
 
     def __unicode__(self):
-        return self.exam.name + " - " + _("Question #") + str(self.order)
+        return self.exam.name + " - " + _("Question #") + " " + str(self.order)
 
     class Meta:
         verbose_name = _("Question")

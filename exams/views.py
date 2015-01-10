@@ -7,7 +7,7 @@ from exams.models import Exam, MadeChoice
 from exams.forms import AnswerForm
 # Create your views here.
 
-@permission_required("can_view", raise_exception=True)
+@permission_required("exams.can_view", raise_exception=True)
 def list(request):
     exams_list = Exam.objects.order_by("id")
     context = {"exams_list": exams_list}
@@ -73,7 +73,7 @@ def exam_running(request, exam):
     context = {"exam": exam, "formset": forms, "pages": all_pages_orders}
     return render(request, "exams/running_exam.html", context)
 
-@permission_required("can_view", raise_exception=True)
+@permission_required("exams.can_view", raise_exception=True)
 def detail(request, exam_id):
     exam = get_object_or_404(Exam, pk=exam_id)
     context = {"exam": exam}
