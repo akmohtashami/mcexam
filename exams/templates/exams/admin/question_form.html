@@ -49,6 +49,10 @@
                <script type="text/javascript">
                    $("#{{question.form.prefix}}-choices").sortable({
                        axis: "x",
+                       start: function(e, ui){
+                           objs = $("#{{question.form.prefix}}-choices").sortable('toArray');
+                           renumerate(objs);
+                       },
                        update: function(e, ui){
                            objs = $("#{{question.form.prefix}}-choices").sortable('toArray');
                            renumerate(objs);
