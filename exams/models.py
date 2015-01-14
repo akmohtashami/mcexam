@@ -32,8 +32,7 @@ class Exam(models.Model):
 
 class Question(models.Model):
     exam = models.ForeignKey(Exam, verbose_name=_("Related exam"))
-    order = models.IntegerField(unique=True,
-                                verbose_name=_("Question's index"),
+    order = models.IntegerField(verbose_name=_("Question's index"),
                                 help_text=_("Questions will be shown based on their index. Also this index is shown as the question's number in exam page"))
     statement = models.CharField(max_length=10000, verbose_name=_("Question's Statement"))
 
@@ -62,9 +61,6 @@ class Choice(models.Model):
         verbose_name = _("Choice")
         verbose_name_plural = _("Choices")
         ordering = ['order']
-        unique_together = (
-            ("question", "order"),
-        )
 
 
 class MadeChoice(models.Model):
