@@ -1,9 +1,16 @@
+@font-face {
+    font-family: DroidNaskh;
+    src: url("../fonts/Droid Naskh.ttf");
+}
+
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
+
 }
 body {
-  margin-bottom: 80px;
+    margin-bottom: 80px;
+    font-family: DroidNaskh, Tahoma;
 }
 .footer {
   position: absolute;
@@ -64,7 +71,6 @@ body {
     visibility: hidden;
     position:absolute;
 }
-
 
 
 /* jGrowl Box style */
