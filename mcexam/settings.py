@@ -128,7 +128,7 @@ EMAIL_HOST_PASSWORD='idontforgetonce'
 EMAIL_USE_TLS= True
 EMAIL_SENDER = 'sh44zzz@gmail.com'
 
-"""
+
 #Heroku settings
 import dj_database_url
 DATABASES["default"] = dj_database_url.config()
@@ -141,4 +141,3 @@ ALLOWED_HOSTS = ['*']
 DEBUG = False
 
 TEMPLATE_DEBUG = False
-"""
