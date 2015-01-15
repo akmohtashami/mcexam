@@ -59,9 +59,6 @@ class QuestionAdmin(admin.ModelAdmin):
     inlines = [
         ChoicesInLine,
     ]
-    formfield_overrides = {
-        models.CharField: {'widget': forms.Textarea},
-    }
 
 admin.site.register(Exam, ExamAdmin)
 admin.site.register(Question, QuestionAdmin)

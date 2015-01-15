@@ -34,7 +34,7 @@ class Question(models.Model):
     exam = models.ForeignKey(Exam, verbose_name=_("Related exam"))
     order = models.IntegerField(verbose_name=_("Question's index"),
                                 help_text=_("Questions will be shown based on their index. Also this index is shown as the question's number in exam page"))
-    statement = models.CharField(max_length=10000, verbose_name=_("Question's Statement"))
+    statement = models.TextField(verbose_name=_("Question's Statement"))
 
     def __unicode__(self):
         return self.exam.name + " - " + _("Question #") + " " + str(self.order)
