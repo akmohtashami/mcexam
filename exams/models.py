@@ -3,6 +3,8 @@ from django.utils import timezone
 from django.utils.translation import ugettext as _
 from django.core.exceptions import ValidationError
 from users.models import Member
+from adminsortable.models import Sortable
+from adminsortable.fields import SortableForeignKey
 
 # Create your models here.
 
@@ -30,26 +32,21 @@ class Exam(models.Model):
             return 0  # exam is running
 
 
-class Question(models.Model):
-    exam = models.ForeignKey(Exam, verbose_name=_("Related exam"))
-    order = models.IntegerField(verbose_name=_("Question's index"),
-                                help_text=_("Questions will be shown based on their index. Also this index is shown as the question's number in exam page"))
+class Question(Sortable):
+    exam = SortableForeignKey(Exam, verbose_name=_("Related exam"))
     statement = models.TextField(verbose_name=_("Question's Statement"))
 
     def __unicode__(self):
         return self.exam.name + " - " + _("Question #") + " " + str(self.order)
 
-    class Meta:
+    class Meta(Sortable.Meta):
         verbose_name = _("Question")
         verbose_name_plural = _("Questions")
-        ordering = ['order']
 
 
-class Choice(models.Model):
-    question = models.ForeignKey(Question, verbose_name="Related question")
+class Choice(Sortable):
+    question = SortableForeignKey(Question, verbose_name="Related question")
     choice = models.CharField(max_length=10000, verbose_name=_("Choice"))
-    order = models.IntegerField(verbose_name=_("Choice's index"),
-                                help_text=_("Choices will be shown based on their index. Also this index is shown as choice number in exam page"))
     is_correct = models.BooleanField(default=False,
                                      verbose_name="Correct",
                                      help_text="Is this a correct answer to question?")
@@ -57,10 +54,9 @@ class Choice(models.Model):
     def __unicode__(self):
         return self.question.__unicode__() + ": " + self.choice
 
-    class Meta:
+    class Meta(Sortable.Meta):
         verbose_name = _("Choice")
         verbose_name_plural = _("Choices")
-        ordering = ['order']
 
 
 class MadeChoice(models.Model):
