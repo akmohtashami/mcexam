@@ -118,13 +118,14 @@
     <table name="exams_choice" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <column name="choice" sqlType="VARCHAR(10000)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
-      <column name="order" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="order" sqlType="INTEGER UNSIGNED" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <column name="is_correct" sqlType="BOOL" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <column name="question_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <primary-key columns="id"/>
       <foreign-key name="#FAKE_exams_choice_1" columns="question_id" ref-table="exams_question" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <exported-key name="#FAKE_exams_madechoice_2" table="exams_madechoice" schema="" catalog="" columns="choice_id"/>
       <index name="exams_choice_7aa0f6ee" unique="true" columns="question_id"/>
+      <index name="exams_choice_70a17ffa" unique="true" columns="order"/>
     </table>
     <table name="exams_exam" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
@@ -147,11 +148,12 @@
     <table name="exams_question" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <column name="statement" sqlType="TEXT" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
-      <column name="order" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <column name="exam_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="order" sqlType="INTEGER UNSIGNED" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <primary-key columns="id"/>
       <foreign-key name="#FAKE_exams_question_1" columns="exam_id" ref-table="exams_exam" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <exported-key name="#FAKE_exams_choice_1" table="exams_choice" schema="" catalog="" columns="question_id"/>
+      <index name="exams_question_70a17ffa" unique="true" columns="order"/>
       <index name="exams_question_09631ec7" unique="true" columns="exam_id"/>
     </table>
     <table name="sqlite_sequence" schema="" catalog="" type="TABLE">
