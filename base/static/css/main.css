@@ -72,6 +72,9 @@ body {
     position:absolute;
 }
 
+.question-number {
+    min-width: 25px;
+}
 
 /* jGrowl Box style */
 div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-close{

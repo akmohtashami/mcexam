@@ -101,7 +101,11 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'wsgi', 'static')
+if 'OPENSHIFT_REPO_DIR' in os.environ:
+    STATIC_ROOT = os.path.join(os.environ.get('OPENSHIFT_REPO_DIR'), 'wsgi', 'static')
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 STATIC_URL = '/static/'
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'base', 'templates'),
@@ -129,8 +133,7 @@ EMAIL_HOST_PASSWORD='idontforgetonce'
 EMAIL_USE_TLS= True
 EMAIL_SENDER = 'sh44zzz@gmail.com'
 
- 
-DATABASES = {}
+
 if 'OPENSHIFT_MYSQL_DB_URL' in os.environ:
     url = urlparse.urlparse(os.environ.get('OPENSHIFT_MYSQL_DB_URL'))
  
@@ -160,9 +163,8 @@ elif 'OPENSHIFT_POSTGRESQL_DB_URL' in os.environ:
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-DEBUG = False
+DEBUG = True
 
-TEMPLATE_DEBUG = False
+TEMPLATE_DEBUG = True
 
 
-MEDIA_ROOT = os.environ.get('OPENSHIFT_DATA_DIR', '')
