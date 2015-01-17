@@ -3,3 +3,4 @@ mcexamvenv
 db.sqlite3
 .idea
 openshift-needs
+heroku-needs

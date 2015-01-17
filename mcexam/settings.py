@@ -154,16 +154,7 @@ elif 'OPENSHIFT_POSTGRESQL_DB_URL' in os.environ:
         'HOST': url.hostname,
         'PORT': url.port,
         }
- 
-else:
-    DATABASES['default'] = {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'dev.db',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
-        }
+
  
 
 # Allow all host headers
