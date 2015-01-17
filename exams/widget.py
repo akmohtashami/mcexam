@@ -19,11 +19,10 @@ class ExamChoiceInput(Widget):
                 radio_code += ' checked'
             radio_code += '>'
             output.append(format_html(radio_code, name, str(option_value)))
-            label_code = u'<div class="col-md-2"><div data-correspond="{0}-{1}-choice" class="choice'
+            label_code = u'<td><div data-correspond="{0}-{1}-choice" class="choice'
             if option_value == value:
                 label_code += ' marked'
-            label_code += '" >{2}</div></div>'
+            label_code += '" >{2}</div></td>'
             output.append(format_html(label_code, name, str(option_value), choice_character(option_index)))
             option_index += 1
         return mark_safe('\n'.join(output))
-

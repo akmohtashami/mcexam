@@ -62,7 +62,7 @@ def exam_running(request, exam):
                                     validate_max=True,
                                     )
     forms = AnswerFormSet(initial=initials)
-    pages = Paginator(forms, 1)
+    pages = Paginator(forms, exam.question_per_column)
     all_pages = [pages.page(i) for i in pages.page_range]
     all_pages_orders = []
     for page in all_pages:

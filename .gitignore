@@ -1,6 +1,5 @@
 mcexamvenv
 *.pyc
 db.sqlite3
-resources
-locale2
 .idea
+openshift-needs

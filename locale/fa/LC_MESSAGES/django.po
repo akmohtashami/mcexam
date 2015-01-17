@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-10 21:39+0000\n"
-"PO-Revision-Date: 2015-01-10 21:44+0326\n"
+"POT-Creation-Date: 2015-01-17 21:03+0000\n"
+"PO-Revision-Date: 2015-01-17 21:03+0326\n"
 "Last-Translator:   <remuslup200@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -27,30 +27,30 @@ msgstr "طراحی شده توسط امیرکیوان محتشمی"
 msgid "Submit"
 msgstr "ارسال"
 
-#: base/templates/navbar.html:5
-msgid "Logout"
-msgstr "خروج"
-
-#: base/templates/navbar.html:7
+#: base/templates/navbar.html:6
 msgid "Register"
 msgstr "ثبت نام"
 
-#: base/templates/navbar.html:8 users/templates/users/login.html:6
+#: base/templates/navbar.html:7 users/templates/users/login.html:6
 #: users/templates/users/login.html:10
 msgid "Login"
 msgstr "ورود"
 
-#: base/templates/navbar.html:10
+#: base/templates/navbar.html:9
 msgid "Index"
 msgstr "صفحه ی اصلی"
 
-#: base/templates/navbar.html:12 exams/models.py:17
+#: base/templates/navbar.html:11 exams/models.py:20
 msgid "Exams"
 msgstr "آزمون ها"
 
-#: base/templates/navbar.html:15
+#: base/templates/navbar.html:14
 msgid "Admin"
 msgstr "مدیریت"
+
+#: base/templates/navbar.html:17
+msgid "Logout"
+msgstr "خروج"
 
 #: base/templatetags/base_filters.py:25
 msgid "A"
@@ -76,39 +76,33 @@ msgstr "ه"
 msgid "Bad choice number"
 msgstr "گزینه ی نامعتبر"
 
-#: exams/models.py:11
+#: exams/models.py:13
 msgid "Exam's name"
 msgstr "نام آزمون"
 
-#: exams/models.py:12
+#: exams/models.py:14
 msgid "Start Date"
 msgstr "تاریخ شروع"
 
-#: exams/models.py:13
+#: exams/models.py:15
 msgid "End Date"
 msgstr "تاریخ پایان"
 
 #: exams/models.py:16
+msgid "Number of questions per column in answer sheet"
+msgstr "تعداد سوالات در هر ستون پاسخنامه"
+
+#: exams/models.py:19
 msgid "Exam"
 msgstr "آزمون"
 
-#: exams/models.py:19
+#: exams/models.py:22
 msgid "Can user view exams"
 msgstr "کاربر توانایی دیدن آزمون ها را دارد"
 
-#: exams/models.py:34
+#: exams/models.py:37
 msgid "Related exam"
 msgstr "آزمون مربوطه"
-
-#: exams/models.py:36
-msgid "Question's index"
-msgstr "شماره ی سوال"
-
-#: exams/models.py:37
-msgid ""
-"Questions will be shown based on their index. Also this index is shown as "
-"the question's number in exam page"
-msgstr "سوالات براساس شماره شان مرتب و نمایش داده می شوند"
 
 #: exams/models.py:38
 msgid "Question's Statement"
@@ -126,25 +120,15 @@ msgstr "سوال"
 msgid "Questions"
 msgstr "سوالات"
 
-#: exams/models.py:51 exams/models.py:62
+#: exams/models.py:50 exams/models.py:59
 msgid "Choice"
 msgstr "گزینه"
 
-#: exams/models.py:52
-msgid "Choice's index"
-msgstr "شماره گزینه"
-
-#: exams/models.py:53
-msgid ""
-"Choices will be shown based on their index. Also this index is shown as "
-"choice number in exam page"
-msgstr "گزینه ها براساس شماره شان مرتب و نمایش داده می شوند"
-
-#: exams/models.py:63
+#: exams/models.py:60
 msgid "Choices"
 msgstr "گزینه ها"
 
-#: exams/models.py:82
+#: exams/models.py:75
 msgid "User has another answer for this question in database"
 msgstr "کاربر پاسخ دیگری برای این سوال در دیتابیس دارد."
 
@@ -176,7 +160,7 @@ msgstr ""
 "\n"
 "این آزمون در %(exam_end_date)s پایان یافته است."
 
-#: exams/templates/exams/running_exam.html:27
+#: exams/templates/exams/running_exam.html:31
 msgid "Save current answers"
 msgstr "ذخیره ی پاسخ های فعلی"
 
@@ -204,11 +188,11 @@ msgstr "تکرار رمز عبور جدید"
 msgid "Password Confirmation is not the same as Password"
 msgstr "تکرار رمز عبور با رمز عبور یکسان نیست"
 
-#: users/forms.py:61 users/forms.py:193 users/models.py:43
+#: users/forms.py:61 users/forms.py:193 users/models.py:45
 msgid "Username"
 msgstr "نام کاربری"
 
-#: users/forms.py:62 users/forms.py:216 users/models.py:44
+#: users/forms.py:62 users/forms.py:216 users/models.py:46
 msgid "Email"
 msgstr "پست الکترونیکی"
 
@@ -232,7 +216,7 @@ msgstr "رمز عبور"
 msgid "Password Confirmation"
 msgstr "تکرار رمز عبور"
 
-#: users/forms.py:132 users/forms.py:163 users/models.py:49
+#: users/forms.py:132 users/forms.py:163 users/models.py:51
 msgid "Active"
 msgstr "فعال"
 
@@ -261,74 +245,71 @@ msgstr "این کاربر پیش از این تایید شده است."
 msgid "No user is registered with this email address"
 msgstr "هیچ کاربری با این پست الکترونیک ثبت نام نکرده است"
 
-#: users/models.py:45
+#: users/models.py:47
 msgid "First Name (Native)"
 msgstr "نام(به فارسی)"
 
-#: users/models.py:46
+#: users/models.py:48
 msgid "Last Name (Native)"
 msgstr "نام خانوادگی(به فارسی)"
 
-#: users/models.py:47
+#: users/models.py:49
 msgid "(First Name (English)"
 msgstr "نام(به انگلیسی)"
 
-#: users/models.py:48
+#: users/models.py:50
 msgid "Last Name (English)"
 msgstr "نام خانوادگی(به انگلیسی)"
 
-#: users/models.py:54
+#: users/models.py:56
 msgid "Before High School"
 msgstr "پیش دبیرستانی"
 
-#: users/models.py:55
+#: users/models.py:57
 msgid "First Grade"
 msgstr "اول دبیرستان"
 
-#: users/models.py:56
+#: users/models.py:58
 msgid "Second Grade"
 msgstr "دوم دبیرستان"
 
-#: users/models.py:57
+#: users/models.py:59
 msgid "Third Grade"
 msgstr "سوم دبیرستان"
 
-#: users/models.py:58
+#: users/models.py:60
 msgid "After Third Grade"
 msgstr "پس دبیرستانی"
 
-#: users/models.py:60
+#: users/models.py:62
 msgid "Grade"
 msgstr "پایه"
 
-#: users/models.py:61
+#: users/models.py:63
 msgid "School"
 msgstr "مدرسه"
 
-#: users/models.py:69
+#: users/models.py:71
 msgid "User"
 msgstr "کاربر"
 
-#: users/models.py:70
+#: users/models.py:72
 msgid "Users"
 msgstr "کاربران"
 
-#: users/models.py:97
+#: users/models.py:99
 msgid "Verified"
 msgstr "تایید شده"
 
-#: users/models.py:102
+#: users/models.py:104
 msgid "Staff"
 msgstr "برگزار کننده"
 
-#: users/templates/users/activation_email_subject.txt:2
+#: users/templates/users/activation_email_subject.txt:1
 #, python-format
-msgid ""
-"\n"
-"Registration at %(site_name)s!\n"
-msgstr ""
-"\n"
-"عضویت در %(site_name)s!\n"
+#| msgid "istration at %(site_name)s!\n"
+msgid "Registration at %(site_name)s!"
+msgstr "عضویت در %(site_name)s!"
 
 #: users/templates/users/activation_email_text.txt:2
 #, python-format
@@ -375,23 +356,39 @@ msgstr ""
 msgid "Your profile has been updated successfully"
 msgstr "حساب کاربری شما با موفقیت بروز شد"
 
-#: users/views.py:48
+#: users/views.py:47
 msgid "You have successfully logged in"
 msgstr "شما با موفقیت وارد شدید"
 
-#: users/views.py:57
+#: users/views.py:56
 msgid "A new verification mail has been sent to your email address"
 msgstr "یک ایمیل تایید جدید به پست الکترونیکی شما فرستاده شد"
 
-#: users/views.py:70
+#: users/views.py:69
 msgid "You have successfully logged out"
 msgstr "شما با موفقیت خارج شدید"
 
-#: users/views.py:93
+#: users/views.py:92
 msgid "Your user has been verified. You can now login using the login form."
 msgstr ""
 "کاربر شما تایید شد. هم اکنون می توانید از طریق بخش ورود وارد سایت شوید"
 
-#: users/views.py:95
+#: users/views.py:94
 msgid "Invalid verification code"
 msgstr "کد تایید نامعتبر است"
+
+#~ msgid "Question's index"
+#~ msgstr "شماره ی سوال"
+
+#~ msgid ""
+#~ "Questions will be shown based on their index. Also this index is shown as "
+#~ "the question's number in exam page"
+#~ msgstr "سوالات براساس شماره شان مرتب و نمایش داده می شوند"
+
+#~ msgid "Choice's index"
+#~ msgstr "شماره گزینه"
+
+#~ msgid ""
+#~ "Choices will be shown based on their index. Also this index is shown as "
+#~ "choice number in exam page"
+#~ msgstr "گزینه ها براساس شماره شان مرتب و نمایش داده می شوند"

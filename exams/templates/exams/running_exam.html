@@ -16,8 +16,12 @@
                     {% for form in page %}
                         <div class='row'>
                             {{form.0.question}}
-                            <div class='col-md-1'>{{form.1}}- </div>
+                            <table>
+                            <tr>
+                            <td><div>{{form.1}}- </div></td>
                             {{form.0.answer}}
+                            </tr>
+                            </table>
                         </div>
                     {% endfor %}
                 </div>
@@ -27,4 +31,3 @@
         <div class='text-center'><input class='btn btn-primary' type='submit' value='{% trans "Save current answers" %}' /></div>
     </form>
 {% endblock %}
-

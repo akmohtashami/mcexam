@@ -13,6 +13,7 @@ class Exam(models.Model):
     name = models.CharField(max_length=500, verbose_name=_("Exam's name"))
     start_date = models.DateTimeField(_("Start Date"))
     end_date = models.DateTimeField(_("End Date"))
+    question_per_column = models.PositiveIntegerField(_("Number of questions per column in answer sheet"), default=20)
 
     class Meta:
         verbose_name = _("Exam")
