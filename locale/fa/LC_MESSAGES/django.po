@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-21 18:46+0000\n"
-"PO-Revision-Date: 2015-01-21 18:48+0326\n"
+"POT-Creation-Date: 2015-01-21 18:59+0000\n"
+"PO-Revision-Date: 2015-01-21 18:59+0326\n"
 "Last-Translator:   <remuslup200@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -26,6 +26,11 @@ msgstr "طراحی شده توسط امیرکیوان محتشمی"
 #: base/templates/forms.html:35
 msgid "Submit"
 msgstr "ارسال"
+
+#: base/templates/forms.html:45
+msgid "Fields marked with * are required and must be filled"
+msgstr ""
+"خانه هایی که با علامت *(ستاره) مشخص شده اند ضروری هستند و باید پر شوند"
 
 #: base/templates/navbar.html:6
 msgid "Register"

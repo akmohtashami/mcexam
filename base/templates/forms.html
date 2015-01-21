@@ -10,14 +10,14 @@
         <div class="row">
             {% if field.errors %}
                 <div class="col-md-4 has-error has-feedback">
-                    <span class="control-label">{{field.label_tag}}</span>
+                    <span class="control-label">{{field.label_tag}}{% if field.field.required %}*{% endif %}</span>
                     <p class="help-block">{{field.help_text}}</p>
                     <div class="alert alert-danger">{{field.errors}}</div>
                 </div>
 
             {% else %}
                 <div class="col-md-4">
-                    {{field.label_tag}}<br />
+                    {{field.label_tag}}{% if field.field.required %}*{% endif %}<br />
                     <p class="help-block">{{field.help_text}}</p>
                 </div>
             {% endif %}
@@ -42,4 +42,6 @@
 
         </div>
     </div>
+    <br />
+    <p class='text-info'> {% trans 'Fields marked with * are required and must be filled' %} </p>
 </div>
