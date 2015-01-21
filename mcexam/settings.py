@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'guardian',
     "adminsortable",
     'base',
     'exams',
@@ -124,7 +125,12 @@ LOGIN_URL = 'users:login'
 
 AUTHENTICATION_BACKENDS = (
     'users.backends.MemberAuthBackend',
+    'guardian.backends.ObjectPermissionBackend',
 )
+
+ANONYMOUS_USER_ID = None
+
+GUARDIAN_RAISE_403 = True
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587

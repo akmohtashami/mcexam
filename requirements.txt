@@ -12,3 +12,4 @@ six==1.9.0
 static3==0.5.1
 wsgiref==0.1.2
 django-admin-sortable==1.8
+django-guardian==1.2.5

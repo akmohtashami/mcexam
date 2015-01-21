@@ -7,6 +7,7 @@ from django.conf import settings
 from django.contrib.sites.models import Site
 from django.utils.translation import ugettext as _
 from django.utils.encoding import smart_text
+from guardian.mixins import GuardianUserMixin
 
 import hashlib
 import random
@@ -41,7 +42,7 @@ class MemberManager(auth.models.BaseUserManager):
         return user
 
 
-class Member(auth.models.AbstractBaseUser, auth.models.PermissionsMixin):
+class Member(auth.models.AbstractBaseUser, auth.models.PermissionsMixin, GuardianUserMixin):
     username = models.CharField(max_length=250, unique=True, verbose_name=_("Username"))
     email = models.EmailField(max_length=250, unique=True, verbose_name=_("Email"))
     first_name = models.CharField(max_length=250, verbose_name=_("First Name (Native)"))
@@ -62,6 +63,20 @@ class Member(auth.models.AbstractBaseUser, auth.models.PermissionsMixin):
     grade = models.CharField(max_length=6, choices=GRADE_IN_SCHOOL, verbose_name=_("Grade"), blank=True, null=True)
     school = models.CharField(max_length=250, verbose_name=_("School"), blank=True, null=True)
 
+    #Dummy user-related field
+    exam_site = models.ForeignKey("exams.ExamSite", null=True, blank=True)
+
+    def is_owner(self, user):
+        if self.exam_site is None:
+            return False
+        elif user.is_superuser or self.exam_site.importer == user:
+            return True
+
+    def is_dummy(self):
+        return self.owner is not None
+
+    is_dummy.short_description = _("Dummy")
+    is_dummy.boolean = True
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email', 'first_name', 'last_name', 'first_name_en', 'last_name_en']
@@ -92,16 +107,15 @@ class Member(auth.models.AbstractBaseUser, auth.models.PermissionsMixin):
 
     def verify(self):
         self.verification_code = "verified"
-        self.save()
 
     def is_verified(self):
         return self.verification_code == "verified"
-    is_verified.short_description=_("Verified")
+    is_verified.short_description = _("Verified")
     is_verified.boolean = True
 
     def is_staff(self):
         return self.is_superuser
-    is_staff.short_description=_("Staff")
+    is_staff.short_description = _("Staff")
     is_staff.boolean = True
 
     def has_perm(self, perm, obj=None):

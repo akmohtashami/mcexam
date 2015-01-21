@@ -1,11 +1,15 @@
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import permission_required
+from guardian.decorators import permission_required as guardian_permission_required
 from django.contrib import messages
-from django.core.paginator import Paginator
-from django.forms import formset_factory
-from exams.models import Exam, MadeChoice
-from exams.forms import AnswerForm
-# Create your views here.
+from exams.models import Exam, ExamSite
+from users.models import Member
+from exams.forms import OnsiteContestantForm, save_answer_sheet, get_answer_sheet, get_answer_formset
+from django.http import HttpResponseRedirect
+from django.core.exceptions import PermissionDenied
+from django.core.urlresolvers import reverse
+from django.utils.translation import ugettext as _
+
 
 @permission_required("exams.can_view", raise_exception=True)
 def list(request):
@@ -14,70 +18,113 @@ def list(request):
     return render(request, "exams/list.html", context)
 
 
-def process_saving_form(questions, request):
-    if request.method == "POST":
-        current_user = request.user
-        AnswerFormSet = formset_factory(AnswerForm,
-                                        min_num=questions.count(),
-                                        validate_min=True,
-                                        max_num=questions.count(),
-                                        validate_max=True,
-                                        )
-        initial = [{'question': q} for q in questions]
-        formset = AnswerFormSet(request.POST,
-                                initial=initial,
-                                )
-
-        if formset.is_valid():
-            for form in formset:
-                try:
-                    current_user_madechoice = current_user.madechoice_set.get(
-                        choice__question=form.cleaned_data["question"],
-                    )
-                    current_user_madechoice.delete()
-                except MadeChoice.DoesNotExist:
-                    pass
-                if form.cleaned_data["answer"] is not None:
-                    MadeChoice.objects.create(
-                        user=current_user,
-                        choice=form.cleaned_data["answer"]
-                    )
-
-
 def exam_running(request, exam):
-    questions = exam.question_set.all()
-    current_user = request.user
-    process_saving_form(questions, request)
-    initials = []
-    for question in questions:
-        try:
-            current_user_answer = current_user.madechoice_set.get(choice__question=question).choice
-        except MadeChoice.DoesNotExist:
-            current_user_answer = None
-        initials.append({"question": question, "answer": current_user_answer})
-    AnswerFormSet = formset_factory(AnswerForm,
-                                    min_num=questions.count(),
-                                    validate_min=True,
-                                    max_num=questions.count(),
-                                    validate_max=True,
-                                    )
-    forms = AnswerFormSet(initial=initials)
-    pages = Paginator(forms, exam.question_per_column)
-    all_pages = [pages.page(i) for i in pages.page_range]
-    all_pages_orders = []
-    for page in all_pages:
-        pages_orders = []
-        for form in page.object_list:
-            pages_orders.append((form, form.initial["question"].order))
-        all_pages_orders.append(pages_orders)
-    context = {"exam": exam, "formset": forms, "pages": all_pages_orders}
+    if request.method == "POST":
+        forms = get_answer_formset(exam, request.user, request.POST)
+        if save_answer_sheet(forms, request.user):
+            messages.success(request, _("Answers saved successfully"))
+        else:
+            messages.error(request, _("A problem occured. Please try again"))
+    else:
+        forms = get_answer_formset(exam, request.user)
+    full_columns = get_answer_sheet(exam, forms)
+    context = {"exam": exam, "formset": forms, "columns": full_columns}
     return render(request, "exams/running_exam.html", context)
 
-@permission_required("exams.can_view", raise_exception=True)
-def detail(request, exam_id):
-    exam = get_object_or_404(Exam, pk=exam_id)
-    context = {"exam": exam}
-    if exam.stage() == 0:
-        return exam_running(request, exam)
+@guardian_permission_required("exams.can_import", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
+def delete_data(request, exam_id, user_id):
+    user = get_object_or_404(Member, id=user_id)
+    if not user.is_owner(request.user):
+        raise PermissionDenied
     else:
-        return render(request, "exams/not_running_exam.html", context)
+        user.delete()
+        messages.success(request, "Data was removed successfully")
+    return HttpResponseRedirect(reverse("exams:import", kwargs={"exam_id": exam_id}))
+
+
+@guardian_permission_required("exams.can_import", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
+def edit_data(request, exam_id, user_id):
+    exam = get_object_or_404(Exam, id=exam_id)
+    user = get_object_or_404(Member, id=user_id)
+    if not user.is_owner(request.user):
+        raise PermissionDenied
+
+    if request.method == "POST":
+        user_form = OnsiteContestantForm(request.POST, instance=user, current_user=request.user, prefix="user-data")
+        answer_form = get_answer_formset(exam, user=user, data=request.POST, prefix="answer-data")
+        if user_form.is_valid() and answer_form.is_valid():
+            user = user_form.save()
+            save_answer_sheet(answer_form, user)
+            messages.success(request, _("The data updated successfully"))
+            return HttpResponseRedirect(reverse("exams:import", kwargs={"exam_id": exam_id}))
+    else:
+        user_form = OnsiteContestantForm(instance=user, current_user=request.user, prefix="user-data")
+        answer_form = get_answer_formset(exam, user, prefix="answer-data")
+
+    answer_sheet_full_columns = get_answer_sheet(exam, answer_form)
+
+    context = {"exam": exam,
+               "user_id": user_id,
+               "user_form": user_form,
+               "answer_sheet_forms": answer_form,
+               "answer_sheet_full_columns": answer_sheet_full_columns,
+               }
+
+    return render(request, "exams/exam_edit_data.html", context)
+
+
+@guardian_permission_required("exams.can_import", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
+def add_data(request, exam_id):
+    exam = get_object_or_404(Exam, id=exam_id)
+    if request.method == "POST":
+        user_form = OnsiteContestantForm(request.POST, current_user=request.user, prefix="user-data")
+        answer_form = get_answer_formset(exam, data=request.POST, prefix="answer-data")
+        if user_form.is_valid() and answer_form.is_valid():
+            user = user_form.save()
+            save_answer_sheet(answer_form, user)
+            messages.success(request, _("The data added successfully"))
+            return HttpResponseRedirect(reverse("exams:import", kwargs={"exam_id": exam_id}))
+            user_form = OnsiteContestantForm(current_user=request.user, prefix="user-data")
+            answer_form = get_answer_formset(exam, prefix="answer-data")
+    else:
+        user_form = OnsiteContestantForm(current_user=request.user, prefix="user-data")
+        answer_form = get_answer_formset(exam, prefix="answer-data")
+
+    answer_sheet_full_columns = get_answer_sheet(exam, answer_form)
+
+    context = {"exam": exam,
+               "user_form": user_form,
+               "answer_sheet_forms": answer_form,
+               "answer_sheet_full_columns": answer_sheet_full_columns,
+               }
+    return render(request, "exams/exam_add_data.html", context)
+
+@guardian_permission_required("exams.can_import", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
+def import_data(request, exam_id):
+    exam = get_object_or_404(Exam, id=exam_id)
+    if exam.mode() >= 2:
+        messages.error(request, _("You can't import data for this exam anymore"))
+        return HttpResponseRedirect(reverse("exams:list"))
+    available_exam_sites = request.user.examsite_set.all()
+    site_user_list = []
+    for site in available_exam_sites:
+        available_onsite_users = site.member_set.filter(exam_site=site)
+        site_user_list.append((site, available_onsite_users))
+    context = {
+        "exam": exam,
+        "sites": site_user_list,
+    }
+    return render(request, "exams/exam_manage.html", context)
+
+@guardian_permission_required("exams.can_view", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
+def detail(request, exam_id):
+    exam = get_object_or_404(Exam, id=exam_id)
+    if not request.user.is_superuser and request.user.has_perm("exams.can_import", exam):
+        return HttpResponseRedirect(reverse("exams:import", kwargs={"exam_id": exam_id}))
+    elif exam.mode() <= -1:
+        messages.error(request, _("This exam hasn't started yet"))
+    elif exam.mode() == 0:
+        return exam_running(request, exam)
+    elif exam.mode() >= 1:
+        messages.error(request, _("This exam has ended"))
+    return HttpResponseRedirect(reverse("exams:list"))

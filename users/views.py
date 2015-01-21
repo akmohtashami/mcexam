@@ -89,6 +89,7 @@ def verify(request, verification_code):
     try:
         user = Member.objects.get(verification_code=verification_code)
         user.verify()
+        user.save()
         messages.success(request, _("Your user has been verified. You can now login using the login form."))
     except Member.DoesNotExist:
         messages.error(request, _("Invalid verification code"))

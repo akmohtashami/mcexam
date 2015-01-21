@@ -149,6 +149,7 @@ class MemberAdminChangeForm(FullMemberChangeForm):
             'is_active',
             'is_superuser',
             'groups',
+            'exam_site',
             ]
 
 

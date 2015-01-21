@@ -6,6 +6,7 @@ urlpatterns = patterns('',
     # url(r'^$', 'mcexam.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
     url(r'^', include('base.urls')),
+    url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
     url(r'^admin/', include(admin.site.urls)),
 )
 

@@ -1,14 +1,31 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load base_filters %}
+{% load tz %}
 
 {% block main_content %}
     <h1>{% trans "Exams List" %}</h1>
     {% if exams_list %}
-        <ul>
-            {% for exam in exams_list %}
-                <li><a href="{% url 'exams:detail' exam.id %}"> {{ exam.name }} </a></li>
-            {% endfor %}
-        </ul>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>{% trans 'Name' %}</th>
+                    <th>{% trans 'Start Date' %}</th>
+                    <th>{% trans 'End Date' %}</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for exam in exams_list %}
+                    <tr>
+                        <td> {{ exam.name }} </td>
+                        <td> {{ exam.start_date|localtime|jalali_date:"Y/m/d H:i:s" }} </td>
+                        <td> {{ exam.end_date|localtime|jalali_date:"Y/m/d H:i:s" }} </td>
+                        <td> <a href="{% url 'exams:detail' exam.id %}"> Enter </a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     {% else %}
         {% trans "No exams are available." %}
     {% endif %}

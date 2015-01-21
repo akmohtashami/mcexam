@@ -10,23 +10,25 @@ from adminsortable.fields import SortableForeignKey
 
 
 class Exam(models.Model):
-    name = models.CharField(max_length=500, verbose_name=_("Exam's name"))
+    name = models.CharField(max_length=500, verbose_name=_("Name"))
     start_date = models.DateTimeField(_("Start Date"))
     end_date = models.DateTimeField(_("End Date"))
-    question_per_column = models.PositiveIntegerField(_("Number of questions per column in answer sheet"), default=20)
+    questions_per_column = models.PositiveIntegerField(_("Number of questions per column in answer sheet"), default=20)
 
     class Meta:
         verbose_name = _("Exam")
         verbose_name_plural = _("Exams")
         permissions = (
-            ("can_view", _("Can user view exams")),
+            ("can_view", _("Can view exam")),
+            ("can_import_answer", _("Can import answer sheets"))
         )
+
     def __unicode__(self):
         return self.name
-    def stage(self):
-        #raise ValueError("%d", self.end_date, datetime.now())
+
+    def mode(self):
         if timezone.now() < self.start_date:
-            return -1  # exam hasn't started yet
+            return -1  # exam hasn't started
         elif timezone.now() >= self.end_date:
             return 1  # exam has ended
         else:
@@ -73,6 +75,13 @@ class MadeChoice(models.Model):
             super(MadeChoice, self).clean()
         else:
             raise ValidationError(_("User has another answer for this question in database"),
-                                    code='multiple_answer')
+                                  code='multiple_answer')
 
 
+class ExamSite(models.Model):
+    exam = models.ForeignKey(Exam)
+    importer = models.ForeignKey(Member)
+    name = models.CharField(max_length=255, verbose_name=_("Exam Site"))
+
+    def __unicode__(self):
+        return self.exam.__unicode__() + " - " + self.name

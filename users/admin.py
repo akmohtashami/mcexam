@@ -11,6 +11,7 @@ from django.utils.translation import ugettext as _
 def verify_user(modeladmin, request, queryset):
     for user in queryset:
         user.verify()
+        user.save()
 verify_user.short_description = _("Verify selected users")
 
 
