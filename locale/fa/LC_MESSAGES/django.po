@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-17 21:03+0000\n"
-"PO-Revision-Date: 2015-01-17 21:03+0326\n"
+"POT-Creation-Date: 2015-01-21 18:46+0000\n"
+"PO-Revision-Date: 2015-01-21 18:48+0326\n"
 "Last-Translator:   <remuslup200@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -76,15 +76,21 @@ msgstr "ه"
 msgid "Bad choice number"
 msgstr "گزینه ی نامعتبر"
 
-#: exams/models.py:13
-msgid "Exam's name"
-msgstr "نام آزمون"
+#: exams/forms.py:86 exams/models.py:84
+#, fuzzy
+#| msgid "Exams List"
+msgid "Exam Site"
+msgstr "لیست آزمون ها"
 
-#: exams/models.py:14
+#: exams/models.py:13 exams/templates/exams/list.html:12
+msgid "Name"
+msgstr "نام"
+
+#: exams/models.py:14 exams/templates/exams/list.html:13
 msgid "Start Date"
 msgstr "تاریخ شروع"
 
-#: exams/models.py:15
+#: exams/models.py:15 exams/templates/exams/list.html:14
 msgid "End Date"
 msgstr "تاریخ پایان"
 
@@ -97,46 +103,85 @@ msgid "Exam"
 msgstr "آزمون"
 
 #: exams/models.py:22
-msgid "Can user view exams"
+#, fuzzy
+#| msgid "Can user view exams"
+msgid "Can view exam"
 msgstr "کاربر توانایی دیدن آزمون ها را دارد"
 
-#: exams/models.py:37
+#: exams/models.py:23
+msgid "Can import answer sheets"
+msgstr "اجازه ی وارد کردن پاسخنامه دارد"
+
+#: exams/models.py:39
 msgid "Related exam"
 msgstr "آزمون مربوطه"
 
-#: exams/models.py:38
+#: exams/models.py:40
 msgid "Question's Statement"
 msgstr "صورت سوال"
 
-#: exams/models.py:41
+#: exams/models.py:43
 msgid "Question #"
 msgstr "سوال شماره"
 
-#: exams/models.py:44
+#: exams/models.py:46
 msgid "Question"
 msgstr "سوال"
 
-#: exams/models.py:45
+#: exams/models.py:47
 msgid "Questions"
 msgstr "سوالات"
 
-#: exams/models.py:50 exams/models.py:59
+#: exams/models.py:52 exams/models.py:61
 msgid "Choice"
 msgstr "گزینه"
 
-#: exams/models.py:60
+#: exams/models.py:62
 msgid "Choices"
 msgstr "گزینه ها"
 
-#: exams/models.py:75
+#: exams/models.py:77
 msgid "User has another answer for this question in database"
 msgstr "کاربر پاسخ دیگری برای این سوال در دیتابیس دارد."
 
-#: exams/templates/exams/list.html:5
+#: exams/templates/exams/exam_add_data.html:34
+msgid "Save data"
+msgstr "ذخیره ی داده ها"
+
+#: exams/templates/exams/exam_add_data.html:35
+#: exams/templates/exams/exam_edit_data.html:36
+msgid "Back"
+msgstr "بازگشت"
+
+#: exams/templates/exams/exam_edit_data.html:34
+msgid "Save"
+msgstr "ذخیره"
+
+#: exams/templates/exams/exam_edit_data.html:35
+msgid "Remove"
+msgstr "حذف"
+
+#: exams/templates/exams/exam_manage.html:21
+msgid "Edit"
+msgstr "ویرایش"
+
+#: exams/templates/exams/exam_manage.html:25
+msgid "Delete"
+msgstr "حذف"
+
+#: exams/templates/exams/exam_manage.html:31
+msgid "No participants"
+msgstr "شرکت کننده ای وجود ندارد"
+
+#: exams/templates/exams/exam_manage.html:37
+msgid "Add New Participant"
+msgstr "افزودن شرکت کننده ی جدید"
+
+#: exams/templates/exams/list.html:7
 msgid "Exams List"
 msgstr "لیست آزمون ها"
 
-#: exams/templates/exams/list.html:13
+#: exams/templates/exams/list.html:30
 msgid "No exams are available."
 msgstr "هیچ آزمون فعالی وجود ندارد."
 
@@ -160,15 +205,47 @@ msgstr ""
 "\n"
 "این آزمون در %(exam_end_date)s پایان یافته است."
 
-#: exams/templates/exams/running_exam.html:31
+#: exams/templates/exams/running_exam.html:29
 msgid "Save current answers"
 msgstr "ذخیره ی پاسخ های فعلی"
 
-#: users/admin.py:14
+#: exams/views.py:25
+msgid "Answers saved successfully"
+msgstr "پاسخ ها با موفقیت ذخیره شدند"
+
+#: exams/views.py:27
+msgid "A problem occured. Please try again"
+msgstr "مشکلی پیش آمده است. لطفا دوباره تلاش کنید"
+
+#: exams/views.py:58
+#, fuzzy
+#| msgid "Your profile has been updated successfully"
+msgid "The data updated successfully"
+msgstr "حساب کاربری شما با موفقیت بروز شد"
+
+#: exams/views.py:85
+#, fuzzy
+#| msgid "Your profile has been updated successfully"
+msgid "The data added successfully"
+msgstr "حساب کاربری شما با موفقیت بروز شد"
+
+#: exams/views.py:106
+msgid "You can't import data for this exam anymore"
+msgstr "شما دیگر نمی توانید داده ای در این آزمون وارد کنید"
+
+#: exams/views.py:125
+msgid "This exam hasn't started yet"
+msgstr "این آزمون هنوز شروع نشده است"
+
+#: exams/views.py:129
+msgid "This exam has ended"
+msgstr "این آزمون پایان یافته است"
+
+#: users/admin.py:15
 msgid "Verify selected users"
 msgstr "تایید کاربران انتخاب شده"
 
-#: users/admin.py:24
+#: users/admin.py:25
 msgid "groups"
 msgstr "گروه ها"
 
@@ -188,11 +265,11 @@ msgstr "تکرار رمز عبور جدید"
 msgid "Password Confirmation is not the same as Password"
 msgstr "تکرار رمز عبور با رمز عبور یکسان نیست"
 
-#: users/forms.py:61 users/forms.py:193 users/models.py:45
+#: users/forms.py:61 users/forms.py:194 users/models.py:46
 msgid "Username"
 msgstr "نام کاربری"
 
-#: users/forms.py:62 users/forms.py:216 users/models.py:46
+#: users/forms.py:62 users/forms.py:217 users/models.py:47
 msgid "Email"
 msgstr "پست الکترونیکی"
 
@@ -208,106 +285,109 @@ msgstr "رمز عبور فعلی خود را برای تایید تغییرات 
 msgid "Your current password is not correct"
 msgstr "رمز عبور فعلی غلط است"
 
-#: users/forms.py:99 users/forms.py:157 users/forms.py:194
+#: users/forms.py:99 users/forms.py:158 users/forms.py:195
 msgid "Password"
 msgstr "رمز عبور"
 
-#: users/forms.py:102 users/forms.py:160
+#: users/forms.py:102 users/forms.py:161
 msgid "Password Confirmation"
 msgstr "تکرار رمز عبور"
 
-#: users/forms.py:132 users/forms.py:163 users/models.py:51
+#: users/forms.py:132 users/forms.py:164 users/models.py:52
 msgid "Active"
 msgstr "فعال"
 
-#: users/forms.py:200
+#: users/forms.py:201
 msgid "Provided username and password are not correct"
 msgstr "نام کاربری و رمز عبور داده شده صحیح نیست"
 
-#: users/forms.py:202
+#: users/forms.py:203
 msgid "This user is deactivated by administrator."
 msgstr "این کاربر توسط مدیر غیرفعال شده است"
 
-#: users/forms.py:204
+#: users/forms.py:205
 msgid "This user is not verified. Please verify your user"
 msgstr "این کاربر تایید نشده است."
 
-#: users/forms.py:217
+#: users/forms.py:218
 msgid "This must be the same email that you registered with"
 msgstr ""
 "این پست الکترونیک باید همان پست الکترونیکی باشد که با آن ثبت نام کردید."
 
-#: users/forms.py:224
+#: users/forms.py:225
 msgid "This user has been already verified"
 msgstr "این کاربر پیش از این تایید شده است."
 
-#: users/forms.py:227
+#: users/forms.py:228
 msgid "No user is registered with this email address"
 msgstr "هیچ کاربری با این پست الکترونیک ثبت نام نکرده است"
 
-#: users/models.py:47
+#: users/models.py:48
 msgid "First Name (Native)"
 msgstr "نام(به فارسی)"
 
-#: users/models.py:48
+#: users/models.py:49
 msgid "Last Name (Native)"
 msgstr "نام خانوادگی(به فارسی)"
 
-#: users/models.py:49
+#: users/models.py:50
 msgid "(First Name (English)"
 msgstr "نام(به انگلیسی)"
 
-#: users/models.py:50
+#: users/models.py:51
 msgid "Last Name (English)"
 msgstr "نام خانوادگی(به انگلیسی)"
 
-#: users/models.py:56
+#: users/models.py:57
 msgid "Before High School"
 msgstr "پیش دبیرستانی"
 
-#: users/models.py:57
+#: users/models.py:58
 msgid "First Grade"
 msgstr "اول دبیرستان"
 
-#: users/models.py:58
+#: users/models.py:59
 msgid "Second Grade"
 msgstr "دوم دبیرستان"
 
-#: users/models.py:59
+#: users/models.py:60
 msgid "Third Grade"
 msgstr "سوم دبیرستان"
 
-#: users/models.py:60
+#: users/models.py:61
 msgid "After Third Grade"
 msgstr "پس دبیرستانی"
 
-#: users/models.py:62
+#: users/models.py:63
 msgid "Grade"
 msgstr "پایه"
 
-#: users/models.py:63
+#: users/models.py:64
 msgid "School"
 msgstr "مدرسه"
 
-#: users/models.py:71
+#: users/models.py:78
+msgid "Dummy"
+msgstr "جعلی"
+
+#: users/models.py:86
 msgid "User"
 msgstr "کاربر"
 
-#: users/models.py:72
+#: users/models.py:87
 msgid "Users"
 msgstr "کاربران"
 
-#: users/models.py:99
+#: users/models.py:113
 msgid "Verified"
 msgstr "تایید شده"
 
-#: users/models.py:104
+#: users/models.py:118
 msgid "Staff"
 msgstr "برگزار کننده"
 
 #: users/templates/users/activation_email_subject.txt:1
 #, python-format
-#| msgid "istration at %(site_name)s!\n"
 msgid "Registration at %(site_name)s!"
 msgstr "عضویت در %(site_name)s!"
 
@@ -368,14 +448,17 @@ msgstr "یک ایمیل تایید جدید به پست الکترونیکی ش�
 msgid "You have successfully logged out"
 msgstr "شما با موفقیت خارج شدید"
 
-#: users/views.py:92
+#: users/views.py:93
 msgid "Your user has been verified. You can now login using the login form."
 msgstr ""
 "کاربر شما تایید شد. هم اکنون می توانید از طریق بخش ورود وارد سایت شوید"
 
-#: users/views.py:94
+#: users/views.py:95
 msgid "Invalid verification code"
 msgstr "کد تایید نامعتبر است"
+
+#~ msgid "Exam's name"
+#~ msgstr "نام آزمون"
 
 #~ msgid "Question's index"
 #~ msgstr "شماره ی سوال"
