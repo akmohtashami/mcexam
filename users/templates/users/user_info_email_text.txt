@@ -1,0 +1,8 @@
+{% load i18n %}
+{% blocktrans with site_name=site.name fname=cur_user.first_name uname=cur_user.username pass=cur_user_pass %}
+Hello {{fname}}, You've been registered at {{site_name}}. Your user data is:
+Username: {{uname}}
+Password: {{pass}}
+You can login using the login form in the website. The website url is:
+{% endblocktrans %}
+http://{{ site.domain }}

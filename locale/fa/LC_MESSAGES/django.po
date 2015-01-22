@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-21 18:59+0000\n"
-"PO-Revision-Date: 2015-01-21 18:59+0326\n"
+"POT-Creation-Date: 2015-01-22 18:25+0000\n"
+"PO-Revision-Date: 2015-01-22 18:30+0326\n"
 "Last-Translator:   <remuslup200@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgstr "طراحی شده توسط امیرکیوان محتشمی"
 msgid "Submit"
 msgstr "ارسال"
 
-#: base/templates/forms.html:45
+#: base/templates/forms.html:46
 msgid "Fields marked with * are required and must be filled"
 msgstr ""
 "خانه هایی که با علامت *(ستاره) مشخص شده اند ضروری هستند و باید پر شوند"
@@ -108,10 +108,8 @@ msgid "Exam"
 msgstr "آزمون"
 
 #: exams/models.py:22
-#, fuzzy
-#| msgid "Can user view exams"
 msgid "Can view exam"
-msgstr "کاربر توانایی دیدن آزمون ها را دارد"
+msgstr "توانایی دیدن آزمون ها را دارد"
 
 #: exams/models.py:23
 msgid "Can import answer sheets"
@@ -223,16 +221,14 @@ msgid "A problem occured. Please try again"
 msgstr "مشکلی پیش آمده است. لطفا دوباره تلاش کنید"
 
 #: exams/views.py:58
-#, fuzzy
 #| msgid "Your profile has been updated successfully"
-msgid "The data updated successfully"
-msgstr "حساب کاربری شما با موفقیت بروز شد"
+msgid "Updated successfully"
+msgstr "عملیات بروزرسانی با موفقیت انجام شد"
 
 #: exams/views.py:85
-#, fuzzy
 #| msgid "Your profile has been updated successfully"
-msgid "The data added successfully"
-msgstr "حساب کاربری شما با موفقیت بروز شد"
+msgid "Added successfully"
+msgstr "عملیات افزودن با موفقیت انجام شد"
 
 #: exams/views.py:106
 msgid "You can't import data for this exam anymore"
@@ -246,84 +242,89 @@ msgstr "این آزمون هنوز شروع نشده است"
 msgid "This exam has ended"
 msgstr "این آزمون پایان یافته است"
 
-#: users/admin.py:15
+#: users/admin.py:29
 msgid "Verify selected users"
 msgstr "تایید کاربران انتخاب شده"
 
-#: users/admin.py:25
-msgid "groups"
-msgstr "گروه ها"
+#: users/admin.py:41
+msgid "Send selected users info to their email"
+msgstr "ارسال اطلاعات کاربران انتخاب شده به ایمیل آن ها"
 
-#: users/forms.py:19
+#: users/admin.py:48
+#| msgid "Verify selected users"
+msgid "Get selected users email list"
+msgstr "گرفتن ایمیل کاربران انتخاب شده"
+
+#: users/forms.py:20
 msgid "New Password"
 msgstr "رمز عبور جدید"
 
-#: users/forms.py:22
+#: users/forms.py:23
 msgid "Leave this empty if you don't want to change the password"
 msgstr "اگر نمی خواهید رمز عبور خود را تغییر بدهید این فیلد را خالی بگذارید."
 
-#: users/forms.py:23
+#: users/forms.py:24
 msgid "New Password Confirmation"
 msgstr "تکرار رمز عبور جدید"
 
-#: users/forms.py:45
+#: users/forms.py:46
 msgid "Password Confirmation is not the same as Password"
 msgstr "تکرار رمز عبور با رمز عبور یکسان نیست"
 
-#: users/forms.py:61 users/forms.py:194 users/models.py:46
+#: users/forms.py:62 users/forms.py:197 users/models.py:46
 msgid "Username"
 msgstr "نام کاربری"
 
-#: users/forms.py:62 users/forms.py:217 users/models.py:47
+#: users/forms.py:63 users/forms.py:220 users/models.py:47
 msgid "Email"
 msgstr "پست الکترونیکی"
 
-#: users/forms.py:63
+#: users/forms.py:64
 msgid "Current password:"
 msgstr "رمز عبور فعلی"
 
-#: users/forms.py:66
+#: users/forms.py:67
 msgid "Enter your current password to confirm your changes"
 msgstr "رمز عبور فعلی خود را برای تایید تغییرات وارد کنید"
 
-#: users/forms.py:94
+#: users/forms.py:95
 msgid "Your current password is not correct"
 msgstr "رمز عبور فعلی غلط است"
 
-#: users/forms.py:99 users/forms.py:158 users/forms.py:195
+#: users/forms.py:100 users/forms.py:159 users/forms.py:198
 msgid "Password"
 msgstr "رمز عبور"
 
-#: users/forms.py:102 users/forms.py:161
+#: users/forms.py:103 users/forms.py:162
 msgid "Password Confirmation"
 msgstr "تکرار رمز عبور"
 
-#: users/forms.py:132 users/forms.py:164 users/models.py:52
+#: users/forms.py:133 users/forms.py:165 users/models.py:52
 msgid "Active"
 msgstr "فعال"
 
-#: users/forms.py:201
+#: users/forms.py:204
 msgid "Provided username and password are not correct"
 msgstr "نام کاربری و رمز عبور داده شده صحیح نیست"
 
-#: users/forms.py:203
+#: users/forms.py:206
 msgid "This user is deactivated by administrator."
 msgstr "این کاربر توسط مدیر غیرفعال شده است"
 
-#: users/forms.py:205
+#: users/forms.py:208
 msgid "This user is not verified. Please verify your user"
 msgstr "این کاربر تایید نشده است."
 
-#: users/forms.py:218
+#: users/forms.py:221
 msgid "This must be the same email that you registered with"
 msgstr ""
 "این پست الکترونیک باید همان پست الکترونیکی باشد که با آن ثبت نام کردید."
 
-#: users/forms.py:225
+#: users/forms.py:228
 msgid "This user has been already verified"
 msgstr "این کاربر پیش از این تایید شده است."
 
-#: users/forms.py:228
+#: users/forms.py:231
 msgid "No user is registered with this email address"
 msgstr "هیچ کاربری با این پست الکترونیک ثبت نام نکرده است"
 
@@ -392,6 +393,7 @@ msgid "Staff"
 msgstr "برگزار کننده"
 
 #: users/templates/users/activation_email_subject.txt:1
+#: users/templates/users/user_info_email_subject.txt:1
 #, python-format
 msgid "Registration at %(site_name)s!"
 msgstr "عضویت در %(site_name)s!"
@@ -437,6 +439,23 @@ msgstr ""
 "یک ایمیل برای تایید به پست الکترونیک شما ارسال شده است. لطفا از آدرس درون آن"
 " برای فعال سازی حساب کاربری خود اقدام نمایید."
 
+#: users/templates/users/user_info_email_text.txt:2
+#, fuzzy, python-format
+#| msgid "ctive. In order to ivate it use  following link:\n"
+msgid ""
+"\n"
+"Hello %(fname)s, You've been registered at %(site_name)s. Your user data is:\n"
+"Username: %(uname)s\n"
+"Password: %(pass)s\n"
+"You can login using the login form in the website. The website url is:\n"
+msgstr ""
+"\n"
+"سلام %(fname)s. شما در %(site_name)s ثبت نام کردید.\n"
+"اطلاعات کاربری شما:\n"
+"نام کاربری: %(uname)s\n"
+"رمز عبور: %(pass)s\n"
+"شما می توانید از طریق فرم ورود داخل وب سایت وارد شوید. آدرس وب سایت:\n"
+
 #: users/views.py:23
 msgid "Your profile has been updated successfully"
 msgstr "حساب کاربری شما با موفقیت بروز شد"
@@ -461,6 +480,9 @@ msgstr ""
 #: users/views.py:95
 msgid "Invalid verification code"
 msgstr "کد تایید نامعتبر است"
+
+#~ msgid "groups"
+#~ msgstr "گروه ها"
 
 #~ msgid "Exam's name"
 #~ msgstr "نام آزمون"

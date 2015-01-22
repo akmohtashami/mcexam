@@ -134,10 +134,10 @@
     </table>
     <table name="exams_exam" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="questions_per_column" sqlType="INTEGER UNSIGNED" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <column name="name" sqlType="VARCHAR(500)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
       <column name="start_date" sqlType="DATETIME" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
       <column name="end_date" sqlType="DATETIME" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
+      <column name="questions_per_column" sqlType="INTEGER UNSIGNED" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <primary-key columns="id"/>
       <exported-key name="#FAKE_exams_examsite_1" table="exams_examsite" schema="" catalog="" columns="exam_id"/>
       <exported-key name="#FAKE_exams_question_1" table="exams_question" schema="" catalog="" columns="exam_id"/>
@@ -150,7 +150,7 @@
       <primary-key columns="id"/>
       <foreign-key name="#FAKE_exams_examsite_1" columns="exam_id" ref-table="exams_exam" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <foreign-key name="#FAKE_exams_examsite_2" columns="importer_id" ref-table="users_member" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <exported-key name="#FAKE_users_member_2" table="users_member" schema="" catalog="" columns="exam_site_id"/>
+      <exported-key name="#FAKE_users_member_1" table="users_member" schema="" catalog="" columns="exam_site_id"/>
       <index name="exams_examsite_09631ec7" unique="true" columns="exam_id"/>
       <index name="exams_examsite_bc9dcfc6" unique="true" columns="importer_id"/>
     </table>
@@ -209,7 +209,6 @@
     </table>
     <table name="users_member" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="exam_site_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
       <column name="password" sqlType="VARCHAR(128)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
       <column name="last_login" sqlType="DATETIME" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
       <column name="username" sqlType="VARCHAR(250)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
@@ -223,17 +222,14 @@
       <column name="is_superuser" sqlType="BOOL" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <column name="grade" sqlType="VARCHAR(6)" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
       <column name="school" sqlType="VARCHAR(250)" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
-      <column name="owner_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="exam_site_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
       <primary-key columns="id"/>
-      <foreign-key name="#FAKE_users_member_1" columns="owner_id" ref-table="users_member" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="#FAKE_users_member_2" columns="exam_site_id" ref-table="exams_examsite" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_users_member_1" columns="exam_site_id" ref-table="exams_examsite" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <exported-key name="#FAKE_exams_examsite_2" table="exams_examsite" schema="" catalog="" columns="importer_id"/>
       <exported-key name="#FAKE_exams_madechoice_1" table="exams_madechoice" schema="" catalog="" columns="user_id"/>
       <exported-key name="#FAKE_guardian_userobjectpermission_1" table="guardian_userobjectpermission" schema="" catalog="" columns="user_id"/>
-      <exported-key name="#FAKE_users_member_1" table="users_member" schema="" catalog="" columns="owner_id"/>
       <exported-key name="#FAKE_users_member_groups_2" table="users_member_groups" schema="" catalog="" columns="member_id"/>
       <exported-key name="#FAKE_users_member_user_permissions_2" table="users_member_user_permissions" schema="" catalog="" columns="member_id"/>
-      <index name="users_member_5e7b1936" unique="true" columns="owner_id"/>
       <index name="users_member_e59f37ee" unique="true" columns="exam_site_id"/>
     </table>
     <table name="users_member_groups" schema="" catalog="" type="TABLE">

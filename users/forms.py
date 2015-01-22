@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib import admin
 from users.models import Member
 from django.utils.translation import ugettext as _
 from django.contrib.auth import authenticate
@@ -178,6 +179,8 @@ class MemberAdminAddForm(FullMemberChangeForm):
             'grade',
             'is_active',
             'is_superuser',
+            'groups',
+            'exam_site',
         ]
 
     def save(self, commit=True):

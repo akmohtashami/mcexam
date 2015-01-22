@@ -55,7 +55,7 @@ def edit_data(request, exam_id, user_id):
         if user_form.is_valid() and answer_form.is_valid():
             user = user_form.save()
             save_answer_sheet(answer_form, user)
-            messages.success(request, _("The data updated successfully"))
+            messages.success(request, _("Updated successfully"))
             return HttpResponseRedirect(reverse("exams:import", kwargs={"exam_id": exam_id}))
     else:
         user_form = OnsiteContestantForm(instance=user, current_user=request.user, prefix="user-data")
@@ -82,7 +82,7 @@ def add_data(request, exam_id):
         if user_form.is_valid() and answer_form.is_valid():
             user = user_form.save()
             save_answer_sheet(answer_form, user)
-            messages.success(request, _("The data added successfully"))
+            messages.success(request, _("Added successfully"))
             return HttpResponseRedirect(reverse("exams:import", kwargs={"exam_id": exam_id}))
             user_form = OnsiteContestantForm(current_user=request.user, prefix="user-data")
             answer_form = get_answer_formset(exam, prefix="answer-data")
