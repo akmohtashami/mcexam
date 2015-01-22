@@ -38,7 +38,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'rosetta',
     'guardian',
     "adminsortable",
     'base',
@@ -170,8 +169,8 @@ elif 'OPENSHIFT_POSTGRESQL_DB_URL' in os.environ:
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-DEBUG = True
+DEBUG = False
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
 
