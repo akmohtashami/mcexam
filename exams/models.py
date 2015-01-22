@@ -79,9 +79,13 @@ class MadeChoice(models.Model):
 
 
 class ExamSite(models.Model):
-    exam = models.ForeignKey(Exam)
-    importer = models.ForeignKey(Member)
+    exam = models.ForeignKey(Exam, verbose_name=_("Exam"))
+    importer = models.ForeignKey(Member, verbose_name=_("Importer"))
     name = models.CharField(max_length=255, verbose_name=_("Exam Site"))
 
     def __unicode__(self):
         return self.exam.__unicode__() + " - " + self.name
+
+    class Meta:
+        verbose_name = _("Exam Site")
+        verbose_name_plural = _("Exam Sites")

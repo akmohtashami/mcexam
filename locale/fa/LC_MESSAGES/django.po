@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-22 18:46+0000\n"
-"PO-Revision-Date: 2015-01-22 19:23+0326\n"
+"POT-Creation-Date: 2015-01-22 19:35+0000\n"
+"PO-Revision-Date: 2015-01-22 19:38+0326\n"
 "Last-Translator:   <remuslup200@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -81,7 +81,7 @@ msgstr "ه"
 msgid "Bad choice number"
 msgstr "گزینه ی نامعتبر"
 
-#: exams/forms.py:86 exams/models.py:84
+#: exams/forms.py:86 exams/models.py:84 exams/models.py:90
 msgid "Exam Site"
 msgstr "مکان برگزاری"
 
@@ -101,7 +101,7 @@ msgstr "تاریخ پایان"
 msgid "Number of questions per column in answer sheet"
 msgstr "تعداد سوالات در هر ستون پاسخنامه"
 
-#: exams/models.py:19
+#: exams/models.py:19 exams/models.py:82
 msgid "Exam"
 msgstr "آزمون"
 
@@ -144,6 +144,15 @@ msgstr "گزینه ها"
 #: exams/models.py:77
 msgid "User has another answer for this question in database"
 msgstr "کاربر پاسخ دیگری برای این سوال در دیتابیس دارد."
+
+#: exams/models.py:83
+msgid "Importer"
+msgstr "وارد کننده"
+
+#: exams/models.py:91
+#| msgid "Exam Site"
+msgid "Exam Sites"
+msgstr "مکان های برگزاری"
 
 #: exams/templates/exams/exam_add_data.html:34
 msgid "Save data"
@@ -436,9 +445,6 @@ msgstr ""
 
 #: users/templates/users/user_info_email_text.txt:2
 #, python-format
-#| msgid ""
-#| " %(site_name)s. Your user data \n"
-#| "website. The website url is:\n"
 msgid ""
 "\n"
 "Hello, You've been registered at %(site_name)s. Your user data is:\n"
