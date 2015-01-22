@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-22 18:25+0000\n"
-"PO-Revision-Date: 2015-01-22 18:30+0326\n"
+"PO-Revision-Date: 2015-01-22 18:41+0326\n"
 "Last-Translator:   <remuslup200@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -82,7 +82,6 @@ msgid "Bad choice number"
 msgstr "گزینه ی نامعتبر"
 
 #: exams/forms.py:86 exams/models.py:84
-#, fuzzy
 #| msgid "Exams List"
 msgid "Exam Site"
 msgstr "لیست آزمون ها"
@@ -440,7 +439,7 @@ msgstr ""
 " برای فعال سازی حساب کاربری خود اقدام نمایید."
 
 #: users/templates/users/user_info_email_text.txt:2
-#, fuzzy, python-format
+#, python-format
 #| msgid "ctive. In order to ivate it use  following link:\n"
 msgid ""
 "\n"
