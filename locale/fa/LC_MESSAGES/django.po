@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-22 18:25+0000\n"
-"PO-Revision-Date: 2015-01-22 18:41+0326\n"
+"POT-Creation-Date: 2015-01-22 18:46+0000\n"
+"PO-Revision-Date: 2015-01-22 18:46+0326\n"
 "Last-Translator:   <remuslup200@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -82,7 +82,6 @@ msgid "Bad choice number"
 msgstr "گزینه ی نامعتبر"
 
 #: exams/forms.py:86 exams/models.py:84
-#| msgid "Exams List"
 msgid "Exam Site"
 msgstr "لیست آزمون ها"
 
@@ -220,12 +219,10 @@ msgid "A problem occured. Please try again"
 msgstr "مشکلی پیش آمده است. لطفا دوباره تلاش کنید"
 
 #: exams/views.py:58
-#| msgid "Your profile has been updated successfully"
 msgid "Updated successfully"
 msgstr "عملیات بروزرسانی با موفقیت انجام شد"
 
 #: exams/views.py:85
-#| msgid "Your profile has been updated successfully"
 msgid "Added successfully"
 msgstr "عملیات افزودن با موفقیت انجام شد"
 
@@ -250,7 +247,6 @@ msgid "Send selected users info to their email"
 msgstr "ارسال اطلاعات کاربران انتخاب شده به ایمیل آن ها"
 
 #: users/admin.py:48
-#| msgid "Verify selected users"
 msgid "Get selected users email list"
 msgstr "گرفتن ایمیل کاربران انتخاب شده"
 
@@ -440,20 +436,24 @@ msgstr ""
 
 #: users/templates/users/user_info_email_text.txt:2
 #, python-format
-#| msgid "ctive. In order to ivate it use  following link:\n"
+#| msgid ""
+#| "lo %(fname)s, You've been registered at %(site_name)s. Your user data \n"
+#| "rname: %(uname)s\n"
+#| "sword: %(pass)s\n"
+#| " can login using the login form in the website. The website url is:\n"
 msgid ""
 "\n"
-"Hello %(fname)s, You've been registered at %(site_name)s. Your user data is:\n"
+"Hello, You've been registered at %(site_name)s. Your user data is:\n"
 "Username: %(uname)s\n"
 "Password: %(pass)s\n"
-"You can login using the login form in the website. The website url is:\n"
+"The website url is:"
 msgstr ""
 "\n"
-"سلام %(fname)s. شما در %(site_name)s ثبت نام کردید.\n"
+"سلام. شما در %(site_name)s ثبت نام کردید.\n"
 "اطلاعات کاربری شما:\n"
 "نام کاربری: %(uname)s\n"
 "رمز عبور: %(pass)s\n"
-"شما می توانید از طریق فرم ورود داخل وب سایت وارد شوید. آدرس وب سایت:\n"
+" آدرس وب سایت:"
 
 #: users/views.py:23
 msgid "Your profile has been updated successfully"
