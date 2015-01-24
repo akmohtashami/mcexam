@@ -1,7 +1,7 @@
 from django import template
 import datetime
 import convertdate
-from django.utils.translation import ugettext as _
+
 
 register = template.Library()
 
@@ -19,10 +19,3 @@ def jalali_date(value, format_string):
         return format_string
     else:
         return format_string
-
-@register.filter
-def choice_character(value):
-    choices = [_("A"), _("B"), _("C"), _("D"), _("E")]
-    if value <= 0 or value > len(choices):
-        raise ValueError(_("Bad choice number"))
-    return choices[value - 1]

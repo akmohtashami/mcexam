@@ -1,7 +1,7 @@
 from django.forms.widgets import Widget
 from django.utils.html import format_html, mark_safe
 from django.utils.encoding import smart_text
-from base.templatetags.base_filters import choice_character
+from exams.templatetags.exams_filters import choice_character
 
 
 class ExamChoiceInput(Widget):

@@ -2,13 +2,19 @@ from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import permission_required
 from guardian.decorators import permission_required as guardian_permission_required
 from django.contrib import messages
-from exams.models import Exam, ExamSite
+from exams.models import Exam
 from users.models import Member
 from exams.forms import OnsiteContestantForm, save_answer_sheet, get_answer_sheet, get_answer_formset
 from django.http import HttpResponseRedirect
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
+from django.template.loader import render_to_string
+from django.http import HttpResponse
+from tempfile import mkdtemp
+import subprocess
+import os
+import shutil
 
 
 @permission_required("exams.can_view", raise_exception=True)
@@ -128,3 +134,24 @@ def detail(request, exam_id):
     elif exam.mode() >= 1:
         messages.error(request, _("This exam has ended"))
     return HttpResponseRedirect(reverse("exams:list"))
+
+@guardian_permission_required("exams.can_change", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
+def make_pdf(request, exam_id):
+    exam = get_object_or_404(Exam, id=exam_id)
+    context = {
+        "exam": exam
+    }
+    tex_file = render_to_string("exams/statements.tex", context).encode("utf-8")
+    tmp_folder = mkdtemp()
+    try:
+        compiler = subprocess.Popen(["xelatex", "-jobname=statements"], cwd=tmp_folder, stdin=subprocess.PIPE)
+        compiler.communicate(input=tex_file)
+        statement_pdf_file = open(os.path.join(tmp_folder, "statements.pdf"))
+        response = HttpResponse(statement_pdf_file.read(), content_type="application/pdf")
+    except:
+        messages.error(request, _("There was an error in generating statements. Please contant jury"))
+        response = HttpResponseRedirect(reverse("exams:detail", kwargs={"exam_id": exam_id}))
+    finally:
+        shutil.rmtree(tmp_folder)
+    return response
+

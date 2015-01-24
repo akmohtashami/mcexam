@@ -9,4 +9,5 @@ urlpatterns = patterns('',
                        url(r'^exam/(?P<exam_id>\d+)/add_data/$', views.add_data, name='add_data'),
                        url(r'^exam/(?P<exam_id>\d+)/edit_data/(?P<user_id>\d+)/$', views.edit_data, name='edit_data'),
                        url(r'^exam/(?P<exam_id>\d+)/delete_data/(?P<user_id>\d+)/$', views.delete_data, name='delete_data'),
+                       url(r'^exam/(?P<exam_id>\d+)/make_pdf/$', views.make_pdf),
 )
