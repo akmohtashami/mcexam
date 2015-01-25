@@ -143,16 +143,10 @@ def make_pdf(request, exam_id):
     }
     tex_file = render_to_string("exams/statements.tex", context).encode("utf-8")
     tmp_folder = mkdtemp()
-    try:
-        compiler = subprocess.Popen(["xelatex", "-jobname=statements"], cwd=tmp_folder, stdin=subprocess.PIPE)
-        compiler.communicate(input=tex_file)
-        statement_pdf_file = open(os.path.join(tmp_folder, "statements.pdf"))
-        response = HttpResponse(statement_pdf_file.read(), content_type="application/pdf")
-    except:
-        #messages.error(request, _("There was an error in generating statements. Please contant jury"))
-        #response = HttpResponseRedirect(reverse("exams:detail", kwargs={"exam_id": exam_id}))
-        pass
-    finally:
-        shutil.rmtree(tmp_folder)
+    compiler = subprocess.Popen(["xelatex", "-jobname=statements"], cwd=tmp_folder, stdin=subprocess.PIPE)
+    compiler.communicate(input=tex_file)
+    statement_pdf_file = open(os.path.join(tmp_folder, "statements.pdf"))
+    response = HttpResponse(statement_pdf_file.read(), content_type="application/pdf")
+    shutil.rmtree(tmp_folder)
     return response
 
