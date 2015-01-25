@@ -1,3 +1,0 @@
-echo "Adding to PATH"
-export PATH=$OPENSHIFT_DATA_DIR/latex/bin/x86_64-linux/:$PATH
-echo "New Path:"$PATH

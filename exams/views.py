@@ -12,6 +12,7 @@ from django.utils.translation import ugettext as _
 from django.template.loader import render_to_string
 from django.http import HttpResponse
 from tempfile import mkdtemp
+from django.conf import settings
 import subprocess
 import os
 import shutil
@@ -143,7 +144,11 @@ def make_pdf(request, exam_id):
     }
     tex_file = render_to_string("exams/statements.tex", context).encode("utf-8")
     tmp_folder = mkdtemp()
-    compiler = subprocess.Popen(["xelatex", "-jobname=statements"], cwd=tmp_folder, stdin=subprocess.PIPE)
+    env = os.environ.copy()
+    xelatex_path = getattr(settings, "XELATEX_BIN_PATH", None)
+    if xelatex_path is not None:
+        env["PATH"] = xelatex_path + ":" + env["PATH"]
+    compiler = subprocess.Popen(["xelatex", "-jobname=statements"], env=env, cwd=tmp_folder, stdin=subprocess.PIPE)
     compiler.communicate(input=tex_file)
     statement_pdf_file = open(os.path.join(tmp_folder, "statements.pdf"))
     response = HttpResponse(statement_pdf_file.read(), content_type="application/pdf")

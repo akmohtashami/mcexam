@@ -173,4 +173,5 @@ DEBUG = False
 
 TEMPLATE_DEBUG = False
 
-
+if 'OPENSHIFT_DATA_DIR' in os.environ:
+    XELATEX_BIN_PATH = os.path.join(os.environ['OPENSHIFT_DATA_DIR'], "latex", "bin", "x86_64-linux")
