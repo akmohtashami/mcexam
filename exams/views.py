@@ -168,3 +168,8 @@ def make_pdf(request, exam_id):
     shutil.rmtree(tmp_folder)
     return response
 
+@guardian_permission_required("exams.change_exam", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
+def make_tex(request, exam_id):
+    exam = get_object_or_404(Exam, id=exam_id)
+    tex_file = exam.get_tex_file()
+    return HttpResponse(tex_file, content_type="text/plain; charset=utf8")
