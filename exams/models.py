@@ -25,7 +25,7 @@ class Exam(models.Model):
         verbose_name_plural = _("Exams")
         permissions = (
             ("can_view", _("Can view exam")),
-            ("can_import_answer", _("Can import answer sheets"))
+            ("can_import", _("Can import answer sheets"))
         )
 
     def __unicode__(self):

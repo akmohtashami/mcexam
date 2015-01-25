@@ -138,7 +138,7 @@ def detail(request, exam_id):
     return HttpResponseRedirect(reverse("exams:list"))
 
 
-@guardian_permission_required("exams.can_change", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
+@guardian_permission_required("exams.change_exam", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
 def make_pdf(request, exam_id):
     exam = get_object_or_404(Exam, id=exam_id)
     tex_file = exam.get_tex_file()
@@ -160,7 +160,7 @@ def make_pdf(request, exam_id):
         response = HttpResponse(statement_pdf_file.read(), content_type="application/pdf")
         statement_pdf_file.close()
     except IOError:
-        if request.user.is_superuser:
+        if request.user.has_perm("exams.change_exam", exam) or request.user.has_perm("exams.change_exam"):
             response = HttpResponse(output, content_type="text/plain")
         else:
             messages.error(request, _("There was a problem in generating pdf files. Please contact the administrator"))

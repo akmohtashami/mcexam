@@ -128,6 +128,7 @@ AUTHENTICATION_BACKENDS = (
 ANONYMOUS_USER_ID = None
 
 GUARDIAN_RAISE_403 = True
+GUARDIAN_MONKEY_PATCH = False
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
@@ -167,7 +168,7 @@ LOCALE_PATHS = (
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-DEBUG = False
+DEBUG = True
 
-TEMPLATE_DEBUG = False
+TEMPLATE_DEBUG = True
 
