@@ -41,8 +41,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/exams/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.62886596" vertical-offset="1701" max-vertical-offset="2625">
-              <caret line="150" column="48" selection-start-line="150" selection-start-column="48" selection-end-line="150" selection-end-column="48" />
+            <state vertical-scroll-proportion="0.6460481" vertical-offset="1701" max-vertical-offset="2640">
+              <caret line="151" column="17" selection-start-line="151" selection-start-column="17" selection-end-line="151" selection-end-column="17" />
               <folding>
                 <element signature="e#0#54#0" expanded="true" />
               </folding>
@@ -53,7 +53,7 @@
       <file leaf-file-name="exam_edit_data.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/exams/templates/exams/exam_edit_data.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.25" vertical-offset="0" max-vertical-offset="675">
+            <state vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="675">
               <caret line="18" column="41" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
               <folding />
             </state>
@@ -561,13 +561,13 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25555557" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25555557" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -773,7 +773,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15734266" vertical-offset="0" max-vertical-offset="858">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -781,7 +780,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8251748" vertical-offset="537" max-vertical-offset="1395">
           <caret line="91" column="19" selection-start-line="91" selection-start-column="19" selection-end-line="91" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -824,9 +822,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.05154639" vertical-offset="0" max-vertical-offset="873">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#27#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -834,7 +829,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="330">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -863,9 +857,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2799378" vertical-offset="0" max-vertical-offset="643">
           <caret line="12" column="1" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#42#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -901,9 +892,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1215" max-vertical-offset="1890">
           <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -932,9 +920,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.06998445" vertical-offset="0" max-vertical-offset="643">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -947,7 +932,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/exams/templates/exams/exam_edit_data.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.25" vertical-offset="0" max-vertical-offset="675">
+        <state vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="675">
           <caret line="18" column="41" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
           <folding />
         </state>
@@ -963,8 +948,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/exams/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.62886596" vertical-offset="1701" max-vertical-offset="2625">
-          <caret line="150" column="48" selection-start-line="150" selection-start-column="48" selection-end-line="150" selection-end-column="48" />
+        <state vertical-scroll-proportion="0.6460481" vertical-offset="1701" max-vertical-offset="2640">
+          <caret line="151" column="17" selection-start-line="151" selection-start-column="17" selection-end-line="151" selection-end-column="17" />
           <folding>
             <element signature="e#0#54#0" expanded="true" />
           </folding>

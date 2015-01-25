@@ -149,6 +149,7 @@ def make_pdf(request, exam_id):
         env["PATH"] = os.pathsep.join([xelatex_path, env["PATH"]])
     env["TEXINPUTS"] = exam.get_data_dir() + "//:"
     env["TTFONTS"] = exam.get_data_dir() + "//:"
+    env["OPENTYPEFONTS"] = exam.get_data_dir() + "//:"
     compiler = subprocess.Popen(["xelatex", "-jobname=statements"], env=env, cwd=tmp_folder,
                                 stdin=subprocess.PIPE,
                                 stderr=subprocess.PIPE,
