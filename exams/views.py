@@ -149,8 +149,9 @@ def make_pdf(request, exam_id):
         statement_pdf_file = open(os.path.join(tmp_folder, "statements.pdf"))
         response = HttpResponse(statement_pdf_file.read(), content_type="application/pdf")
     except:
-        messages.error(request, _("There was an error in generating statements. Please contant jury"))
-        response = HttpResponseRedirect(reverse("exams:detail", kwargs={"exam_id": exam_id}))
+        #messages.error(request, _("There was an error in generating statements. Please contant jury"))
+        #response = HttpResponseRedirect(reverse("exams:detail", kwargs={"exam_id": exam_id}))
+        pass
     finally:
         shutil.rmtree(tmp_folder)
     return response
