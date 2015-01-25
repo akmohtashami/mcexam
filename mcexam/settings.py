@@ -169,7 +169,7 @@ elif 'OPENSHIFT_POSTGRESQL_DB_URL' in os.environ:
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-DEBUG = False
+DEBUG = True
 
 TEMPLATE_DEBUG = False
 
