@@ -1,6 +1,7 @@
 {% load i18n %}
-{% blocktrans with site_name=site.name fname=cur_user.first_name uname=cur_user.username %}
-Hello {{fname}}, You've registered at {{site_name}}.
+{% blocktrans with site_name=site.name uname=cur_user.username %}
+Hello,
+You've registered at {{site_name}}.
 Your username is {{uname}}. Your user is currently inactive. In order to activate it use the following link:
 {% endblocktrans %}
 http://{{ site.domain }}{% url 'users:verify' cur_user.verification_code %}

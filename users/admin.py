@@ -20,6 +20,9 @@ class MemberAdmin(admin.ModelAdmin):
     add_form = MemberAdminAddForm
     list_display = ('id', '__unicode__', 'last_login', 'is_verified', 'is_active', 'is_staff')
     list_display_links = ('__unicode__', )
+    list_filter = (
+        ('groups__name'),
+    )
     actions = ['verify_user', 'send_user_information', 'get_email_list']
 
     def verify_user(self, request, queryset):

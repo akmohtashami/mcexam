@@ -134,6 +134,7 @@
     </table>
     <table name="exams_exam" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="exam_pdf_template" sqlType="TEXT" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
       <column name="name" sqlType="VARCHAR(500)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
       <column name="start_date" sqlType="DATETIME" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
       <column name="end_date" sqlType="DATETIME" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
@@ -141,6 +142,7 @@
       <primary-key columns="id"/>
       <exported-key name="#FAKE_exams_examsite_2" table="exams_examsite" schema="" catalog="" columns="exam_id"/>
       <exported-key name="#FAKE_exams_question_1" table="exams_question" schema="" catalog="" columns="exam_id"/>
+      <exported-key name="#FAKE_exams_questionresource_1" table="exams_questionresource" schema="" catalog="" columns="exam_id"/>
     </table>
     <table name="exams_examsite" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
@@ -174,6 +176,14 @@
       <exported-key name="#FAKE_exams_choice_1" table="exams_choice" schema="" catalog="" columns="question_id"/>
       <index name="exams_question_70a17ffa" unique="true" columns="order"/>
       <index name="exams_question_09631ec7" unique="true" columns="exam_id"/>
+    </table>
+    <table name="exams_questionresource" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="file" sqlType="VARCHAR(100)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
+      <column name="exam_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <primary-key columns="id"/>
+      <foreign-key name="#FAKE_exams_questionresource_1" columns="exam_id" ref-table="exams_exam" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="exams_questionresource_09631ec7" unique="true" columns="exam_id"/>
     </table>
     <table name="guardian_groupobjectpermission" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>

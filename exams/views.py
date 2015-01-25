@@ -9,7 +9,6 @@ from django.http import HttpResponseRedirect
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
-from django.template.loader import render_to_string
 from django.http import HttpResponse
 from tempfile import mkdtemp
 from django.conf import settings
@@ -37,6 +36,7 @@ def exam_running(request, exam):
     full_columns = get_answer_sheet(exam, forms)
     context = {"exam": exam, "formset": forms, "columns": full_columns}
     return render(request, "exams/running_exam.html", context)
+
 
 @guardian_permission_required("exams.can_import", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
 def delete_data(request, exam_id, user_id):
@@ -91,8 +91,8 @@ def add_data(request, exam_id):
             save_answer_sheet(answer_form, user)
             messages.success(request, _("Added successfully"))
             return HttpResponseRedirect(reverse("exams:import", kwargs={"exam_id": exam_id}))
-            user_form = OnsiteContestantForm(current_user=request.user, prefix="user-data")
-            answer_form = get_answer_formset(exam, prefix="answer-data")
+            # user_form = OnsiteContestantForm(current_user=request.user, prefix="user-data")
+            # answer_form = get_answer_formset(exam, prefix="answer-data")
     else:
         user_form = OnsiteContestantForm(current_user=request.user, prefix="user-data")
         answer_form = get_answer_formset(exam, prefix="answer-data")
@@ -123,6 +123,7 @@ def import_data(request, exam_id):
     }
     return render(request, "exams/exam_manage.html", context)
 
+
 @guardian_permission_required("exams.can_view", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
 def detail(request, exam_id):
     exam = get_object_or_404(Exam, id=exam_id)
@@ -136,22 +137,32 @@ def detail(request, exam_id):
         messages.error(request, _("This exam has ended"))
     return HttpResponseRedirect(reverse("exams:list"))
 
+
 @guardian_permission_required("exams.can_change", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
 def make_pdf(request, exam_id):
     exam = get_object_or_404(Exam, id=exam_id)
-    context = {
-        "exam": exam
-    }
-    tex_file = render_to_string("exams/statements.tex", context).encode("utf-8")
+    tex_file = exam.get_tex_file()
     tmp_folder = mkdtemp()
     env = os.environ.copy()
     xelatex_path = getattr(settings, "XELATEX_BIN_PATH", None)
     if xelatex_path is not None:
-        env["PATH"] = xelatex_path + ":" + env["PATH"]
-    compiler = subprocess.Popen(["xelatex", "-jobname=statements"], env=env, cwd=tmp_folder, stdin=subprocess.PIPE)
-    compiler.communicate(input=tex_file)
-    statement_pdf_file = open(os.path.join(tmp_folder, "statements.pdf"))
-    response = HttpResponse(statement_pdf_file.read(), content_type="application/pdf")
+        env["PATH"] = os.pathsep(xelatex_path, env["PATH"])
+    env["TEXINPUTS"] = exam.get_data_dir() + "/:"
+    compiler = subprocess.Popen(["xelatex", "-jobname=statements"], env=env, cwd=tmp_folder,
+                                stdin=subprocess.PIPE,
+                                stderr=subprocess.PIPE,
+                                stdout=subprocess.PIPE)
+    output = compiler.communicate(input=tex_file)
+    try:
+        statement_pdf_file = open(os.path.join(tmp_folder, "statements.pdf"))
+        response = HttpResponse(statement_pdf_file.read(), content_type="application/pdf")
+        statement_pdf_file.close()
+    except IOError:
+        if request.user.is_superuser:
+            response = HttpResponse(output, content_type="text/plain")
+        else:
+            messages.error(request, _("There was a problem in generating pdf files. Please contact the administrator"))
+            response = HttpResponseRedirect(reverse("exams:detail", kwargs={"exam_id": exam_id}))
     shutil.rmtree(tmp_folder)
     return response
 

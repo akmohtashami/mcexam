@@ -5,8 +5,12 @@ from django.core.exceptions import ValidationError
 from users.models import Member
 from adminsortable.models import Sortable
 from adminsortable.fields import SortableForeignKey
-
+from django.template import Template, Context
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
+import os
 # Create your models here.
+
 
 
 class Exam(models.Model):
@@ -14,6 +18,7 @@ class Exam(models.Model):
     start_date = models.DateTimeField(_("Start Date"))
     end_date = models.DateTimeField(_("End Date"))
     questions_per_column = models.PositiveIntegerField(_("Number of questions per column in answer sheet"), default=20)
+    exam_pdf_template = models.TextField(verbose_name=_("PDF template"), help_text=_("Django-Tex template for creating pdf files"), default="")
 
     class Meta:
         verbose_name = _("Exam")
@@ -34,6 +39,16 @@ class Exam(models.Model):
         else:
             return 0  # exam is running
 
+    def get_tex_file(self):
+        context = {
+        "exam": self
+        }
+        exam_template = Template(self.exam_pdf_template)
+        return exam_template.render(Context(context)).encode("utf-8")
+
+    def get_data_dir(self):
+        return os.path.join(settings.EXAMS_FILES_ROOT, str(self.id))
+
 
 class Question(Sortable):
     exam = SortableForeignKey(Exam, verbose_name=_("Related exam"))
@@ -41,6 +56,9 @@ class Question(Sortable):
 
     def __unicode__(self):
         return self.exam.name + " - " + _("Question #") + " " + str(self.order)
+
+    def get_data_dir(self):
+        return os.path.join(self.exam.get_data_dir(), str(self.id))
 
     class Meta(Sortable.Meta):
         verbose_name = _("Question")
@@ -89,3 +107,14 @@ class ExamSite(models.Model):
     class Meta:
         verbose_name = _("Exam Site")
         verbose_name_plural = _("Exam Sites")
+
+
+def exam_based_file_path(instance, filename):
+    return os.path.join(instance.exam.get_data_dir(), filename)
+
+
+class QuestionResource(models.Model):
+    exam = models.ForeignKey(Exam, verbose_name=_("Exam"))
+    file = models.FileField(upload_to=exam_based_file_path, storage=FileSystemStorage(location='/'))
+
+

@@ -21,11 +21,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '#udaj!(^2-!hhvni4-d^4v!fq8aecw671j61%0&!e-v9b_#$d0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-TEMPLATE_DEBUG = True
-
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -38,6 +33,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'rosetta',
     'guardian',
     "adminsortable",
     'base',
@@ -72,6 +68,29 @@ DATABASES = {
     }
 }
 
+if 'OPENSHIFT_MYSQL_DB_URL' in os.environ:
+    url = urlparse.urlparse(os.environ.get('OPENSHIFT_MYSQL_DB_URL'))
+
+    DATABASES['default'] = {
+        'ENGINE' : 'django.db.backends.mysql',
+        'NAME': os.environ['OPENSHIFT_APP_NAME'],
+        'USER': url.username,
+        'PASSWORD': url.password,
+        'HOST': url.hostname,
+        'PORT': url.port,
+        }
+
+elif 'OPENSHIFT_POSTGRESQL_DB_URL' in os.environ:
+    url = urlparse.urlparse(os.environ.get('OPENSHIFT_POSTGRESQL_DB_URL'))
+
+    DATABASES['default'] = {
+        'ENGINE' : 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ['OPENSHIFT_APP_NAME'],
+        'USER': url.username,
+        'PASSWORD': url.password,
+        'HOST': url.hostname,
+        'PORT': url.port,
+        }
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.auth.context_processors.auth",
@@ -97,27 +116,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
-if 'OPENSHIFT_REPO_DIR' in os.environ:
-    STATIC_ROOT = os.path.join(os.environ.get('OPENSHIFT_REPO_DIR'), 'wsgi', 'static')
-else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-STATIC_URL = '/static/'
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'base', 'templates'),
-)
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'base', 'static'),
-)
-LOCALE_PATHS = (
-    os.path.join(BASE_DIR, 'locale'),
-)
-
 SITE_ID = 1
 AUTH_USER_MODEL = 'users.Member'
 LOGIN_REDIRECT_URL = 'users:login'
@@ -140,38 +138,37 @@ EMAIL_USE_TLS= True
 EMAIL_SENDER = 'sh44zzz@gmail.com'
 
 
-if 'OPENSHIFT_MYSQL_DB_URL' in os.environ:
-    url = urlparse.urlparse(os.environ.get('OPENSHIFT_MYSQL_DB_URL'))
- 
-    DATABASES['default'] = {
-        'ENGINE' : 'django.db.backends.mysql',
-        'NAME': os.environ['OPENSHIFT_APP_NAME'],
-        'USER': url.username,
-        'PASSWORD': url.password,
-        'HOST': url.hostname,
-        'PORT': url.port,
-        }
- 
-elif 'OPENSHIFT_POSTGRESQL_DB_URL' in os.environ:
-    url = urlparse.urlparse(os.environ.get('OPENSHIFT_POSTGRESQL_DB_URL'))
- 
-    DATABASES['default'] = {
-        'ENGINE' : 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ['OPENSHIFT_APP_NAME'],
-        'USER': url.username,
-        'PASSWORD': url.password,
-        'HOST': url.hostname,
-        'PORT': url.port,
-        }
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.7/howto/static-files/
+if 'OPENSHIFT_REPO_DIR' in os.environ:
+    STATIC_ROOT = os.path.join(os.environ.get('OPENSHIFT_REPO_DIR'), 'wsgi', 'static')
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = '/static/'
 
- 
+if 'OPENSHIFT_DATA_DIR' in os.environ:
+    EXAMS_FILES_ROOT = os.path.join(os.environ.get('OPENSHIFT_DATA_DIR'), 'examfiles')
+else:
+    EXAMS_FILES_ROOT = os.path.join(BASE_DIR, 'examfiles')
+
+if 'OPENSHIFT_DATA_DIR' in os.environ:
+    XELATEX_BIN_PATH = os.path.join(os.environ['OPENSHIFT_DATA_DIR'], "latex", "bin", "x86_64-linux")
+
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'base', 'templates'),
+)
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'base', 'static'),
+)
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
+
 
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-DEBUG = False
+DEBUG = True
 
-TEMPLATE_DEBUG = False
+TEMPLATE_DEBUG = True
 
-if 'OPENSHIFT_DATA_DIR' in os.environ:
-    XELATEX_BIN_PATH = os.path.join(os.environ['OPENSHIFT_DATA_DIR'], "latex", "bin", "x86_64-linux")

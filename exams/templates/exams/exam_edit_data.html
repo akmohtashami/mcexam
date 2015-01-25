@@ -32,7 +32,7 @@
         <br />
         <div class='text-center'>
             <input class='btn btn-primary' type='submit' value='{% trans "Save" %}' />
-            <a class='btn btn-default' href='{% url 'exams:delete_data' exam.id user_id %}'> {% trans "Remove" %} </a>
+            <a class='btn btn-default' href='{% url 'exams:delete_data' exam.id user_id %}'> {% trans "Delete" %} </a>
             <a class='btn btn-default' href='{% url 'exams:import' exam.id %}'> {% trans "Back" %} </a>
         </div>
     </form>
