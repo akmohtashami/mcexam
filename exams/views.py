@@ -146,7 +146,7 @@ def make_pdf(request, exam_id):
     env = os.environ.copy()
     xelatex_path = getattr(settings, "XELATEX_BIN_PATH", None)
     if xelatex_path is not None:
-        env["PATH"] = os.pathsep(xelatex_path, env["PATH"])
+        env["PATH"] = os.pathsep.join([xelatex_path, env["PATH"]])
     env["TEXINPUTS"] = exam.get_data_dir() + "/:"
     compiler = subprocess.Popen(["xelatex", "-jobname=statements"], env=env, cwd=tmp_folder,
                                 stdin=subprocess.PIPE,
