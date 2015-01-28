@@ -4,6 +4,6 @@
 {% block main_content %}
     <form action="{% url 'users:register' %}" method="post">
         {% csrf_token %}
-        {% include 'forms.html' with form=form %}
+        {% include 'form.html' with form=form %}
     </form>
 {% endblock %}

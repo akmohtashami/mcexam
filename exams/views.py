@@ -121,7 +121,7 @@ def import_data(request, exam_id):
         "exam": exam,
         "sites": site_user_list,
     }
-    return render(request, "exams/exam_manage.html", context)
+    return render(request, "exams/exam_import.html", context)
 
 
 @guardian_permission_required("exams.can_view", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
@@ -147,9 +147,9 @@ def make_pdf(request, exam_id):
     xelatex_path = getattr(settings, "XELATEX_BIN_PATH", None)
     if xelatex_path is not None:
         env["PATH"] = os.pathsep.join([xelatex_path, env["PATH"]])
-    env["TEXINPUTS"] = exam.get_data_dir() + "//:"
-    env["TTFONTS"] = exam.get_data_dir() + "//:"
-    env["OPENTYPEFONTS"] = exam.get_data_dir() + "//:"
+    env["TEXINPUTS"] = exam.resources_dir + "//:"
+    env["TTFONTS"] = exam.resources_dir + "//:"
+    env["OPENTYPEFONTS"] = exam.resources_dir + "//:"
     compiler = subprocess.Popen(["xelatex", "-jobname=statements"], env=env, cwd=tmp_folder,
                                 stdin=subprocess.PIPE,
                                 stderr=subprocess.PIPE,

@@ -5,34 +5,35 @@
 
 {% block main_content %}
     <form method="post" action="">
-        <table>
-            {{user_form.as_table}}
-        </table>
-        {{answer_sheet_forms.management_form}}
-
         {% csrf_token %}
-
-        <div class='row answer-sheet'>
-            {% for column in answer_sheet_full_columns %}
-                <div class='col-md-5'>
-                    {% for question in column %}
-                        <div class='row'>
-                            {{question.0.question}}
-                            <table>
-                            <tr>
-                            <td class="question-number"><div>{{question.1}}- </div></td>
-                            {{question.0.answer}}
-                            </tr>
-                            </table>
-                        </div>
-                    {% endfor %}
-                </div>
-            {% endfor %}
+        {{answer_sheet_forms.management_form}}
+        <div class='container'>
+            {% include 'raw_form.html' with form=user_form %}
+        </div>
+        <br />
+        <div class='container answer-sheet'>
+            <div class='row'>
+                {% for column in answer_sheet_full_columns %}
+                    <div class='col-md-6' align="center">
+                        {% for question in column %}
+                            <div class='row'>
+                                {{question.0.question}}
+                                <table>
+                                <tr>
+                                <td class="question-number"><div>{{question.1}}- </div></td>
+                                {{question.0.answer}}
+                                </tr>
+                                </table>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
         </div>
         <br />
         <div class='text-center'>
-            <input class='btn btn-primary' type='submit' value='{% trans "Save" %}' />
-            <a class='btn btn-default' href='{% url 'exams:delete_data' exam.id user_id %}'> {% trans "Delete" %} </a>
+            <button class='btn btn-primary'>{% trans "Save" %}</button>
+            <a class='btn btn-danger' href='{% url 'exams:delete_data' exam.id user_id %}'> {% trans "Delete" %} </a>
             <a class='btn btn-default' href='{% url 'exams:import' exam.id %}'> {% trans "Back" %} </a>
         </div>
     </form>

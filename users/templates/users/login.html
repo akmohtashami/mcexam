@@ -8,7 +8,7 @@
             <form action="" method="post">
                 {% csrf_token %}
                 {% trans 'Login' as login %}
-                {% include 'forms.html' with form=login_form submit_value=login submit_name='login_button' %}
+                {% include 'form.html' with form=login_form submit_value=login submit_name='login_button' %}
             </form>
         </div>
     </div>
@@ -21,7 +21,7 @@
             {% endblocktrans %}
             <form action="{% url 'users:login' %}" method="post">
                 {% csrf_token %}
-                {% include 'forms.html' with form=resend_verification_mail_form submit_name='resend_verification_mail_button' %}
+                {% include 'form.html' with form=resend_verification_mail_form submit_name='resend_verification_mail_button' %}
             </form>
         </div>
     </div>

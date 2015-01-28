@@ -1,3 +1,4 @@
+#!/bin/bash
 source ${OPENSHIFT_HOMEDIR}/python/virtenv/bin/activate
 cd $OPENSHIFT_REPO_DIR
 echo "Executing 'python manage.py makemigratations'"

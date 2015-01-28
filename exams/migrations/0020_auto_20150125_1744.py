@@ -7,7 +7,7 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('exams', '0021_merge'),
+        ('exams', '0019_questionresource'),
     ]
 
     operations = [

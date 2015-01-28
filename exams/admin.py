@@ -1,15 +1,13 @@
 from django.contrib import admin
 from exams.models import Exam
-from exams.models import Question, Choice, MadeChoice, ExamSite, QuestionResource
-from django import forms
-from django.db import models
+from exams.models import Question, Choice, MadeChoice, ExamSite
 from adminsortable.admin import NonSortableParentAdmin, SortableTabularInline, SortableAdmin
 from guardian.admin import GuardedModelAdmin
+from resources.admin import ResourceInLine
 
 # Register your models here.
 
-class QuestionResourceInLine(admin.TabularInline):
-    model = QuestionResource
+
 
 class QuestionInLine(SortableTabularInline):
     model = Question
@@ -18,7 +16,7 @@ class QuestionInLine(SortableTabularInline):
 
 class ExamAdmin(GuardedModelAdmin, NonSortableParentAdmin):
     inlines = [
-        QuestionResourceInLine, QuestionInLine,
+        ResourceInLine, QuestionInLine,
         ]
     change_form_template_extends = GuardedModelAdmin.change_form_template
 
@@ -29,7 +27,7 @@ class ChoicesInLine(SortableTabularInline):
 
 class QuestionAdmin(SortableAdmin):
     inlines = [
-        ChoicesInLine,
+        ResourceInLine, ChoicesInLine,
     ]
 
 admin.site.register(Exam, ExamAdmin)

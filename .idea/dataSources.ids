@@ -99,6 +99,7 @@
       <exported-key name="#FAKE_django_admin_log_2" table="django_admin_log" schema="" catalog="" columns="content_type_id"/>
       <exported-key name="#FAKE_guardian_groupobjectpermission_2" table="guardian_groupobjectpermission" schema="" catalog="" columns="content_type_id"/>
       <exported-key name="#FAKE_guardian_userobjectpermission_2" table="guardian_userobjectpermission" schema="" catalog="" columns="content_type_id"/>
+      <exported-key name="#FAKE_resources_resource_1" table="resources_resource" schema="" catalog="" columns="owner_content_type_id"/>
     </table>
     <table name="django_migrations" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
@@ -142,7 +143,6 @@
       <primary-key columns="id"/>
       <exported-key name="#FAKE_exams_examsite_2" table="exams_examsite" schema="" catalog="" columns="exam_id"/>
       <exported-key name="#FAKE_exams_question_1" table="exams_question" schema="" catalog="" columns="exam_id"/>
-      <exported-key name="#FAKE_exams_questionresource_1" table="exams_questionresource" schema="" catalog="" columns="exam_id"/>
     </table>
     <table name="exams_examsite" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
@@ -177,14 +177,6 @@
       <index name="exams_question_70a17ffa" unique="true" columns="order"/>
       <index name="exams_question_09631ec7" unique="true" columns="exam_id"/>
     </table>
-    <table name="exams_questionresource" schema="" catalog="" type="TABLE">
-      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="file" sqlType="VARCHAR(100)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
-      <column name="exam_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <primary-key columns="id"/>
-      <foreign-key name="#FAKE_exams_questionresource_1" columns="exam_id" ref-table="exams_exam" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <index name="exams_questionresource_09631ec7" unique="true" columns="exam_id"/>
-    </table>
     <table name="guardian_groupobjectpermission" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <column name="permission_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
@@ -212,6 +204,17 @@
       <index name="guardian_userobjectpermission_6340c63c" unique="true" columns="user_id"/>
       <index name="guardian_userobjectpermission_37ef4eb4" unique="true" columns="content_type_id"/>
       <index name="guardian_userobjectpermission_83d7f98b" unique="true" columns="permission_id"/>
+    </table>
+    <table name="resources_resource" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="is_private" sqlType="BOOL" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="owner_object_id" sqlType="INTEGER UNSIGNED" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="filename" sqlType="VARCHAR(1000)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
+      <column name="resource" sqlType="VARCHAR(100)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
+      <column name="owner_content_type_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <primary-key columns="id"/>
+      <foreign-key name="#FAKE_resources_resource_1" columns="owner_content_type_id" ref-table="django_content_type" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="resources_resource_3c2924af" unique="true" columns="owner_content_type_id"/>
     </table>
     <table name="sqlite_sequence" schema="" catalog="" type="TABLE">
       <column name="name" sqlType="" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>

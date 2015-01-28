@@ -64,6 +64,11 @@ body {
     margin-right: auto;
     width: 50%;
     border: 2px solid black;
+
+}
+
+.bordered {
+    border: 2px solid black;
     padding: 0px;
 }
 

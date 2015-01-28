@@ -33,6 +33,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django_cleanup',
+    'resources',
     'guardian',
     "adminsortable",
     'base',
@@ -144,15 +146,18 @@ if 'OPENSHIFT_REPO_DIR' in os.environ:
     STATIC_ROOT = os.path.join(os.environ.get('OPENSHIFT_REPO_DIR'), 'wsgi', 'static')
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_URL = '/static/'
 
 if 'OPENSHIFT_DATA_DIR' in os.environ:
-    EXAMS_FILES_ROOT = os.path.join(os.environ.get('OPENSHIFT_DATA_DIR'), 'examfiles')
-else:
-    EXAMS_FILES_ROOT = os.path.join(BASE_DIR, 'examfiles')
-
-if 'OPENSHIFT_DATA_DIR' in os.environ:
+    MEDIA_BASE = os.path.join(os.environ.get('OPENSHIFT_DATA_DIR'), 'media')
     XELATEX_BIN_PATH = os.path.join(os.environ['OPENSHIFT_DATA_DIR'], "latex", "bin", "x86_64-linux")
+else:
+    MEDIA_BASE = os.path.join(BASE_DIR, 'media')
+
+PRIVATE_MEDIA_ROOT = os.path.join(MEDIA_BASE, 'private')
+MEDIA_ROOT = os.path.join(MEDIA_BASE, 'public')
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'base', 'templates'),
@@ -168,7 +173,7 @@ LOCALE_PATHS = (
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-DEBUG = True
+DEBUG = False
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 

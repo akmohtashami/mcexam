@@ -23,11 +23,11 @@ msgstr ""
 msgid "Developed by Amir Keivan Mohtashami"
 msgstr "طراحی شده توسط امیرکیوان محتشمی"
 
-#: base/templates/forms.html:35
+#: base/templates/form.html:35
 msgid "Submit"
 msgstr "ارسال"
 
-#: base/templates/forms.html:46
+#: base/templates/form.html:46
 msgid "Fields marked with * are required and must be filled"
 msgstr ""
 "خانه هایی که با علامت *(ستاره) مشخص شده اند ضروری هستند و باید پر شوند"

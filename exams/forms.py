@@ -48,10 +48,12 @@ def get_answer_sheet(exam, formset):
     columns = Paginator(formset, exam.questions_per_column)
     column_list = [columns.page(i) for i in columns.page_range]
     full_columns = []
+    question_counter = 0
     for column in column_list:
         column_with_question_number = []
         for question in column.object_list:
-            column_with_question_number.append((question, question.initial["question"].order))
+            question_counter += 1
+            column_with_question_number.append((question, question_counter))
         full_columns.append(column_with_question_number)
 
     return full_columns

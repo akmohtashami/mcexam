@@ -1,8 +1,8 @@
 from users.models import Member
-from django.contrib import auth
+from django.contrib.auth import backends
 
 
-class MemberAuthBackend(auth.backends.ModelBackend):
+class MemberAuthBackend(backends.ModelBackend):
 
     def authenticate(self, username, password):
         try:

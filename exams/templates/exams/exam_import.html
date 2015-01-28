@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block main_content %}
+    {% for site in sites %}
+        <div class='panel'>
+            <div class='panel-title'>
+                <a data-toggle="collapse" data-target="#exam-site-{{site.0.id}}">
+                    {{ site.0.name }}
+                </a>
+            </div>
+            <div class='panel-body'>
+                <div id="exam-site-{{site.0.id}}" class='collapse in'>
+                    {% if site.1 %}
+                        {% for user in site.1 %}
+                            <div class='container'>
+                                <div class='row'>
+                                    <div class='col-md-2'> {{ user }} </div>
+                                    <div class='col-md-1'>
+                                        <a class='btn btn-primary' href='{% url "exams:edit_data" exam.id user.id %}'>
+                                            <i class="glyphicon glyphicon-pencil"></i>
+                                            {% trans 'Edit' %}
+                                        </a>
+                                    </div>
+                                    <div class='col-md-1'>
+                                        <a class='btn btn-danger' href='{% url "exams:delete_data" exam.id user.id %}'>
+                                            <i class="glyphicon glyphicon-trash"></i>
+                                            {% trans 'Delete' %}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        {% trans 'No participants' %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <div class="text-center"><a class='btn btn-primary' href='{% url "exams:add_data" exam.id %}'> {% trans 'Add New Participant' %} </a></div>
+{% endblock %}

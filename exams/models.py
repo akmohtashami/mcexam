@@ -41,13 +41,14 @@ class Exam(models.Model):
 
     def get_tex_file(self):
         context = {
-        "exam": self
+            "exam": self
         }
         exam_template = Template(self.exam_pdf_template)
         return exam_template.render(Context(context)).encode("utf-8")
 
-    def get_data_dir(self):
-        return os.path.join(settings.EXAMS_FILES_ROOT, str(self.id))
+    @property
+    def resources_dir(self):
+        return os.path.join(settings.PRIVATE_MEDIA_ROOT, 'examfiles', str(self.id))
 
 
 class Question(Sortable):
@@ -57,8 +58,9 @@ class Question(Sortable):
     def __unicode__(self):
         return self.exam.name + " - " + _("Question #") + " " + str(self.order)
 
-    def get_data_dir(self):
-        return os.path.join(self.exam.get_data_dir(), str(self.id))
+    @property
+    def resources_dir(self):
+        return os.path.join(self.exam.resources_dir, str(self.id))
 
     class Meta(Sortable.Meta):
         verbose_name = _("Question")
@@ -107,14 +109,5 @@ class ExamSite(models.Model):
     class Meta:
         verbose_name = _("Exam Site")
         verbose_name_plural = _("Exam Sites")
-
-
-def exam_based_file_path(instance, filename):
-    return os.path.join(instance.exam.get_data_dir(), filename)
-
-
-class QuestionResource(models.Model):
-    exam = models.ForeignKey(Exam, verbose_name=_("Exam"))
-    file = models.FileField(upload_to=exam_based_file_path, storage=FileSystemStorage(location='/'))
 
 
