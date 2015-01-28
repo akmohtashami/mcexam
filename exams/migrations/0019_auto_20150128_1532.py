@@ -7,7 +7,7 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('exams', '0019_questionresource'),
+        ('exams', '0018_exam_exam_pdf_template'),
     ]
 
     operations = [

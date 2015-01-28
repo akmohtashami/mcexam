@@ -32,7 +32,7 @@ class Resource(models.Model):
     resource = models.FileField(upload_to=get_upload_path, storage=FileSystemStorage(location='/'))
 
     def save(self, *args, **kwargs):
-        super(Resource, self).save(update_fields=['resource'], *args, **kwargs)
+        super(Resource, self).save(*args, **kwargs)
         if len(self.filename) == 0:
             self.filename = os.path.basename(self.resource.name)
         goal_file_name = get_upload_path(self, self.filename)

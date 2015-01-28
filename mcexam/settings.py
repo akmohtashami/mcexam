@@ -173,7 +173,7 @@ LOCALE_PATHS = (
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-DEBUG = False
+DEBUG = True
 
-TEMPLATE_DEBUG = False
+TEMPLATE_DEBUG = True
 
