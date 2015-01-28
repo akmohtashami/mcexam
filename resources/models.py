@@ -29,7 +29,7 @@ class Resource(models.Model):
     owner = GenericForeignKey('owner_content_type', 'owner_object_id')
     is_private = models.BooleanField(verbose_name=_("Private"), help_text=_("Private resources are not served by webserver"), default=True)
     filename = models.CharField(max_length=1000, verbose_name=_("File Name"), blank=True)
-    resource = models.FileField(upload_to=get_upload_path, storage=FileSystemStorage(location='/'))
+    resource = models.FileField(max_length=5000, upload_to=get_upload_path, storage=FileSystemStorage(location='/'))
 
     def save(self, *args, **kwargs):
         super(Resource, self).save(*args, **kwargs)

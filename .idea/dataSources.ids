@@ -207,11 +207,11 @@
     </table>
     <table name="resources_resource" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="is_private" sqlType="BOOL" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <column name="owner_object_id" sqlType="INTEGER UNSIGNED" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <column name="filename" sqlType="VARCHAR(1000)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
       <column name="resource" sqlType="VARCHAR(100)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
       <column name="owner_content_type_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="is_private" sqlType="BOOL" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <primary-key columns="id"/>
       <foreign-key name="#FAKE_resources_resource_1" columns="owner_content_type_id" ref-table="django_content_type" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <index name="resources_resource_3c2924af" unique="true" columns="owner_content_type_id"/>
