@@ -40,3 +40,6 @@ class Resource(models.Model):
             os.rename(self.resource.name, goal_file_name)
             self.resource.name = goal_file_name
         super(Resource, self).save(*args, **kwargs)
+
+    def __unicode__(self):
+        return self.owner.__unicode__ + " - " + self.filename
