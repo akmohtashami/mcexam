@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-25 15:48+0000\n"
-"PO-Revision-Date: 2015-01-25 15:50+0326\n"
+"POT-Creation-Date: 2015-01-28 15:09+0000\n"
+"PO-Revision-Date: 2015-01-28 15:13+0326\n"
 "Last-Translator:   <remuslup200@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,11 +23,11 @@ msgstr ""
 msgid "Developed by Amir Keivan Mohtashami"
 msgstr "طراحی شده توسط امیرکیوان محتشمی"
 
-#: base/templates/form.html:35
+#: base/templates/form.html:8 exams/templates/exams/exam_add_data.html:35
 msgid "Submit"
 msgstr "ارسال"
 
-#: base/templates/form.html:46
+#: base/templates/form.html:19
 msgid "Fields marked with * are required and must be filled"
 msgstr ""
 "خانه هایی که با علامت *(ستاره) مشخص شده اند ضروری هستند و باید پر شوند"
@@ -57,7 +57,7 @@ msgstr "مدیریت"
 msgid "Logout"
 msgstr "خروج"
 
-#: exams/forms.py:86 exams/models.py:102 exams/models.py:108
+#: exams/forms.py:88 exams/models.py:104 exams/models.py:110
 msgid "Exam Site"
 msgstr "مکان برگزاری"
 
@@ -85,7 +85,7 @@ msgstr "قالب PDF"
 msgid "Django-Tex template for creating pdf files"
 msgstr "قالب جانگو-تک برای ساخت فایل های PDF"
 
-#: exams/models.py:24 exams/models.py:100 exams/models.py:117
+#: exams/models.py:24 exams/models.py:102
 msgid "Exam"
 msgstr "آزمون"
 
@@ -97,73 +97,69 @@ msgstr "توانایی دیدن آزمون ها را دارد"
 msgid "Can import answer sheets"
 msgstr "اجازه ی وارد کردن پاسخنامه دارد"
 
-#: exams/models.py:54
+#: exams/models.py:55
 msgid "Related exam"
 msgstr "آزمون مربوطه"
 
-#: exams/models.py:55
+#: exams/models.py:56
 msgid "Question's Statement"
 msgstr "صورت سوال"
 
-#: exams/models.py:58
+#: exams/models.py:59
 msgid "Question #"
 msgstr "سوال شماره"
 
-#: exams/models.py:64
+#: exams/models.py:66
 msgid "Question"
 msgstr "سوال"
 
-#: exams/models.py:65
+#: exams/models.py:67
 msgid "Questions"
 msgstr "سوالات"
 
-#: exams/models.py:70 exams/models.py:79
+#: exams/models.py:72 exams/models.py:81
 msgid "Choice"
 msgstr "گزینه"
 
-#: exams/models.py:80
+#: exams/models.py:82
 msgid "Choices"
 msgstr "گزینه ها"
 
-#: exams/models.py:95
+#: exams/models.py:97
 msgid "User has another answer for this question in database"
 msgstr "کاربر پاسخ دیگری برای این سوال در دیتابیس دارد"
 
-#: exams/models.py:101
+#: exams/models.py:103
 msgid "Importer"
 msgstr "وارد کننده"
 
-#: exams/models.py:109
+#: exams/models.py:111
 msgid "Exam Sites"
 msgstr "مکان های برگزاری"
 
-#: exams/templates/exams/exam_add_data.html:34
-msgid "Save data"
-msgstr "ذخیره ی داده ها"
-
-#: exams/templates/exams/exam_add_data.html:35
-#: exams/templates/exams/exam_edit_data.html:36
+#: exams/templates/exams/exam_add_data.html:36
+#: exams/templates/exams/exam_edit_data.html:37
 msgid "Back"
 msgstr "بازگشت"
 
-#: exams/templates/exams/exam_edit_data.html:34
+#: exams/templates/exams/exam_edit_data.html:35
 msgid "Save"
 msgstr "ذخیره"
 
-#: exams/templates/exams/exam_edit_data.html:35
-#: exams/templates/exams/exam_manage.html:25
+#: exams/templates/exams/exam_edit_data.html:36
+#: exams/templates/exams/exam_import.html:28
 msgid "Delete"
 msgstr "حذف"
 
-#: exams/templates/exams/exam_manage.html:21
+#: exams/templates/exams/exam_import.html:22
 msgid "Edit"
 msgstr "ویرایش"
 
-#: exams/templates/exams/exam_manage.html:31
+#: exams/templates/exams/exam_import.html:35
 msgid "No participants"
 msgstr "شرکت کننده ای وجود ندارد"
 
-#: exams/templates/exams/exam_manage.html:37
+#: exams/templates/exams/exam_import.html:41
 msgid "Add New Participant"
 msgstr "افزودن شرکت کننده ی جدید"
 
@@ -195,7 +191,7 @@ msgstr ""
 "\n"
 "این آزمون در %(exam_end_date)s پایان یافته است."
 
-#: exams/templates/exams/running_exam.html:29
+#: exams/templates/exams/running_exam.html:32
 msgid "Save current answers"
 msgstr "ذخیره ی پاسخ های فعلی"
 
@@ -251,11 +247,24 @@ msgstr "این آزمون هنوز شروع نشده است"
 msgid "This exam has ended"
 msgstr "این آزمون پایان یافته است"
 
-#: exams/views.py:164
+#: exams/views.py:166
 msgid ""
 "There was a problem in generating pdf files. Please contact the "
 "administrator"
 msgstr "مشکلی در تولید فایل PDF به وجود آمده است. لطفا به مدیر خبر دهید"
+
+#: resources/models.py:30
+msgid "Private"
+msgstr "خصوصی"
+
+#: resources/models.py:30
+msgid "Private resources are not served by webserver"
+msgstr "منابع خصوصی توسط وب سرور نمایش داده نمی شوند"
+
+#: resources/models.py:31
+#| msgid "Name"
+msgid "File Name"
+msgstr "نام فایل"
 
 #: users/admin.py:32
 msgid "Verify selected users"
@@ -413,10 +422,8 @@ msgid "Registration at %(site_name)s!"
 msgstr "عضویت در %(site_name)s!"
 
 #: users/templates/users/activation_email_text.txt:2
-#, fuzzy, python-format
-#| msgid ""
-#| "d at %(site_name)s.\n"
-#| "user is currently inactive. In order to ivate it use the following link:\n"
+#, python-format
+#| msgid "ctive. In order to ivate it use the following link:\n"
 msgid ""
 "\n"
 "Hello,\n"
@@ -498,6 +505,9 @@ msgstr ""
 #: users/views.py:95
 msgid "Invalid verification code"
 msgstr "کد تایید نامعتبر است"
+
+#~ msgid "Save data"
+#~ msgstr "ذخیره ی داده ها"
 
 #~ msgid "Remove"
 #~ msgstr "حذف"
