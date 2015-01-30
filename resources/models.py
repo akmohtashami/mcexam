@@ -42,4 +42,8 @@ class Resource(models.Model):
         super(Resource, self).save(*args, **kwargs)
 
     def __unicode__(self):
-        return self.owner.__unicode__ + " - " + self.filename
+        return self.owner.__unicode__() + " - " + self.filename
+
+    class Meta:
+        verbose_name = _("Resource")
+        verbose_name_plural = _("Resources")

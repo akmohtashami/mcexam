@@ -4,7 +4,7 @@ from exams.models import Question, Choice, MadeChoice, ExamSite
 from adminsortable.admin import NonSortableParentAdmin, SortableTabularInline, SortableAdmin
 from guardian.admin import GuardedModelAdmin
 from resources.admin import ResourceInLine
-
+from exams.forms import CodeMirrorForm
 # Register your models here.
 
 
@@ -19,6 +19,7 @@ class ExamAdmin(GuardedModelAdmin, NonSortableParentAdmin):
         ResourceInLine, QuestionInLine,
         ]
     change_form_template_extends = GuardedModelAdmin.change_form_template
+    form = CodeMirrorForm
 
 
 class ChoicesInLine(SortableTabularInline):

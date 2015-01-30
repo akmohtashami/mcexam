@@ -14,3 +14,4 @@ wsgiref==0.1.2
 django-admin-sortable==1.8
 django-guardian==1.2.5
 django-cleanup==0.1.10
+django-codemirror-widget==0.4.0

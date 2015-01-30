@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-28 15:09+0000\n"
-"PO-Revision-Date: 2015-01-28 15:13+0326\n"
+"POT-Creation-Date: 2015-01-30 22:58+0000\n"
+"PO-Revision-Date: 2015-01-30 22:58+0326\n"
 "Last-Translator:   <remuslup200@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgstr "ورود"
 msgid "Index"
 msgstr "صفحه ی اصلی"
 
-#: base/templates/navbar.html:11 exams/models.py:25
+#: base/templates/navbar.html:11 exams/models.py:24
 msgid "Exams"
 msgstr "آزمون ها"
 
@@ -57,83 +57,83 @@ msgstr "مدیریت"
 msgid "Logout"
 msgstr "خروج"
 
-#: exams/forms.py:88 exams/models.py:104 exams/models.py:110
+#: exams/forms.py:88 exams/models.py:103 exams/models.py:109
 msgid "Exam Site"
 msgstr "مکان برگزاری"
 
-#: exams/models.py:17 exams/templates/exams/list.html:12
-msgid "Name"
-msgstr "نام"
-
-#: exams/models.py:18 exams/templates/exams/list.html:13
-msgid "Start Date"
-msgstr "تاریخ شروع"
-
-#: exams/models.py:19 exams/templates/exams/list.html:14
-msgid "End Date"
-msgstr "تاریخ پایان"
-
-#: exams/models.py:20
-msgid "Number of questions per column in answer sheet"
-msgstr "تعداد سوالات در هر ستون پاسخنامه"
-
-#: exams/models.py:21
+#: exams/forms.py:118 exams/models.py:20
 msgid "PDF template"
 msgstr "قالب PDF"
 
-#: exams/models.py:21
+#: exams/forms.py:118 exams/models.py:20
 msgid "Django-Tex template for creating pdf files"
 msgstr "قالب جانگو-تک برای ساخت فایل های PDF"
 
-#: exams/models.py:24 exams/models.py:102
+#: exams/models.py:16 exams/templates/exams/list.html:12
+msgid "Name"
+msgstr "نام"
+
+#: exams/models.py:17 exams/templates/exams/list.html:13
+msgid "Start Date"
+msgstr "تاریخ شروع"
+
+#: exams/models.py:18 exams/templates/exams/list.html:14
+msgid "End Date"
+msgstr "تاریخ پایان"
+
+#: exams/models.py:19
+msgid "Number of questions per column in answer sheet"
+msgstr "تعداد سوالات در هر ستون پاسخنامه"
+
+#: exams/models.py:23 exams/models.py:101
 msgid "Exam"
 msgstr "آزمون"
 
-#: exams/models.py:27
+#: exams/models.py:26
 msgid "Can view exam"
 msgstr "توانایی دیدن آزمون ها را دارد"
 
-#: exams/models.py:28
+#: exams/models.py:27
 msgid "Can import answer sheets"
 msgstr "اجازه ی وارد کردن پاسخنامه دارد"
 
-#: exams/models.py:55
+#: exams/models.py:54
 msgid "Related exam"
 msgstr "آزمون مربوطه"
 
-#: exams/models.py:56
+#: exams/models.py:55
 msgid "Question's Statement"
 msgstr "صورت سوال"
 
-#: exams/models.py:59
+#: exams/models.py:58
 msgid "Question #"
 msgstr "سوال شماره"
 
-#: exams/models.py:66
+#: exams/models.py:65
 msgid "Question"
 msgstr "سوال"
 
-#: exams/models.py:67
+#: exams/models.py:66
 msgid "Questions"
 msgstr "سوالات"
 
-#: exams/models.py:72 exams/models.py:81
+#: exams/models.py:71 exams/models.py:80
 msgid "Choice"
 msgstr "گزینه"
 
-#: exams/models.py:82
+#: exams/models.py:81
 msgid "Choices"
 msgstr "گزینه ها"
 
-#: exams/models.py:97
+#: exams/models.py:96
 msgid "User has another answer for this question in database"
 msgstr "کاربر پاسخ دیگری برای این سوال در دیتابیس دارد"
 
-#: exams/models.py:103
+#: exams/models.py:102
 msgid "Importer"
 msgstr "وارد کننده"
 
-#: exams/models.py:111
+#: exams/models.py:110
 msgid "Exam Sites"
 msgstr "مکان های برگزاری"
 
@@ -262,9 +262,16 @@ msgid "Private resources are not served by webserver"
 msgstr "منابع خصوصی توسط وب سرور نمایش داده نمی شوند"
 
 #: resources/models.py:31
-#| msgid "Name"
 msgid "File Name"
 msgstr "نام فایل"
+
+#: resources/models.py:48
+msgid "Resource"
+msgstr "منبع"
+
+#: resources/models.py:49
+msgid "Resources"
+msgstr "منابع"
 
 #: users/admin.py:32
 msgid "Verify selected users"
@@ -423,7 +430,6 @@ msgstr "عضویت در %(site_name)s!"
 
 #: users/templates/users/activation_email_text.txt:2
 #, python-format
-#| msgid "ctive. In order to ivate it use the following link:\n"
 msgid ""
 "\n"
 "Hello,\n"

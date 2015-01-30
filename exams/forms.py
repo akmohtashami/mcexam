@@ -5,7 +5,7 @@ from users.models import Member
 from django.utils.translation import ugettext as _
 from django.core.paginator import Paginator
 from django.forms import formset_factory
-
+from codemirror.widgets import CodeMirrorTextarea
 
 class AnswerForm(forms.Form):
     question = forms.ModelChoiceField(queryset=Question.objects.all(),
@@ -112,3 +112,7 @@ class OnsiteContestantForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+class CodeMirrorForm(forms.ModelForm):
+    codemirror_widget = CodeMirrorTextarea(mode="stex")
+    exam_pdf_template = forms.CharField(widget=codemirror_widget, label=_("PDF template"), help_text=_("Django-Tex template for creating pdf files"))

@@ -7,7 +7,6 @@ from adminsortable.models import Sortable
 from adminsortable.fields import SortableForeignKey
 from django.template import Template, Context
 from django.conf import settings
-from django.core.files.storage import FileSystemStorage
 import os
 # Create your models here.
 
