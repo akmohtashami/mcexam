@@ -2,20 +2,20 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-03 18:23+0000\n"
+"POT-Creation-Date: 2015-02-03 18:53+0000\n"
 "PO-Revision-Date: 2015-02-03 18:31+0326\n"
 "Last-Translator:   <remuslup200@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Translated-Using: django-rosetta 0.7.4\n"
 
@@ -30,8 +30,7 @@ msgstr "ارسال"
 
 #: base/templates/form.html:19
 msgid "Fields marked with * are required and must be filled"
-msgstr ""
-"خانه هایی که با علامت *(ستاره) مشخص شده اند ضروری هستند و باید پر شوند"
+msgstr "خانه هایی که با علامت *(ستاره) مشخص شده اند ضروری هستند و باید پر شوند"
 
 #: base/templates/navbar.html:6
 msgid "Register"
@@ -176,7 +175,6 @@ msgid "Answer Sheet"
 msgstr "پاسخنامه"
 
 #: exams/templates/exams/base_templates/exam_base.html:27
-#| msgid "Question's Statement"
 msgid "Statements"
 msgstr "صورت سوال"
 
@@ -185,12 +183,10 @@ msgid "Results"
 msgstr "نتایج"
 
 #: exams/templates/exams/base_templates/exam_base.html:33
-#| msgid "Can import answer sheets"
 msgid "Add/Edit Answer Sheets"
 msgstr "افزودن/ویرایش پاسخنامه ها"
 
 #: exams/templates/exams/base_templates/exam_base.html:36
-#| msgid "Question's Statement"
 msgid "Preview Statements"
 msgstr "پیش نمایش صورت سوال"
 
@@ -261,11 +257,13 @@ msgstr "هیچ آزمون فعالی وجود ندارد."
 #, python-format
 msgid ""
 "\n"
-"                This exam has not started yet. It will start at %(exam_start_date)s and will end at %(exam_end_date)s\n"
+"                This exam has not started yet. It will start at "
+"%(exam_start_date)s and will end at %(exam_end_date)s\n"
 "            "
 msgstr ""
 "\n"
-"آزمون هنوز شروع نشده است. این آزمون در %(exam_start_date)s شروع شده و در %(exam_end_date)s پایان می یابد."
+"آزمون هنوز شروع نشده است. این آزمون در %(exam_start_date)s شروع شده و در "
+"%(exam_end_date)s پایان می یابد."
 
 #: exams/templates/exams/not_running_exam.html:15
 #, python-format
@@ -310,12 +308,10 @@ msgid "Until exam ends"
 msgstr "تا پایان آزمون"
 
 #: exams/templatetags/exams_filters.py:35
-#| msgid "Exam Site"
 msgid "Exam finished"
 msgstr "آزمون تمام شده است"
 
 #: exams/views/admin_views.py:67
-#| msgid "Answers saved successfully"
 msgid "Statements were built successfully"
 msgstr "صورت سوالات با موفقیت ساخته شد"
 
@@ -520,11 +516,14 @@ msgid ""
 "\n"
 "Hello,\n"
 "You've registered at %(site_name)s.\n"
-"Your username is %(uname)s. Your user is currently inactive. In order to activate it use the following link:\n"
+"Your username is %(uname)s. Your user is currently inactive. In order to "
+"activate it use the following link:\n"
 msgstr ""
 "\n"
 "سلام.\n"
-"شما در %(site_name)s ثبت نام کردید. نام کاربری شما %(uname)s است. حساب کاربری شما درحال حاضر تایید نشده است. برای تایید آن از لینک زیر استفاده نمایید:\n"
+"شما در %(site_name)s ثبت نام کردید. نام کاربری شما %(uname)s است. حساب "
+"کاربری شما درحال حاضر تایید نشده است. برای تایید آن از لینک زیر استفاده "
+"نمایید:\n"
 
 #: users/templates/users/login.html:16
 msgid "Resend Verification Email"
@@ -533,12 +532,16 @@ msgstr "ارسال دوباره ی ایمیل تایید"
 #: users/templates/users/login.html:18
 msgid ""
 "\n"
-"                If you haven't received an email containing a verification url, please use the following form to ask for a new mail.<br />\n"
-"                Please note that receiving the verification email can take up to 24 hours.\n"
+"                If you haven't received an email containing a verification "
+"url, please use the following form to ask for a new mail.<br />\n"
+"                Please note that receiving the verification email can take "
+"up to 24 hours.\n"
 "            "
 msgstr ""
 "\n"
-"اگر ایمیلی شامل آدرسی برای تایید حساب خود دریافت نکرده اید، از فرم زیر برای درخواست ارسال دوباره ی ایمیل استفاده کنید. لطفا توجه کنید که ارسال این ایمیل می تواند تا ۲۴ ساعت زمان ببرد."
+"اگر ایمیلی شامل آدرسی برای تایید حساب خود دریافت نکرده اید، از فرم زیر برای "
+"درخواست ارسال دوباره ی ایمیل استفاده کنید. لطفا توجه کنید که ارسال این ایمیل "
+"می تواند تا ۲۴ ساعت زمان ببرد."
 
 #: users/templates/users/register_success.html:6
 #, python-format
@@ -551,11 +554,11 @@ msgstr ""
 
 #: users/templates/users/register_success.html:9
 msgid ""
-"A confirmation mail has been sent to your email. Please use the verification"
-" link inside it to activate your user."
+"A confirmation mail has been sent to your email. Please use the verification "
+"link inside it to activate your user."
 msgstr ""
-"یک ایمیل برای تایید به پست الکترونیک شما ارسال شده است. لطفا از آدرس درون آن"
-" برای فعال سازی حساب کاربری خود اقدام نمایید."
+"یک ایمیل برای تایید به پست الکترونیک شما ارسال شده است. لطفا از آدرس درون آن "
+"برای فعال سازی حساب کاربری خود اقدام نمایید."
 
 #: users/templates/users/user_info_email_text.txt:2
 #, python-format
@@ -591,8 +594,7 @@ msgstr "شما با موفقیت خارج شدید"
 
 #: users/views.py:93
 msgid "Your user has been verified. You can now login using the login form."
-msgstr ""
-"کاربر شما تایید شد. هم اکنون می توانید از طریق بخش ورود وارد سایت شوید"
+msgstr "کاربر شما تایید شد. هم اکنون می توانید از طریق بخش ورود وارد سایت شوید"
 
 #: users/views.py:95
 msgid "Invalid verification code"
