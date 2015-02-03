@@ -30,6 +30,7 @@ class QuestionAdmin(SortableAdmin):
     inlines = [
         ResourceInLine, ChoicesInLine,
     ]
+    list_display = ("__unicode__", "is_info")
     """
     def __init__(self, *args, **kwargs):
 

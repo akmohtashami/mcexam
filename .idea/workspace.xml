@@ -35,21 +35,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/exams/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="394" max-vertical-offset="1680">
-              <caret line="52" column="22" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/exams/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2255" max-vertical-offset="2880">
-              <caret line="161" column="38" selection-start-line="161" selection-start-column="37" selection-end-line="161" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.87598425" vertical-offset="1595" max-vertical-offset="2925">
+              <caret line="136" column="19" selection-start-line="136" selection-start-column="19" selection-end-line="136" selection-end-column="19" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -67,11 +57,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mcexam/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7972441" vertical-offset="2250" max-vertical-offset="2775">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2250" max-vertical-offset="2775">
               <caret line="178" column="22" selection-start-line="178" selection-start-column="22" selection-end-line="178" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/exams/admin.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="137" max-vertical-offset="660">
+              <caret line="32" column="34" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -117,6 +117,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/exams/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1185" max-vertical-offset="1680">
+              <caret line="52" column="22" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="IdeDocumentHistory">
@@ -137,7 +147,6 @@
         <option value="$PROJECT_DIR$/.openshift/action_hooks/build" />
         <option value="$PROJECT_DIR$/resources/models.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
-        <option value="$PROJECT_DIR$/exams/admin.py" />
         <option value="$PROJECT_DIR$/exams/views.py" />
         <option value="$PROJECT_DIR$/exams/views/normal_views.py" />
         <option value="$PROJECT_DIR$/exams/views/__init__.py" />
@@ -170,9 +179,10 @@
         <option value="$PROJECT_DIR$/exams/templates/exams/base_templates/exam_base.html" />
         <option value="$PROJECT_DIR$/exams/templates/exams/base_templates/answer_sheet_form.html" />
         <option value="$PROJECT_DIR$/exams/forms.py" />
-        <option value="$PROJECT_DIR$/exams/models.py" />
         <option value="$PROJECT_DIR$/locale/fa/LC_MESSAGES/django.po" />
         <option value="$PROJECT_DIR$/mcexam/settings.py" />
+        <option value="$PROJECT_DIR$/exams/admin.py" />
+        <option value="$PROJECT_DIR$/exams/models.py" />
       </list>
     </option>
   </component>
@@ -1005,14 +1015,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/exams/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6456693" vertical-offset="137" max-vertical-offset="645">
-          <caret line="37" column="7" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/exams/widget.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3030303" vertical-offset="0" max-vertical-offset="600">
@@ -1055,38 +1057,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/exams/templatetags/exams_filters.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="377" max-vertical-offset="885">
-          <caret line="56" column="23" selection-start-line="56" selection-start-column="23" selection-end-line="56" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/exams/views/admin_views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.4192914" vertical-offset="239" max-vertical-offset="1155">
           <caret line="64" column="23" selection-start-line="64" selection-start-column="23" selection-end-line="64" selection-end-column="23" />
           <folding>
             <element signature="e#0#46#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/exams/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="394" max-vertical-offset="1680">
-          <caret line="52" column="22" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/exams/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2255" max-vertical-offset="2880">
-          <caret line="161" column="38" selection-start-line="161" selection-start-column="37" selection-end-line="161" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1109,9 +1085,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mcexam/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7972441" vertical-offset="2250" max-vertical-offset="2775">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2250" max-vertical-offset="2775">
           <caret line="178" column="22" selection-start-line="178" selection-start-column="22" selection-end-line="178" selection-end-column="22" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/exams/templatetags/exams_filters.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="377" max-vertical-offset="885">
+          <caret line="56" column="23" selection-start-line="56" selection-start-column="23" selection-end-line="56" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/exams/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="137" max-vertical-offset="660">
+          <caret line="32" column="34" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/exams/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1185" max-vertical-offset="1680">
+          <caret line="52" column="22" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/exams/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.87598425" vertical-offset="1595" max-vertical-offset="2925">
+          <caret line="136" column="19" selection-start-line="136" selection-start-column="19" selection-end-line="136" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

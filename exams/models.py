@@ -131,7 +131,10 @@ class Question(Sortable):
                                   "in question statement and check this box"))
 
     def __unicode__(self):
-        return self.exam.name + " - " + _("Question #") + " " + str(self.order)
+        name = self.exam.name + " - " + _("Question #") + " " + str(self.order)
+        if self.is_info:
+            name += "(" + _("Info") + ")"
+        return name
 
     @property
     def resources_dir(self):
