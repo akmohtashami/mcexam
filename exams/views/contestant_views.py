@@ -1,0 +1,45 @@
+from django.shortcuts import get_object_or_404, render
+from django.contrib.auth.decorators import permission_required
+from guardian.decorators import permission_required as guardian_permission_required
+from django.contrib import messages
+from exams.models import Exam
+from exams.forms import save_answer_sheet, get_answer_sheet, get_answer_formset
+from django.http import HttpResponse, Http404
+from django.core.exceptions import PermissionDenied
+from django.core.urlresolvers import reverse
+from django.utils.translation import ugettext as _
+import os
+
+
+def answer_sheet(request, exam_id):
+    exam = get_object_or_404(Exam, id=exam_id)
+    if not exam.check_implicit_permission(request.user, "view_answer_sheet"):
+        raise PermissionDenied
+    if request.method == "POST":
+        if not exam.check_implicit_permission(request.user, "save_answer_sheet"):
+            forms = get_answer_formset(exam, request.user)
+            messages.error(request, _("The exam is not running right now. You cannot submit answers"))
+        else:
+            forms = get_answer_formset(exam, request.user, request.POST)
+            if save_answer_sheet(forms, request.user):
+                messages.success(request, _("Answers saved successfully"))
+            else:
+                messages.error(request, _("A problem occured. Please try again"))
+    else:
+        forms = get_answer_formset(exam, request.user)
+    full_columns = get_answer_sheet(exam, forms)
+    context = {"exam": exam, "formset": forms, "columns": full_columns}
+    return render(request, "exams/main_templates/answer_sheet.html", context)
+
+
+def statements(request, exam_id):
+    exam = get_object_or_404(Exam, id=exam_id)
+    if not exam.check_implicit_permission(request.user, "view_statements"):
+        raise PermissionDenied
+    if not exam.statements_file:
+        raise Http404
+    real_file_name, real_file_ext = os.path.splitext(exam.statements_file.name)
+    statements_name = "statements_" + exam_id + real_file_ext
+    response = HttpResponse(exam.statements_file, content_type="text/plain")
+    response['Content-Disposition'] = 'attachment; filename=%s' % statements_name
+    return response

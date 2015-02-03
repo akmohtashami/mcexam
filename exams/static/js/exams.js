@@ -13,3 +13,29 @@ $('.choice').on("click", function(event){
     else
         $(this).removeClass("marked");
 });
+
+/*
+$("[data-delete=true]").click(function(e){
+    e.preventDefault();
+    var elem = $(this);
+    var buttons = {};
+    buttons[gettext("Yes")] = function(){
+        $(this).dialog("close");
+        window.location = $(elem).prop("href");
+    };
+    buttons[gettext("No")] = function(){
+        $(this).dialog("close");
+    };
+    $("<div></div>").appendTo("body")
+        .html("<div>" + gettext("Are you sure about deleting this participant?") + "</div>")
+        .dialog({
+            resizable: false,
+            height:200,
+            modal: true,
+            buttons: buttons
+        });
+});
+*/
+$("[data-delete=true]").click(function(e){
+    return confirm(gettext("Please confirm to continue"));
+});

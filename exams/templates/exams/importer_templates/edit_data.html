@@ -1,0 +1,22 @@
+{% extends 'exams/base_templates/exam_base.html' %}
+{% load i18n %}
+{% load base_filters %}
+{% load exams_filters %}
+
+{% block page_content %}
+    <form method="post" action="">
+        {% csrf_token %}
+        {{answer_sheet_forms.management_form}}
+        <div class='container'>
+            {% include 'raw_form.html' with form=user_form %}
+        </div>
+        <br />
+        {% include 'exams/base_templates/answer_sheet_form.html' with columns=answer_sheet_full_columns %}
+        <br />
+        <div class='text-center'>
+            <button class='btn btn-primary'>{% trans "Save" %}</button>
+            <a data-delete='true' class='btn btn-danger' href='{% url 'exams:delete_data' exam.id user_id %}'> {% trans "Delete" %} </a>
+            <a class='btn btn-default' href='{% url 'exams:import_panel' exam.id %}'> {% trans "Back" %} </a>
+        </div>
+    </form>
+{% endblock %}

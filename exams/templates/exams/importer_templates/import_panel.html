@@ -1,0 +1,43 @@
+{% extends 'exams/base_templates/exam_base.html' %}
+{% load i18n %}
+
+{% block page_content %}
+    {% for site in sites %}
+        <div class='panel'>
+            <div class='panel-title'>
+                <a data-toggle="collapse" data-target="#exam-site-{{site.0.id}}" href="#">
+                    {{ site.0.name }}
+                </a>
+            </div>
+            <div class='panel-body'>
+                <div id="exam-site-{{site.0.id}}" class='collapse in'>
+                    {% if site.1 %}
+                        <table class="table table-responsive table-striped">
+                            <tbody>
+                                {% for user in site.1 %}
+                                    <tr>
+                                        <td> {{ user }} </td>
+                                        <td>
+                                            <a class='btn btn-primary' href='{% url "exams:edit_data" exam.id user.id %}'>
+                                                <i class="glyphicon glyphicon-pencil"></i>
+                                                {% trans 'Edit' %}
+                                            </a>
+
+                                            <a data-delete='true' class='btn btn-danger' href='{% url "exams:delete_data" exam.id user.id %}'>
+                                                <i class="glyphicon glyphicon-trash"></i>
+                                                {% trans 'Delete' %}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        {% trans 'No participants' %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <div class="text-center"><a class='btn btn-primary' href='{% url "exams:add_data" exam.id %}'> {% trans 'Add New Participant' %} </a></div>
+{% endblock %}

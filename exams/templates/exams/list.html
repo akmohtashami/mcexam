@@ -19,8 +19,8 @@
                 {% for exam in exams_list %}
                     <tr>
                         <td> {{ exam.name }} </td>
-                        <td> {{ exam.start_date|localtime|jalali_date:"Y/m/d H:i:s" }} </td>
-                        <td> {{ exam.end_date|localtime|jalali_date:"Y/m/d H:i:s" }} </td>
+                        <td> {{ exam.online_start_date|localtime|jalali_date:"Y/m/d H:i:s" }} </td>
+                        <td> {{ exam.online_end_date|localtime|jalali_date:"Y/m/d H:i:s" }} </td>
                         <td> <a href="{% url 'exams:detail' exam.id %}"> Enter </a></td>
                     </tr>
                 {% endfor %}

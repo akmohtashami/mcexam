@@ -18,3 +18,4 @@ def choice_character(value):
     if value <= 0 or value > len(choices):
         raise ValueError(_("Bad choice number"))
     return choices[value - 1]
+

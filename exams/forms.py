@@ -7,12 +7,13 @@ from django.core.paginator import Paginator
 from django.forms import formset_factory
 from codemirror.widgets import CodeMirrorTextarea
 
-class AnswerForm(forms.Form):
+
+class AnswerSheetForm(forms.Form):
     question = forms.ModelChoiceField(queryset=Question.objects.all(),
                                       required=True,
                                       widget=forms.HiddenInput(attrs={"class": "hidden-input"}))
     def __init__(self, *args, **kwargs):
-        super(AnswerForm, self).__init__(*args, **kwargs)
+        super(AnswerSheetForm, self).__init__(*args, **kwargs)
         self.fields['answer'] = forms.ModelChoiceField(queryset=self.initial.get("question").choice_set.all(),
                                                        required=False,
                                                        widget=ExamChoiceInput)
@@ -20,13 +21,15 @@ class AnswerForm(forms.Form):
     def clean_question(self):
         return self.initial.get("question")
 
+
 def get_answer_formset(exam, user=None, data=None, prefix=None):
-    answer_formset = formset_factory(AnswerForm,
-                           min_num=exam.question_set.count(),
-                           validate_min=True,
-                           max_num=exam.question_set.count(),
-                           validate_max=True,
-                    )
+    answer_formset = formset_factory(
+        AnswerSheetForm,
+        min_num=exam.question_set.count(),
+        validate_min=True,
+        max_num=exam.question_set.count(),
+        validate_max=True,
+    )
     initials = []
     for question in exam.question_set.all():
         if user is None:
@@ -85,7 +88,8 @@ class OnsiteContestantForm(forms.ModelForm):
         super(OnsiteContestantForm, self).__init__(*args, **kwargs)
         self.fields['exam_site'] = forms.ModelChoiceField(
             queryset=current_user.examsite_set.all(),
-            label=_("Exam Site")
+            label=_("Exam Site"),
+            empty_label=None
         )
         self.fields['grade'].required = True
 

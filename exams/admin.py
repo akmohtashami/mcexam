@@ -30,6 +30,12 @@ class QuestionAdmin(SortableAdmin):
     inlines = [
         ResourceInLine, ChoicesInLine,
     ]
+    """
+    def __init__(self, *args, **kwargs):
+
+        self.list_display += ("is_info", )
+        super(QuestionAdmin, self).__init__(*args, **kwargs)
+    """
 
 admin.site.register(Exam, ExamAdmin)
 admin.site.register(ExamSite)

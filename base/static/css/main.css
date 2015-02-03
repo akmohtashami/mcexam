@@ -36,49 +36,15 @@ body {
     padding-left: 10px;
     padding-right: 10px;
     color:lightyellow;
-    border-radius: 0px;
     line-height: 50px;
 }
 .user-nav a {
     color:white;
 }
 
-.choice {
-    background-color: #fafafa;
-	text-align: center;
-	border: 1px solid #000000;
-	border-radius: 10px;
-	cursor: pointer;
-    margin: 2px;
-    min-width: 35px;
-
-}
-
-.choice.marked {
-    background-color: #000000;
-    color: #ffffff;
-}
-
-.answer-sheet {
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    border: 2px solid black;
-
-}
-
-.bordered {
-    border: 2px solid black;
-    padding: 0px;
-}
-
 .hidden-input {
     visibility: hidden;
     position:absolute;
-}
-
-.question-number {
-    min-width: 25px;
 }
 
 /* jGrowl Box style */

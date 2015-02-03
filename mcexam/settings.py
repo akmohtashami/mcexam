@@ -102,6 +102,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
     "django.core.context_processors.request",
+    "exams.context_processor.exam_implicit_permissions",
 )
 
 # Internationalization
@@ -173,7 +174,7 @@ LOCALE_PATHS = (
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-DEBUG = False
+DEBUG = True
 
-TEMPLATE_DEBUG = False
+TEMPLATE_DEBUG = True
 

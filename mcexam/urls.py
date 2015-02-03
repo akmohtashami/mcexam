@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
     url(r'^', include('base.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^jsi18n/$', 'django.views.i18n.javascript_catalog', {"domain": "django"}),
 )
 
 

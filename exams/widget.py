@@ -14,15 +14,15 @@ class ExamChoiceInput(Widget):
         for option_value, option_label in self.choices:
             if not option_value:
                 continue
-            radio_code = '<input autocomplete="off" class="hidden-input" type="radio" name="{0}" data-identifier="{0}-{1}-choice" value="{1}"'
+            radio_code = '<td><input autocomplete="off" class="hidden-input" type="radio" name="{0}" data-identifier="{0}-{1}-choice" value="{1}"'
             try:
                 if option_value == int(value):
-                    radio_code += ' checked'
+                    radio_code += ' checked=true'
             except:
                 pass
             radio_code += '>'
             output.append(format_html(radio_code, name, str(option_value)))
-            label_code = u'<td><div data-correspond="{0}-{1}-choice" class="choice'
+            label_code = u'<div data-correspond="{0}-{1}-choice" class="choice'
             try:
                 if option_value == int(value):
                     label_code += ' marked'
