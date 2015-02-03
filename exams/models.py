@@ -123,14 +123,13 @@ class Exam(models.Model):
 
 
 class Question(Sortable):
-    exam = SortableForeignKey(Exam, verbose_name=_("Related exam"))
+    exam = models.ForeignKey(Exam, verbose_name=_("Related exam"))
     statement = models.TextField(verbose_name=_("Question's Statement"))
-    """
     is_info = models.BooleanField(default=False,
                                   verbose_name=_("Info"),
                                   help_text=_("If you want to put some info between some of the question write info "
                                   "in question statement and check this box"))
-    """
+
     def __unicode__(self):
         return self.exam.name + " - " + _("Question #") + " " + str(self.order)
 

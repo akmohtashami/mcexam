@@ -9,7 +9,7 @@ from codemirror.widgets import CodeMirrorTextarea
 
 
 class AnswerSheetForm(forms.Form):
-    question = forms.ModelChoiceField(queryset=Question.objects.all(),
+    question = forms.ModelChoiceField(queryset=Question.objects.filter(is_info=False),
                                       required=True,
                                       widget=forms.HiddenInput(attrs={"class": "hidden-input"}))
     def __init__(self, *args, **kwargs):
@@ -25,13 +25,13 @@ class AnswerSheetForm(forms.Form):
 def get_answer_formset(exam, user=None, data=None, prefix=None):
     answer_formset = formset_factory(
         AnswerSheetForm,
-        min_num=exam.question_set.count(),
+        min_num=exam.question_set.filter(is_info=False).count(),
         validate_min=True,
-        max_num=exam.question_set.count(),
+        max_num=exam.question_set.filter(is_info=False).count(),
         validate_max=True,
     )
     initials = []
-    for question in exam.question_set.all():
+    for question in exam.question_set.filter(is_info=False):
         if user is None:
             user_answer = None
         else:
@@ -50,16 +50,7 @@ def get_answer_formset(exam, user=None, data=None, prefix=None):
 def get_answer_sheet(exam, formset):
     columns = Paginator(formset, exam.questions_per_column)
     column_list = [columns.page(i) for i in columns.page_range]
-    full_columns = []
-    question_counter = 0
-    for column in column_list:
-        column_with_question_number = []
-        for question in column.object_list:
-            question_counter += 1
-            column_with_question_number.append((question, question_counter))
-        full_columns.append(column_with_question_number)
-
-    return full_columns
+    return column_list
 
 
 def save_answer_sheet(formset, user):

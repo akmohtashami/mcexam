@@ -5,10 +5,10 @@ from exams.templatetags.exams_filters import choice_character
 
 
 class ExamChoiceInput(Widget):
-    def __init__(self, attrs=None, choices=()):
+    def __init__(self, attrs=None):
         super(ExamChoiceInput, self).__init__(attrs)
 
-    def render(self, name, value, attrs=None, choices=()):
+    def render(self, name, value, attrs=None):
         output = []
         option_index = 1
         for option_value, option_label in self.choices:

@@ -2,20 +2,20 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-03 18:53+0000\n"
-"PO-Revision-Date: 2015-02-03 18:31+0326\n"
+"POT-Creation-Date: 2015-02-03 23:12+0000\n"
+"PO-Revision-Date: 2015-02-03 23:14+0326\n"
 "Last-Translator:   <remuslup200@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Translated-Using: django-rosetta 0.7.4\n"
 
@@ -30,7 +30,8 @@ msgstr "ارسال"
 
 #: base/templates/form.html:19
 msgid "Fields marked with * are required and must be filled"
-msgstr "خانه هایی که با علامت *(ستاره) مشخص شده اند ضروری هستند و باید پر شوند"
+msgstr ""
+"خانه هایی که با علامت *(ستاره) مشخص شده اند ضروری هستند و باید پر شوند"
 
 #: base/templates/navbar.html:6
 msgid "Register"
@@ -57,15 +58,15 @@ msgstr "مدیریت"
 msgid "Logout"
 msgstr "خروج"
 
-#: exams/forms.py:91 exams/models.py:180 exams/models.py:186
+#: exams/forms.py:82 exams/models.py:179 exams/models.py:185
 msgid "Exam Site"
 msgstr "مکان برگزاری"
 
-#: exams/forms.py:122 exams/models.py:45
+#: exams/forms.py:113 exams/models.py:45
 msgid "PDF template"
 msgstr "قالب PDF"
 
-#: exams/forms.py:122 exams/models.py:46
+#: exams/forms.py:113 exams/models.py:46
 msgid "Django-Tex template for creating pdf files"
 msgstr "قالب جانگو-تک برای ساخت فایل های PDF"
 
@@ -118,7 +119,7 @@ msgstr "پس از این زمان نتایج و پاسخ های صحیح منت�
 msgid "Number of questions per column in answer sheet"
 msgstr "تعداد سوالات در هر ستون پاسخنامه"
 
-#: exams/models.py:58 exams/models.py:178
+#: exams/models.py:58 exams/models.py:177
 msgid "Exam"
 msgstr "آزمون"
 
@@ -138,35 +139,47 @@ msgstr "آزمون مربوطه"
 msgid "Question's Statement"
 msgstr "صورت سوال"
 
-#: exams/models.py:135
+#: exams/models.py:129
+msgid "Info"
+msgstr "اطلاعات"
+
+#: exams/models.py:130
+msgid ""
+"If you want to put some info between some of the question write info in "
+"question statement and check this box"
+msgstr ""
+"اگر می خواهید اطلاعاتی بین برخی از سوالات قرار دهید، متن را درون صورت سوال "
+"بنویسید و این گزینه را انتخاب کنید."
+
+#: exams/models.py:134
 msgid "Question #"
 msgstr "سوال شماره"
 
-#: exams/models.py:142
+#: exams/models.py:141
 msgid "Question"
 msgstr "سوال"
 
-#: exams/models.py:143
+#: exams/models.py:142
 msgid "Questions"
 msgstr "سوالات"
 
-#: exams/models.py:148 exams/models.py:157
+#: exams/models.py:147 exams/models.py:156
 msgid "Choice"
 msgstr "گزینه"
 
-#: exams/models.py:158
+#: exams/models.py:157
 msgid "Choices"
 msgstr "گزینه ها"
 
-#: exams/models.py:173
+#: exams/models.py:172
 msgid "User has another answer for this question in database"
 msgstr "کاربر پاسخ دیگری برای این سوال در دیتابیس دارد"
 
-#: exams/models.py:179
+#: exams/models.py:178
 msgid "Importer"
 msgstr "وارد کننده"
 
-#: exams/models.py:187
+#: exams/models.py:186
 msgid "Exam Sites"
 msgstr "مکان های برگزاری"
 
@@ -257,13 +270,11 @@ msgstr "هیچ آزمون فعالی وجود ندارد."
 #, python-format
 msgid ""
 "\n"
-"                This exam has not started yet. It will start at "
-"%(exam_start_date)s and will end at %(exam_end_date)s\n"
+"                This exam has not started yet. It will start at %(exam_start_date)s and will end at %(exam_end_date)s\n"
 "            "
 msgstr ""
 "\n"
-"آزمون هنوز شروع نشده است. این آزمون در %(exam_start_date)s شروع شده و در "
-"%(exam_end_date)s پایان می یابد."
+"آزمون هنوز شروع نشده است. این آزمون در %(exam_start_date)s شروع شده و در %(exam_end_date)s پایان می یابد."
 
 #: exams/templates/exams/not_running_exam.html:15
 #, python-format
@@ -516,14 +527,11 @@ msgid ""
 "\n"
 "Hello,\n"
 "You've registered at %(site_name)s.\n"
-"Your username is %(uname)s. Your user is currently inactive. In order to "
-"activate it use the following link:\n"
+"Your username is %(uname)s. Your user is currently inactive. In order to activate it use the following link:\n"
 msgstr ""
 "\n"
 "سلام.\n"
-"شما در %(site_name)s ثبت نام کردید. نام کاربری شما %(uname)s است. حساب "
-"کاربری شما درحال حاضر تایید نشده است. برای تایید آن از لینک زیر استفاده "
-"نمایید:\n"
+"شما در %(site_name)s ثبت نام کردید. نام کاربری شما %(uname)s است. حساب کاربری شما درحال حاضر تایید نشده است. برای تایید آن از لینک زیر استفاده نمایید:\n"
 
 #: users/templates/users/login.html:16
 msgid "Resend Verification Email"
@@ -532,16 +540,12 @@ msgstr "ارسال دوباره ی ایمیل تایید"
 #: users/templates/users/login.html:18
 msgid ""
 "\n"
-"                If you haven't received an email containing a verification "
-"url, please use the following form to ask for a new mail.<br />\n"
-"                Please note that receiving the verification email can take "
-"up to 24 hours.\n"
+"                If you haven't received an email containing a verification url, please use the following form to ask for a new mail.<br />\n"
+"                Please note that receiving the verification email can take up to 24 hours.\n"
 "            "
 msgstr ""
 "\n"
-"اگر ایمیلی شامل آدرسی برای تایید حساب خود دریافت نکرده اید، از فرم زیر برای "
-"درخواست ارسال دوباره ی ایمیل استفاده کنید. لطفا توجه کنید که ارسال این ایمیل "
-"می تواند تا ۲۴ ساعت زمان ببرد."
+"اگر ایمیلی شامل آدرسی برای تایید حساب خود دریافت نکرده اید، از فرم زیر برای درخواست ارسال دوباره ی ایمیل استفاده کنید. لطفا توجه کنید که ارسال این ایمیل می تواند تا ۲۴ ساعت زمان ببرد."
 
 #: users/templates/users/register_success.html:6
 #, python-format
@@ -554,11 +558,11 @@ msgstr ""
 
 #: users/templates/users/register_success.html:9
 msgid ""
-"A confirmation mail has been sent to your email. Please use the verification "
-"link inside it to activate your user."
+"A confirmation mail has been sent to your email. Please use the verification"
+" link inside it to activate your user."
 msgstr ""
-"یک ایمیل برای تایید به پست الکترونیک شما ارسال شده است. لطفا از آدرس درون آن "
-"برای فعال سازی حساب کاربری خود اقدام نمایید."
+"یک ایمیل برای تایید به پست الکترونیک شما ارسال شده است. لطفا از آدرس درون آن"
+" برای فعال سازی حساب کاربری خود اقدام نمایید."
 
 #: users/templates/users/user_info_email_text.txt:2
 #, python-format
@@ -594,11 +598,16 @@ msgstr "شما با موفقیت خارج شدید"
 
 #: users/views.py:93
 msgid "Your user has been verified. You can now login using the login form."
-msgstr "کاربر شما تایید شد. هم اکنون می توانید از طریق بخش ورود وارد سایت شوید"
+msgstr ""
+"کاربر شما تایید شد. هم اکنون می توانید از طریق بخش ورود وارد سایت شوید"
 
 #: users/views.py:95
 msgid "Invalid verification code"
 msgstr "کد تایید نامعتبر است"
+
+#: exams/static/js/exams.js:18
+msgid "Please confirm to continue"
+msgstr "برای ادامه تایید کنید."
 
 #~ msgid "You can't import data for this exam anymore"
 #~ msgstr "شما دیگر نمی توانید داده ای در این آزمون ثبت کنید"
