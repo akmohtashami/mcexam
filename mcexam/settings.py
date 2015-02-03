@@ -34,7 +34,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django_cleanup',
-    'rosetta',
     'resources',
     'guardian',
     "adminsortable",
@@ -175,7 +174,7 @@ LOCALE_PATHS = (
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-DEBUG = True
+DEBUG = False
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
