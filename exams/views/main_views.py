@@ -12,7 +12,7 @@ from django.utils.translation import ugettext as _
 def list(request):
     exams_list = Exam.objects.order_by("id")
     context = {"exams_list": exams_list}
-    return render(request, "exams/list.html", context)
+    return render(request, "exams/main_templates/list.html", context)
 
 
 

@@ -21,7 +21,7 @@
                         <td> {{ exam.name }} </td>
                         <td> {{ exam.online_start_date|localtime|jalali_date:"Y/m/d H:i:s" }} </td>
                         <td> {{ exam.online_end_date|localtime|jalali_date:"Y/m/d H:i:s" }} </td>
-                        <td> <a href="{% url 'exams:detail' exam.id %}"> Enter </a></td>
+                        <td> <a href="{% url 'exams:detail' exam.id %}"> {% trans 'Enter' %} </a></td>
                     </tr>
                 {% endfor %}
             </tbody>

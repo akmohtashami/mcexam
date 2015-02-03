@@ -15,6 +15,7 @@
         <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
         <link href="{% static 'bootstrap/css/bootstrap-theme.css' %}" rel="stylesheet">
         <link href="{% static 'jGrowl/css/jquery.jgrowl.min.css' %}" rel="stylesheet">
+        <link href="{% static 'jquery-countdown/css/jquery.countdown.css' %}" rel="stylesheet">
         {# <link href="{% static 'css/jquery-ui.min.css' %}" rel="stylesheet"> #}
         <link href="{% static 'css/main.css' %}" rel="stylesheet">
         {% block additional_css %}
@@ -28,6 +29,17 @@
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+        <script src="{% url 'django.views.i18n.javascript_catalog' %}" type="text/javascript"></script>
+        <script src="{% static 'js/jquery-1.11.2.min.js' %}" type="text/javascript"></script>
+        {# <script src="{% static 'js/jquery-ui.min.js' %}" type="text/javascript"></script> #}
+        <script src="{% static 'bootstrap/js/bootstrap.js' %}" type="text/javascript"></script>
+        <script src="{% static 'jGrowl/js/jquery.jgrowl.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'jquery-countdown/js/jquery.plugin.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'jquery-countdown/js/jquery.countdown.js' %}" type="text/javascript"></script>
+        <script src="{% static 'jquery-countdown/js/jquery.countdown-fa.js' %}" type="text/javascript"></script>
+        <script src="{% static 'js/messages.js' %}" type="text/javascript"></script>
+        {% block additional_js %}
+        {% endblock %}
     </head>
     <body>
 
@@ -52,14 +64,7 @@
                 {% trans 'Developed by Amir Keivan Mohtashami' %}
             </div>
         </footer>
-        <script src="{% url 'django.views.i18n.javascript_catalog' %}" type="text/javascript"></script>
-        <script src="{% static 'js/jquery-1.11.2.min.js' %}" type="text/javascript"></script>
-        {# <script src="{% static 'js/jquery-ui.min.js' %}" type="text/javascript"></script> #}
-        <script src="{% static 'bootstrap/js/bootstrap.js' %}" type="text/javascript"></script>
-        <script src="{% static 'jGrowl/js/jquery.jgrowl.min.js' %}" type="text/javascript"></script>
-        <script src="{% static 'js/messages.js' %}" type="text/javascript"></script>
-        {% block additional_js %}
-        {% endblock %}
+
         {% if messages %}
             <script type="text/javascript">
                 {% for message in messages %}

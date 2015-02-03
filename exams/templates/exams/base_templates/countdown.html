@@ -1,0 +1,22 @@
+<div class="countdown">
+    {% if until %}
+        <div id="countdown" class="countdown">
+
+        </div>
+    {% endif %}
+    {{dest_text}}
+
+</div>
+{% if until %}
+    <script>
+        $("#countdown").countdown({
+            until: new Date("{{until}}"),
+            padZeroes: true,
+            format: 'dHMS',
+            layout: '{d<}{dn}{sep}{d>}{hnn}{sep}{mnn}{sep}{snn}',
+            onExpiry: function(){
+                location.reload();
+            }
+        });
+    </script>
+{% endif %}

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-30 22:58+0000\n"
-"PO-Revision-Date: 2015-01-30 22:58+0326\n"
+"POT-Creation-Date: 2015-02-03 18:23+0000\n"
+"PO-Revision-Date: 2015-02-03 18:31+0326\n"
 "Last-Translator:   <remuslup200@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,11 +19,12 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Translated-Using: django-rosetta 0.7.4\n"
 
-#: base/templates/base.html:49
+#: base/templates/base.html:64
 msgid "Developed by Amir Keivan Mohtashami"
 msgstr "طراحی شده توسط امیرکیوان محتشمی"
 
-#: base/templates/form.html:8 exams/templates/exams/exam_add_data.html:35
+#: base/templates/form.html:8
+#: exams/templates/exams/importer_templates/add_data.html:18
 msgid "Submit"
 msgstr "ارسال"
 
@@ -45,7 +46,7 @@ msgstr "ورود"
 msgid "Index"
 msgstr "صفحه ی اصلی"
 
-#: base/templates/navbar.html:11 exams/models.py:24
+#: base/templates/navbar.html:11 exams/models.py:59
 msgid "Exams"
 msgstr "آزمون ها"
 
@@ -57,117 +58,202 @@ msgstr "مدیریت"
 msgid "Logout"
 msgstr "خروج"
 
-#: exams/forms.py:88 exams/models.py:103 exams/models.py:109
+#: exams/forms.py:91 exams/models.py:180 exams/models.py:186
 msgid "Exam Site"
 msgstr "مکان برگزاری"
 
-#: exams/forms.py:118 exams/models.py:20
+#: exams/forms.py:122 exams/models.py:45
 msgid "PDF template"
 msgstr "قالب PDF"
 
-#: exams/forms.py:118 exams/models.py:20
+#: exams/forms.py:122 exams/models.py:46
 msgid "Django-Tex template for creating pdf files"
 msgstr "قالب جانگو-تک برای ساخت فایل های PDF"
 
-#: exams/models.py:16 exams/templates/exams/list.html:12
+#: exams/models.py:22 exams/templates/exams/main_templates/list.html:12
 msgid "Name"
 msgstr "نام"
 
-#: exams/models.py:17 exams/templates/exams/list.html:13
-msgid "Start Date"
-msgstr "تاریخ شروع"
+#: exams/models.py:24
+msgid "Activation date"
+msgstr "تاریخ فعال سازی"
 
-#: exams/models.py:18 exams/templates/exams/list.html:14
-msgid "End Date"
-msgstr "تاریخ پایان"
+#: exams/models.py:25
+msgid ""
+"After this time the exam is considered open. Importers can download the "
+"questions and import answer sheets. Everybody can see their answer sheet."
+msgstr ""
+"پس از این زمان، آزمون باز محسوب می شود. وارد کننده ها(مسئولین) می توانند "
+"سوالات را دریافت کنند و پاسخنامه ها را وارد کنند. همه می توانند پاسخنامه ی "
+"خود را ببینند"
 
-#: exams/models.py:19
+#: exams/models.py:30
+msgid "Online exam start date"
+msgstr "زمان شروع آزمون آنلاین"
+
+#: exams/models.py:31
+msgid "Online exam end date"
+msgstr "زمان پایان آزمون آنلاین"
+
+#: exams/models.py:33
+msgid "Sealing date"
+msgstr "زمان مهر و موم شدن آزمون"
+
+#: exams/models.py:34
+msgid ""
+"After this time the exam is sealed. Importers will no longer be able to "
+"import answer sheets"
+msgstr ""
+"پس از این زمان آزمون مهر و موم می شود. وارد کننده ها دیگر نمی توانند "
+"پاسخنامه ها را اضافه یا ویرایش کنند"
+
+#: exams/models.py:39
+msgid "Result publishing date"
+msgstr "تاریخ انتشار نتایج"
+
+#: exams/models.py:40
+msgid "After this time the results and correct answers will be published "
+msgstr "پس از این زمان نتایج و پاسخ های صحیح منتشر می شوند"
+
+#: exams/models.py:43
 msgid "Number of questions per column in answer sheet"
 msgstr "تعداد سوالات در هر ستون پاسخنامه"
 
-#: exams/models.py:23 exams/models.py:101
+#: exams/models.py:58 exams/models.py:178
 msgid "Exam"
 msgstr "آزمون"
 
-#: exams/models.py:26
+#: exams/models.py:61
 msgid "Can view exam"
 msgstr "توانایی دیدن آزمون ها را دارد"
 
-#: exams/models.py:27
+#: exams/models.py:62
 msgid "Can import answer sheets"
 msgstr "اجازه ی وارد کردن پاسخنامه دارد"
 
-#: exams/models.py:54
+#: exams/models.py:126
 msgid "Related exam"
 msgstr "آزمون مربوطه"
 
-#: exams/models.py:55
+#: exams/models.py:127
 msgid "Question's Statement"
 msgstr "صورت سوال"
 
-#: exams/models.py:58
+#: exams/models.py:135
 msgid "Question #"
 msgstr "سوال شماره"
 
-#: exams/models.py:65
+#: exams/models.py:142
 msgid "Question"
 msgstr "سوال"
 
-#: exams/models.py:66
+#: exams/models.py:143
 msgid "Questions"
 msgstr "سوالات"
 
-#: exams/models.py:71 exams/models.py:80
+#: exams/models.py:148 exams/models.py:157
 msgid "Choice"
 msgstr "گزینه"
 
-#: exams/models.py:81
+#: exams/models.py:158
 msgid "Choices"
 msgstr "گزینه ها"
 
-#: exams/models.py:96
+#: exams/models.py:173
 msgid "User has another answer for this question in database"
 msgstr "کاربر پاسخ دیگری برای این سوال در دیتابیس دارد"
 
-#: exams/models.py:102
+#: exams/models.py:179
 msgid "Importer"
 msgstr "وارد کننده"
 
-#: exams/models.py:110
+#: exams/models.py:187
 msgid "Exam Sites"
 msgstr "مکان های برگزاری"
 
-#: exams/templates/exams/exam_add_data.html:36
-#: exams/templates/exams/exam_edit_data.html:37
+#: exams/templates/exams/base_templates/exam_base.html:24
+msgid "Answer Sheet"
+msgstr "پاسخنامه"
+
+#: exams/templates/exams/base_templates/exam_base.html:27
+#| msgid "Question's Statement"
+msgid "Statements"
+msgstr "صورت سوال"
+
+#: exams/templates/exams/base_templates/exam_base.html:30
+msgid "Results"
+msgstr "نتایج"
+
+#: exams/templates/exams/base_templates/exam_base.html:33
+#| msgid "Can import answer sheets"
+msgid "Add/Edit Answer Sheets"
+msgstr "افزودن/ویرایش پاسخنامه ها"
+
+#: exams/templates/exams/base_templates/exam_base.html:36
+#| msgid "Question's Statement"
+msgid "Preview Statements"
+msgstr "پیش نمایش صورت سوال"
+
+#: exams/templates/exams/base_templates/exam_base.html:37
+msgid "Statements Tex Code"
+msgstr "کد تک صورت سوال"
+
+#: exams/templates/exams/base_templates/exam_base.html:38
+msgid "Update Statements"
+msgstr "به روز رسانی صورت سوال"
+
+#: exams/templates/exams/importer_templates/add_data.html:17
+msgid "Submit and add another"
+msgstr "ذخیره و ایجاد یکی دیگر"
+
+#: exams/templates/exams/importer_templates/add_data.html:19
+#: exams/templates/exams/importer_templates/edit_data.html:19
 msgid "Back"
 msgstr "بازگشت"
 
-#: exams/templates/exams/exam_edit_data.html:35
+#: exams/templates/exams/importer_templates/edit_data.html:17
 msgid "Save"
 msgstr "ذخیره"
 
-#: exams/templates/exams/exam_edit_data.html:36
-#: exams/templates/exams/exam_import.html:28
+#: exams/templates/exams/importer_templates/edit_data.html:18
+#: exams/templates/exams/importer_templates/import_panel.html:28
 msgid "Delete"
 msgstr "حذف"
 
-#: exams/templates/exams/exam_import.html:22
+#: exams/templates/exams/importer_templates/import_panel.html:23
 msgid "Edit"
 msgstr "ویرایش"
 
-#: exams/templates/exams/exam_import.html:35
+#: exams/templates/exams/importer_templates/import_panel.html:36
 msgid "No participants"
 msgstr "شرکت کننده ای وجود ندارد"
 
-#: exams/templates/exams/exam_import.html:41
+#: exams/templates/exams/importer_templates/import_panel.html:42
 msgid "Add New Participant"
 msgstr "افزودن شرکت کننده ی جدید"
 
-#: exams/templates/exams/list.html:7
+#: exams/templates/exams/main_templates/answer_sheet.html:12
+#: exams/templates/exams/running_exam.html:13
+msgid "Save current answers"
+msgstr "ذخیره ی پاسخ های فعلی"
+
+#: exams/templates/exams/main_templates/list.html:7
 msgid "Exams List"
 msgstr "لیست آزمون ها"
 
-#: exams/templates/exams/list.html:30
+#: exams/templates/exams/main_templates/list.html:13
+msgid "Start Date"
+msgstr "تاریخ شروع"
+
+#: exams/templates/exams/main_templates/list.html:14
+msgid "End Date"
+msgstr "تاریخ پایان"
+
+#: exams/templates/exams/main_templates/list.html:24
+msgid "Enter"
+msgstr "ورود"
+
+#: exams/templates/exams/main_templates/list.html:30
 msgid "No exams are available."
 msgstr "هیچ آزمون فعالی وجود ندارد."
 
@@ -191,67 +277,67 @@ msgstr ""
 "\n"
 "این آزمون در %(exam_end_date)s پایان یافته است."
 
-#: exams/templates/exams/running_exam.html:32
-msgid "Save current answers"
-msgstr "ذخیره ی پاسخ های فعلی"
-
-#: exams/templatetags/exams_filters.py:17
+#: exams/templatetags/exams_filters.py:18
 msgid "A"
 msgstr "الف"
 
-#: exams/templatetags/exams_filters.py:17
+#: exams/templatetags/exams_filters.py:18
 msgid "B"
 msgstr "ب"
 
-#: exams/templatetags/exams_filters.py:17
+#: exams/templatetags/exams_filters.py:18
 msgid "C"
 msgstr "ج"
 
-#: exams/templatetags/exams_filters.py:17
+#: exams/templatetags/exams_filters.py:18
 msgid "D"
 msgstr "د"
 
-#: exams/templatetags/exams_filters.py:17
+#: exams/templatetags/exams_filters.py:18
 msgid "E"
 msgstr "ه"
 
-#: exams/templatetags/exams_filters.py:19
+#: exams/templatetags/exams_filters.py:20
 msgid "Bad choice number"
 msgstr "گزینه ی نامعتبر"
 
-#: exams/views.py:31
+#: exams/templatetags/exams_filters.py:29
+msgid "Until exam starts"
+msgstr "تا شروع آزمون"
+
+#: exams/templatetags/exams_filters.py:32
+msgid "Until exam ends"
+msgstr "تا پایان آزمون"
+
+#: exams/templatetags/exams_filters.py:35
+#| msgid "Exam Site"
+msgid "Exam finished"
+msgstr "آزمون تمام شده است"
+
+#: exams/views/admin_views.py:67
+#| msgid "Answers saved successfully"
+msgid "Statements were built successfully"
+msgstr "صورت سوالات با موفقیت ساخته شد"
+
+#: exams/views/contestant_views.py:21
+msgid "The exam is not running right now. You cannot submit answers"
+msgstr "آزمون در حال برگزاری نیست. شما نمی توانید پاسخی ارسال کنید."
+
+#: exams/views/contestant_views.py:25
 msgid "Answers saved successfully"
 msgstr "پاسخ ها با موفقیت ذخیره شدند"
 
-#: exams/views.py:33
+#: exams/views/contestant_views.py:27
 msgid "A problem occured. Please try again"
 msgstr "مشکلی پیش آمده است. لطفا دوباره تلاش کنید"
 
-#: exams/views.py:65
+#: exams/views/importer_views.py:40
 msgid "Updated successfully"
 msgstr "عملیات بروزرسانی با موفقیت انجام شد"
 
-#: exams/views.py:92
+#: exams/views/importer_views.py:69
 msgid "Added successfully"
 msgstr "عملیات افزودن با موفقیت انجام شد"
-
-#: exams/views.py:113
-msgid "You can't import data for this exam anymore"
-msgstr "شما دیگر نمی توانید داده ای در این آزمون ثبت کنید"
-
-#: exams/views.py:133
-msgid "This exam hasn't started yet"
-msgstr "این آزمون هنوز شروع نشده است"
-
-#: exams/views.py:137
-msgid "This exam has ended"
-msgstr "این آزمون پایان یافته است"
-
-#: exams/views.py:166
-msgid ""
-"There was a problem in generating pdf files. Please contact the "
-"administrator"
-msgstr "مشکلی در تولید فایل PDF به وجود آمده است. لطفا به مدیر خبر دهید"
 
 #: resources/models.py:30
 msgid "Private"
@@ -511,6 +597,20 @@ msgstr ""
 #: users/views.py:95
 msgid "Invalid verification code"
 msgstr "کد تایید نامعتبر است"
+
+#~ msgid "You can't import data for this exam anymore"
+#~ msgstr "شما دیگر نمی توانید داده ای در این آزمون ثبت کنید"
+
+#~ msgid "This exam hasn't started yet"
+#~ msgstr "این آزمون هنوز شروع نشده است"
+
+#~ msgid "This exam has ended"
+#~ msgstr "این آزمون پایان یافته است"
+
+#~ msgid ""
+#~ "There was a problem in generating pdf files. Please contact the "
+#~ "administrator"
+#~ msgstr "مشکلی در تولید فایل PDF به وجود آمده است. لطفا به مدیر خبر دهید"
 
 #~ msgid "Save data"
 #~ msgstr "ذخیره ی داده ها"

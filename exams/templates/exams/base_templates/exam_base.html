@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load staticfiles %}
 {% load guardian_tags %}
-
+{% load exams_filters %}
 
 
 {% block additional_css %}
@@ -18,32 +18,48 @@
 {% block main_content %}
     {% get_obj_perms request.user for exam as "exam_perms" %}
     <nav class="exam-nav">
-    <div class="container">
+        <div class="container">
+            <ul class='list-inline pull-left flip'>
+                {% if 'view_answer_sheet' in exam_implicit_permissions %}
+                    <li><a href="{% url 'exams:answer_sheet' exam.id %}"> {% trans 'Answer Sheet' %} </a></li>
+                {% endif %}
+                {% if 'view_statements' in exam_implicit_permissions %}
+                    <li><a href="{% url 'exams:statements' exam.id %}"> {% trans 'Statements' %} </a></li>
+                {% endif %}
+                {% if 'view_results' in exam_implicit_permissions %}
+                    <li><a href="{% url 'exams:results' exam.id %}"> {% trans 'Results' %} </a></li>
+                {% endif %}
+                {% if 'import' in exam_implicit_permissions %}
+                    <li><a href="{% url 'exams:import_panel' exam.id %}"> {% trans 'Add/Edit Answer Sheets' %} </a></li>
+                {% endif %}
+                {% if "change_exam" in exam_perms or perms.exams.change_exam %}
+                    <li><a href="{% url 'exams:preview_statements' exam.id %}"> {% trans 'Preview Statements' %}</a></li>
+                    <li><a href="{% url 'exams:show_statements_tex' exam.id %}"> {% trans 'Statements Tex Code' %}</a><li>
+                    <li><a href="{% url 'exams:publish_statements' exam.id %}"> {% trans 'Update Statements' %}</a><li>
+                {% endif %}
 
-        <ul class='list-inline pull-left flip'>
-            {% if 'view_answer_sheet' in exam_implicit_permissions %}
-                <li><a href="{% url 'exams:answer_sheet' exam.id %}"> {% trans 'Answer Sheet' %} </a></li>
-            {% endif %}
-            {% if 'view_statements' in exam_implicit_permissions %}
-                <li><a href="{% url 'exams:statements' exam.id %}"> {% trans 'Statements' %} </a></li>
-            {% endif %}
-            {% if 'view_results' in exam_implicit_permissions %}
-                <li><a href="{% url 'exams:results' exam.id %}"> {% trans 'Results' %} </a></li>
-            {% endif %}
-            {% if 'import' in exam_implicit_permissions %}
-                <li><a href="{% url 'exams:import_panel' exam.id %}"> {% trans 'Add/Edit Answer Sheets' %} </a></li>
-            {% endif %}
-            {% if "change_exam" in exam_perms or perms.exams.change_exam %}
-                <li><a href="{% url 'exams:preview_statements' exam.id %}"> {% trans 'Preview Statements' %}</a></li>
-                <li><a href="{% url 'exams:show_statements_tex' exam.id %}"> {% trans 'Statements Tex Code' %}</a><li>
-                <li><a href="{% url 'exams:publish_statements' exam.id %}"> {% trans 'Update Statements' %}</a><li>
-            {% endif %}
-
-        </ul>
-    </div>
+            </ul>
+        </div>
     </nav>
-    <div class="container">
-        {% block page_content %}
-        {% endblock %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div>
+                    {% block page_content %}
+                    {% endblock %}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel">
+                    <div class="panel-title text-center">
+                        {{ exam.name }}
+                    </div>
+                    <hr />
+                    <div class="panel-body">
+                        {% exam_countdown %}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
