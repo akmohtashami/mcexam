@@ -9,7 +9,6 @@ from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from django.core.exceptions import ValidationError
 import os
-import datetime
 
 # Create your models here.
 
@@ -25,7 +24,6 @@ class Exam(models.Model):
         help_text=_("After this time the exam is considered open. "
                     "Importers can download the questions and import answer sheets. "
                     "Everybody can see their answer sheet."),
-        default=datetime.datetime(2013, 1, 1)
     )
     online_start_date = models.DateTimeField(_("Online exam start date"))
     online_end_date = models.DateTimeField(_("Online exam end date"))
@@ -33,12 +31,10 @@ class Exam(models.Model):
         _("Sealing date"),
         help_text=_("After this time the exam is sealed. "
                     "Importers will no longer be able to import answer sheets"),
-        default=datetime.datetime(2014, 1, 1)
     )
     publish_results_date = models.DateTimeField(
         _("Result publishing date"),
         help_text=_("After this time the results and correct answers will be published "),
-        default=datetime.datetime(2015, 1, 1)
     )
     questions_per_column = models.PositiveIntegerField(_("Number of questions per column in answer sheet"), default=20)
     exam_pdf_template = models.TextField(
