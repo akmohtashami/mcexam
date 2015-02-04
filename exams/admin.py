@@ -8,7 +8,6 @@ from exams.forms import CodeMirrorForm
 # Register your models here.
 
 
-
 class QuestionInLine(SortableTabularInline):
     model = Question
     extra = 0
@@ -38,8 +37,12 @@ class QuestionAdmin(SortableAdmin):
         super(QuestionAdmin, self).__init__(*args, **kwargs)
     """
 
+
+class ChoiceAdmin(SortableAdmin):
+    pass
+
 admin.site.register(Exam, ExamAdmin)
 admin.site.register(ExamSite)
 admin.site.register(Question, QuestionAdmin)
-admin.site.register(Choice)
+admin.site.register(Choice, ChoiceAdmin)
 admin.site.register(MadeChoice)
