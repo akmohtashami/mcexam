@@ -149,7 +149,10 @@ class Choice(Sortable):
                                      help_text="Is this a correct answer to question?")
 
     def __unicode__(self):
-        return self.question.__unicode__() + ": " + self.choice
+        name = self.question.__unicode__() + ": " + self.choice
+        if self.is_correct:
+            name += "(" + _("Correct") + ")"
+        return name
 
     class Meta(Sortable.Meta):
         verbose_name = _("Choice")
