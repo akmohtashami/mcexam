@@ -14,6 +14,7 @@ $(document).ready(function() {
         else
             $(this).removeClass("marked");
     });
+    $('.choice.locked').unbind("click");
     $("[data-delete=true]").click(function(e) {
         return confirm(gettext("Please confirm to continue"));
     });

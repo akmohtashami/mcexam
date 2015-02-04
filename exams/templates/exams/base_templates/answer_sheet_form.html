@@ -4,7 +4,7 @@
     <div class='row'>
             {% for column in columns %}
                 <div class='col-md-6' align="center">
-                    {% for question in column %}
+                    {% for question in column.object_list %}
                         <div class='row'>
                             {{question.question}}
                             <table>

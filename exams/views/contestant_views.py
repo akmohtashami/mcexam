@@ -15,18 +15,22 @@ def answer_sheet(request, exam_id):
     exam = get_object_or_404(Exam, id=exam_id)
     if not exam.check_implicit_permission(request.user, "view_answer_sheet"):
         raise PermissionDenied
+    if not exam.check_implicit_permission(request.user, "save_answer_sheet"):
+        locked = True
+    else:
+        locked = False
     if request.method == "POST":
-        if not exam.check_implicit_permission(request.user, "save_answer_sheet"):
-            forms = get_answer_formset(exam, request.user)
+        if locked:
+            forms = get_answer_formset(exam, request.user, locked=locked)
             messages.error(request, _("The exam is not running right now. You cannot submit answers"))
         else:
-            forms = get_answer_formset(exam, request.user, request.POST)
+            forms = get_answer_formset(exam, request.user, request.POST, locked=locked)
             if save_answer_sheet(forms, request.user):
                 messages.success(request, _("Answers saved successfully"))
             else:
                 messages.error(request, _("A problem occured. Please try again"))
     else:
-        forms = get_answer_formset(exam, request.user)
+        forms = get_answer_formset(exam, request.user, locked=locked)
     full_columns = get_answer_sheet(exam, forms)
     context = {"exam": exam, "formset": forms, "columns": full_columns}
     return render(request, "exams/main_templates/answer_sheet.html", context)

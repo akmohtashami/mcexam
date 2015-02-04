@@ -1,6 +1,6 @@
 from django import forms
 from exams.models import Question, ExamSite, MadeChoice
-from exams.widget import ExamChoiceInput
+from exams.widget import ExamChoiceInput, LockedExamChoiceInput
 from users.models import Member
 from django.utils.translation import ugettext as _
 from django.core.paginator import Paginator
@@ -22,14 +22,32 @@ class AnswerSheetForm(forms.Form):
         return self.initial.get("question")
 
 
-def get_answer_formset(exam, user=None, data=None, prefix=None):
-    answer_formset = formset_factory(
-        AnswerSheetForm,
-        min_num=exam.question_set.filter(is_info=False).count(),
-        validate_min=True,
-        max_num=exam.question_set.filter(is_info=False).count(),
-        validate_max=True,
-    )
+class LockedAnswerSheetForm(AnswerSheetForm):
+
+    def __init__(self, *args, **kwargs):
+        super(LockedAnswerSheetForm, self).__init__(*args, **kwargs)
+        self.fields['answer'] = forms.ModelChoiceField(queryset=self.initial.get("question").choice_set.all(),
+                                                       required=False,
+                                                       widget=LockedExamChoiceInput)
+
+
+def get_answer_formset(exam, user=None, data=None, prefix=None, locked=False):
+    if locked:
+        answer_formset = formset_factory(
+            LockedAnswerSheetForm,
+            min_num=exam.question_set.filter(is_info=False).count(),
+            validate_min=True,
+            max_num=exam.question_set.filter(is_info=False).count(),
+            validate_max=True,
+        )
+    else:
+        answer_formset = formset_factory(
+            AnswerSheetForm,
+            min_num=exam.question_set.filter(is_info=False).count(),
+            validate_min=True,
+            max_num=exam.question_set.filter(is_info=False).count(),
+            validate_max=True,
+        )
     initials = []
     for question in exam.question_set.filter(is_info=False):
         if user is None:

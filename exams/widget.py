@@ -32,3 +32,25 @@ class ExamChoiceInput(Widget):
             output.append(format_html(label_code, name, str(option_value), choice_character(option_index)))
             option_index += 1
         return mark_safe('\n'.join(output))
+
+
+class LockedExamChoiceInput(Widget):
+    def __init__(self, attrs=None):
+        super(LockedExamChoiceInput, self).__init__(attrs)
+
+    def render(self, name, value, attrs=None):
+        output = []
+        option_index = 1
+        for option_value, option_label in self.choices:
+            if not option_value:
+                continue
+            label_code = u'<td><div class="choice locked'
+            try:
+                if option_value == int(value):
+                    label_code += ' marked'
+            except:
+                pass
+            label_code += '" >{2}</div></td>'
+            output.append(format_html(label_code, name, str(option_value), choice_character(option_index)))
+            option_index += 1
+        return mark_safe('\n'.join(output))
