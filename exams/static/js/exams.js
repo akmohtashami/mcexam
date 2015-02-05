@@ -1,5 +1,7 @@
+var choice_changed = false;
 $(document).ready(function() {
     $('.choice').on("click", function (event) {
+        choice_changed = true;
         var radio_str = "[data-identifier='" + $(this).data("correspond") + "']";
         var obj = $(document).find(radio_str);
         var currently_selected = $("input[name='" + $(obj).prop("name") + "']:checked");
@@ -18,6 +20,15 @@ $(document).ready(function() {
     $("[data-delete=true]").click(function(e) {
         return confirm(gettext("Please confirm to continue"));
     });
+});
+$(window).on('beforeunload', function(e) {
+    if (choice_changed) {
+        return ' ';
+    }
+});
+$(document).on("submit", "form", function(event){
+    // disable unload warning
+    $(window).off('beforeunload');
 });
 
 
