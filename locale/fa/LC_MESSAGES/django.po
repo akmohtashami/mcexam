@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-05 19:56+0000\n"
-"PO-Revision-Date: 2015-02-05 19:58+0326\n"
+"POT-Creation-Date: 2015-02-05 20:13+0000\n"
+"PO-Revision-Date: 2015-02-05 20:13+0326\n"
 "Last-Translator:   <remuslup200@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -223,7 +223,6 @@ msgid "Submit and add another"
 msgstr "ذخیره و ایجاد یکی دیگر"
 
 #: exams/templates/exams/importer_templates/add_data.html:18
-#| msgid "Submit and add another"
 msgid "Submit and return"
 msgstr "ذخیره و بازگشت"
 
@@ -250,8 +249,9 @@ msgid "No participants"
 msgstr "شرکت کننده ای وجود ندارد"
 
 #: exams/templates/exams/importer_templates/import_panel.html:42
-msgid "Add New Participant"
-msgstr "افزودن شرکت کننده ی جدید"
+#| msgid "Add/Edit Answer Sheets"
+msgid "Add New Answer Sheet"
+msgstr "افزودن پاسخ برگ جدید"
 
 #: exams/templates/exams/main_templates/answer_sheet.html:12
 #: exams/templates/exams/running_exam.html:13
@@ -351,12 +351,14 @@ msgid "A problem occured. Please try again"
 msgstr "مشکلی پیش آمده است. لطفا دوباره تلاش کنید"
 
 #: exams/views/importer_views.py:40
-msgid "Updated successfully"
-msgstr "عملیات بروزرسانی با موفقیت انجام شد"
+#| msgid "Answers saved successfully"
+msgid "Answer sheet updated successfully"
+msgstr "پاسخ برگ با موفقیت بروز شد"
 
 #: exams/views/importer_views.py:69
-msgid "Added successfully"
-msgstr "عملیات افزودن با موفقیت انجام شد"
+#| msgid "Answers saved successfully"
+msgid "Answer sheet added successfully"
+msgstr "پاسخ برگ با موفقیت اضافه شد"
 
 #: resources/models.py:30
 msgid "Private"
@@ -616,6 +618,15 @@ msgstr ""
 #: users/views.py:95
 msgid "Invalid verification code"
 msgstr "کد تایید نامعتبر است"
+
+#~ msgid "Add New Participant"
+#~ msgstr "افزودن شرکت کننده ی جدید"
+
+#~ msgid "Updated successfully"
+#~ msgstr "عملیات بروزرسانی با موفقیت انجام شد"
+
+#~ msgid "Added successfully"
+#~ msgstr "عملیات افزودن با موفقیت انجام شد"
 
 #~ msgid "Back"
 #~ msgstr "بازگشت"

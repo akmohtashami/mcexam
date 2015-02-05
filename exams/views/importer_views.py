@@ -19,7 +19,7 @@ def delete_data(request, exam_id, user_id):
         raise PermissionDenied
     else:
         user.delete()
-        messages.success(request, "Data was removed successfully")
+        messages.success(request, "Answer sheet was removed successfully")
     return HttpResponseRedirect(reverse("exams:import_panel", kwargs={"exam_id": exam_id}))
 
 
@@ -37,7 +37,7 @@ def edit_data(request, exam_id, user_id):
         if user_form.is_valid() and answer_form.is_valid():
             user = user_form.save()
             save_answer_sheet(answer_form, user)
-            messages.success(request, _("Updated successfully"))
+            messages.success(request, _("Answer sheet updated successfully"))
             return HttpResponseRedirect(reverse("exams:import_panel", kwargs={"exam_id": exam_id}))
     else:
         user_form = OnsiteContestantForm(instance=user, current_user=request.user, prefix="user-data")
@@ -66,7 +66,7 @@ def add_data(request, exam_id):
         if user_form.is_valid() and answer_form.is_valid():
             user = user_form.save()
             save_answer_sheet(answer_form, user)
-            messages.success(request, _("Added successfully"))
+            messages.success(request, _("Answer sheet added successfully"))
             if 'addagain_button' not in request.POST:
                 return HttpResponseRedirect(reverse("exams:import_panel", kwargs={"exam_id": exam_id}))
             else:
