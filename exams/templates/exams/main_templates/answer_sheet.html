@@ -2,13 +2,13 @@
 {% load i18n %}
 
 {% block page_content %}
-    {% if exam.mode == 0 %}
+    {% if 'save_answer_sheet' in exam_implicit_permissions %}
         <form method="post" action="">
         {% csrf_token %}
         {{formset.management_form}}
     {% endif %}
     {% include 'exams/base_templates/answer_sheet_form.html' with columns=columns %}
-    {% if exam.mode == 0 %}
+    {% if 'save_answer_sheet' in exam_implicit_permissions %}
         <div class='text-center'><button class='btn btn-primary' type='submit'>{% trans "Save current answers" %}</button></div>
         </form>
     {% endif %}
