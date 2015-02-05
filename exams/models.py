@@ -80,9 +80,9 @@ class Exam(models.Model):
             "view_answer_sheet": self.mode() > -2,
             "save_answer_sheet": self.mode() == 0,
             "view_statements": self.mode() > -1,
-            "import": (user.has_perm("exams:can_import", self) or user.has_perm("exams:can_import")) and
+            "import": (user.has_perm("exams.can_import", self) or user.has_perm("exams.can_import")) and
                       self.mode() > -2 and
-                      self.mode < 3,
+                      self.mode() < 3,
             "view_result": self.mode() >= 3
         }
         perms = []

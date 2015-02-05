@@ -52,6 +52,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'base.middleware.TimeZoneMiddleware',
+    'base.middleware.RequireLoginMiddleware',
 )
 
 ROOT_URLCONF = 'mcexam.urls'
@@ -170,6 +171,9 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 
+LOGIN_REQUIRED_URLS = (
+    r'/exams/(.*)$',
+)
 
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
