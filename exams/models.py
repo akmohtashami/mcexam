@@ -183,6 +183,9 @@ class ExamSite(models.Model):
     def __unicode__(self):
         return self.exam.__unicode__() + " - " + self.name
 
+    def label_for_choice_field(self):
+        return self.name
+
     class Meta:
         verbose_name = _("Exam Site")
         verbose_name_plural = _("Exam Sites")

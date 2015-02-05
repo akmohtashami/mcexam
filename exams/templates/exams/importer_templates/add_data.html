@@ -15,8 +15,8 @@
         <br />
         <div class='text-center'>
             <button name="addagain_button" class='btn btn-primary' type='submit'>{% trans "Submit and add another" %}</button>
-            <button class='btn btn-primary' type='submit'>{% trans "Submit" %}</button>
-            <a class='btn btn-default' href='{% url 'exams:import_panel' exam.id %}'> {% trans "Back" %} </a>
+            <button class='btn btn-primary' type='submit'>{% trans "Submit and return" %}</button>
+            <a class='btn btn-default' href='{% url 'exams:import_panel' exam.id %}'> {% trans "Return" %} </a>
         </div>
     </form>
 {% endblock %}

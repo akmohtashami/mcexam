@@ -5,6 +5,7 @@ from users.models import Member
 from django.utils.translation import ugettext as _
 from django.core.paginator import Paginator
 from django.forms import formset_factory
+from exams.fields import ShortLabelModelChoiceField
 from codemirror.widgets import CodeMirrorTextarea
 
 
@@ -95,7 +96,7 @@ class OnsiteContestantForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         current_user = kwargs.pop("current_user")
         super(OnsiteContestantForm, self).__init__(*args, **kwargs)
-        self.fields['exam_site'] = forms.ModelChoiceField(
+        self.fields['exam_site'] = ShortLabelModelChoiceField(
             queryset=current_user.examsite_set.all(),
             label=_("Exam Site"),
             empty_label=None

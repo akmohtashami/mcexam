@@ -16,7 +16,7 @@
         <div class='text-center'>
             <button class='btn btn-primary'>{% trans "Save" %}</button>
             <a data-delete='true' class='btn btn-danger' href='{% url 'exams:delete_data' exam.id user_id %}'> {% trans "Delete" %} </a>
-            <a class='btn btn-default' href='{% url 'exams:import_panel' exam.id %}'> {% trans "Back" %} </a>
+            <a class='btn btn-default' href='{% url 'exams:import_panel' exam.id %}'> {% trans "Return" %} </a>
         </div>
     </form>
 {% endblock %}
