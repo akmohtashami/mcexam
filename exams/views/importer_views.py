@@ -67,11 +67,10 @@ def add_data(request, exam_id):
             user = user_form.save()
             save_answer_sheet(answer_form, user)
             messages.success(request, _("Answer sheet added successfully"))
-            if 'addagain_button' not in request.POST:
-                return HttpResponseRedirect(reverse("exams:import_panel", kwargs={"exam_id": exam_id}))
+            if 'addagain_button' in request.POST:
+                return HttpResponseRedirect(reverse("exams:add_data", kwargs={"exam_id": exam_id}))
             else:
-                user_form = OnsiteContestantForm(current_user=request.user, prefix="user-data")
-                answer_form = get_answer_formset(exam, prefix="answer-data")
+                return HttpResponseRedirect(reverse("exams:import_panel", kwargs={"exam_id": exam_id}))
     else:
         user_form = OnsiteContestantForm(current_user=request.user, prefix="user-data")
         answer_form = get_answer_formset(exam, prefix="answer-data")

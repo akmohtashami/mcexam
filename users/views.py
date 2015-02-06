@@ -19,8 +19,8 @@ def edit_profile(request):
         if form.is_valid():
             form.save()
             auth.update_session_auth_hash(request, current_user)
-            request.user = current_user
             messages.success(request, _("Your profile has been updated successfully"))
+            return HttpResponseRedirect(reverse("users:edit_profile"))
     else:
         form = RestrictedMemberChangeForm(instance=current_user)
 
@@ -54,7 +54,7 @@ def login(request):
         if resend_form.is_valid():
             resend_form.get_user().send_verification_mail()
             messages.success(request, _("A new verification mail has been sent to your email address"))
-            resend_form = MemberResendVerificationMailForm(prefix="resend")
+            return HttpResponseRedirect(reverse("users:login"))
     else:
         resend_form = MemberResendVerificationMailForm(prefix="resend")
 
@@ -75,7 +75,7 @@ def register(request):
 
     if request.user.is_authenticated():
         return HttpResponseRedirect(redirect_to)
-    elif request.method=="POST":
+    elif request.method == "POST":
         form = MemberRegisterForm(request.POST)
         if form.is_valid():
             form.save()

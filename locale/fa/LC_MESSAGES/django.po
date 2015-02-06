@@ -631,8 +631,8 @@ msgstr "کد تایید نامعتبر است"
 #~ msgid "Back"
 #~ msgstr "بازگشت"
 
-#~ msgid "Please confirm to continue"
-#~ msgstr "برای ادامه تایید کنید."
+msgid "Please confirm to continue"
+msgstr "برای ادامه تایید کنید."
 
 #~ msgid "You can't import data for this exam anymore"
 #~ msgstr "شما دیگر نمی توانید داده ای در این آزمون ثبت کنید"

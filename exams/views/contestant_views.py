@@ -4,7 +4,7 @@ from guardian.decorators import permission_required as guardian_permission_requi
 from django.contrib import messages
 from exams.models import Exam
 from exams.forms import save_answer_sheet, get_answer_sheet, get_answer_formset
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
@@ -21,7 +21,6 @@ def answer_sheet(request, exam_id):
         locked = False
     if request.method == "POST":
         if locked:
-            forms = get_answer_formset(exam, request.user, locked=locked)
             messages.error(request, _("The exam is not running right now. You cannot submit answers"))
         else:
             forms = get_answer_formset(exam, request.user, request.POST, locked=locked)
@@ -29,6 +28,7 @@ def answer_sheet(request, exam_id):
                 messages.success(request, _("Answers saved successfully"))
             else:
                 messages.error(request, _("A problem occured. Please try again"))
+        return HttpResponseRedirect(reverse("exams:answer_sheet", kwargs={"exam_id": exam_id}))
     else:
         forms = get_answer_formset(exam, request.user, locked=locked)
     full_columns = get_answer_sheet(exam, forms)
