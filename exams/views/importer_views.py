@@ -19,7 +19,7 @@ def delete_data(request, exam_id, user_id):
         raise PermissionDenied
     else:
         user.delete()
-        messages.success(request, "Answer sheet was removed successfully")
+        messages.success(request, _("Answer sheet was removed successfully"))
     return HttpResponseRedirect(reverse("exams:import_panel", kwargs={"exam_id": exam_id}))
 
 

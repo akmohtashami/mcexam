@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-05 20:13+0000\n"
-"PO-Revision-Date: 2015-02-05 20:13+0326\n"
+"POT-Creation-Date: 2015-02-06 00:10+0000\n"
+"PO-Revision-Date: 2015-02-06 00:11+0326\n"
 "Last-Translator:   <remuslup200@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -249,7 +249,6 @@ msgid "No participants"
 msgstr "شرکت کننده ای وجود ندارد"
 
 #: exams/templates/exams/importer_templates/import_panel.html:42
-#| msgid "Add/Edit Answer Sheets"
 msgid "Add New Answer Sheet"
 msgstr "افزودن پاسخ برگ جدید"
 
@@ -338,25 +337,28 @@ msgstr "آزمون تمام شده است"
 msgid "Statements were built successfully"
 msgstr "صورت سوالات با موفقیت ساخته شد"
 
-#: exams/views/contestant_views.py:25
+#: exams/views/contestant_views.py:24
 msgid "The exam is not running right now. You cannot submit answers"
 msgstr "آزمون در حال برگزاری نیست. شما نمی توانید پاسخی ارسال کنید."
 
-#: exams/views/contestant_views.py:29
+#: exams/views/contestant_views.py:28
 msgid "Answers saved successfully"
 msgstr "پاسخ ها با موفقیت ذخیره شدند"
 
-#: exams/views/contestant_views.py:31
+#: exams/views/contestant_views.py:30
 msgid "A problem occured. Please try again"
 msgstr "مشکلی پیش آمده است. لطفا دوباره تلاش کنید"
 
+#: exams/views/importer_views.py:22
+#| msgid "Answer sheet added successfully"
+msgid "Answer sheet was removed successfully"
+msgstr "پاسخ برگ با موفقیت حذف شد"
+
 #: exams/views/importer_views.py:40
-#| msgid "Answers saved successfully"
 msgid "Answer sheet updated successfully"
 msgstr "پاسخ برگ با موفقیت بروز شد"
 
 #: exams/views/importer_views.py:69
-#| msgid "Answers saved successfully"
 msgid "Answer sheet added successfully"
 msgstr "پاسخ برگ با موفقیت اضافه شد"
 
@@ -594,7 +596,7 @@ msgstr ""
 "رمز عبور: %(pass)s\n"
 " آدرس وب سایت:"
 
-#: users/views.py:23
+#: users/views.py:22
 msgid "Your profile has been updated successfully"
 msgstr "حساب کاربری شما با موفقیت بروز شد"
 
@@ -619,6 +621,9 @@ msgstr ""
 msgid "Invalid verification code"
 msgstr "کد تایید نامعتبر است"
 
+msgid "Please confirm to continue"
+msgstr "برای ادامه تایید کنید."
+
 #~ msgid "Add New Participant"
 #~ msgstr "افزودن شرکت کننده ی جدید"
 
@@ -630,9 +635,6 @@ msgstr "کد تایید نامعتبر است"
 
 #~ msgid "Back"
 #~ msgstr "بازگشت"
-
-msgid "Please confirm to continue"
-msgstr "برای ادامه تایید کنید."
 
 #~ msgid "You can't import data for this exam anymore"
 #~ msgstr "شما دیگر نمی توانید داده ای در این آزمون ثبت کنید"
