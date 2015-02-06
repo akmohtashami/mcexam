@@ -8,10 +8,6 @@
       <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <column name="name" sqlType="VARCHAR(80)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
       <primary-key columns="id"/>
-      <exported-key name="#FAKE_auth_group_permissions_2" table="auth_group_permissions" schema="" catalog="" columns="group_id"/>
-      <exported-key name="#FAKE_auth_user_groups_1" table="auth_user_groups" schema="" catalog="" columns="group_id"/>
-      <exported-key name="#FAKE_guardian_groupobjectpermission_1" table="guardian_groupobjectpermission" schema="" catalog="" columns="group_id"/>
-      <exported-key name="#FAKE_users_member_groups_1" table="users_member_groups" schema="" catalog="" columns="group_id"/>
     </table>
     <table name="auth_group_permissions" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
@@ -30,11 +26,6 @@
       <column name="codename" sqlType="VARCHAR(100)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
       <primary-key columns="id"/>
       <foreign-key name="#FAKE_auth_permission_1" columns="content_type_id" ref-table="django_content_type" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <exported-key name="#FAKE_auth_group_permissions_1" table="auth_group_permissions" schema="" catalog="" columns="permission_id"/>
-      <exported-key name="#FAKE_auth_user_user_permissions_1" table="auth_user_user_permissions" schema="" catalog="" columns="permission_id"/>
-      <exported-key name="#FAKE_guardian_groupobjectpermission_3" table="guardian_groupobjectpermission" schema="" catalog="" columns="permission_id"/>
-      <exported-key name="#FAKE_guardian_userobjectpermission_3" table="guardian_userobjectpermission" schema="" catalog="" columns="permission_id"/>
-      <exported-key name="#FAKE_users_member_user_permissions_1" table="users_member_user_permissions" schema="" catalog="" columns="permission_id"/>
       <index name="auth_permission_417f1b1c" unique="true" columns="content_type_id"/>
     </table>
     <table name="auth_user" schema="" catalog="" type="TABLE">
@@ -50,9 +41,6 @@
       <column name="is_active" sqlType="BOOL" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <column name="date_joined" sqlType="DATETIME" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
       <primary-key columns="id"/>
-      <exported-key name="#FAKE_auth_user_groups_2" table="auth_user_groups" schema="" catalog="" columns="user_id"/>
-      <exported-key name="#FAKE_auth_user_user_permissions_2" table="auth_user_user_permissions" schema="" catalog="" columns="user_id"/>
-      <exported-key name="#FAKE_django_admin_log_1" table="django_admin_log" schema="" catalog="" columns="user_id"/>
     </table>
     <table name="auth_user_groups" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
@@ -95,11 +83,6 @@
       <column name="app_label" sqlType="VARCHAR(100)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
       <column name="model" sqlType="VARCHAR(100)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
       <primary-key columns="id"/>
-      <exported-key name="#FAKE_auth_permission_1" table="auth_permission" schema="" catalog="" columns="content_type_id"/>
-      <exported-key name="#FAKE_django_admin_log_2" table="django_admin_log" schema="" catalog="" columns="content_type_id"/>
-      <exported-key name="#FAKE_guardian_groupobjectpermission_2" table="guardian_groupobjectpermission" schema="" catalog="" columns="content_type_id"/>
-      <exported-key name="#FAKE_guardian_userobjectpermission_2" table="guardian_userobjectpermission" schema="" catalog="" columns="content_type_id"/>
-      <exported-key name="#FAKE_resources_resource_1" table="resources_resource" schema="" catalog="" columns="owner_content_type_id"/>
     </table>
     <table name="django_migrations" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
@@ -115,163 +98,20 @@
       <primary-key columns="session_key"/>
       <index name="django_session_de54fa62" unique="true" columns="expire_date"/>
     </table>
-    <table name="django_site" schema="" catalog="" type="TABLE">
-      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="domain" sqlType="VARCHAR(100)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
-      <column name="name" sqlType="VARCHAR(50)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
-      <primary-key columns="id"/>
-    </table>
-    <table name="exams_choice" schema="" catalog="" type="TABLE">
-      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="choice" sqlType="VARCHAR(10000)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
-      <column name="order" sqlType="INTEGER UNSIGNED" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="is_correct" sqlType="BOOL" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="question_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <primary-key columns="id"/>
-      <foreign-key name="#FAKE_exams_choice_1" columns="question_id" ref-table="exams_question" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <exported-key name="#FAKE_exams_madechoice_2" table="exams_madechoice" schema="" catalog="" columns="choice_id"/>
-      <index name="exams_choice_7aa0f6ee" unique="true" columns="question_id"/>
-      <index name="exams_choice_70a17ffa" unique="true" columns="order"/>
-    </table>
-    <table name="exams_exam" schema="" catalog="" type="TABLE">
-      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="name" sqlType="VARCHAR(500)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
-      <column name="online_start_date" sqlType="DATETIME" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
-      <column name="online_end_date" sqlType="DATETIME" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
-      <column name="questions_per_column" sqlType="INTEGER UNSIGNED" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="exam_pdf_template" sqlType="TEXT" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
-      <column name="statements_file" sqlType="VARCHAR(5000)" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
-      <column name="activation_date" sqlType="DATETIME" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
-      <column name="publish_results_date" sqlType="DATETIME" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
-      <column name="sealing_date" sqlType="DATETIME" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
-      <primary-key columns="id"/>
-      <exported-key name="#FAKE_exams_examsite_2" table="exams_examsite" schema="" catalog="" columns="exam_id"/>
-      <exported-key name="#FAKE_exams_question_1" table="exams_question" schema="" catalog="" columns="exam_id"/>
-    </table>
-    <table name="exams_examsite" schema="" catalog="" type="TABLE">
-      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="exam_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="importer_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="name" sqlType="VARCHAR(255)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
-      <primary-key columns="id"/>
-      <foreign-key name="#FAKE_exams_examsite_1" columns="importer_id" ref-table="users_member" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="#FAKE_exams_examsite_2" columns="exam_id" ref-table="exams_exam" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <exported-key name="#FAKE_users_member_1" table="users_member" schema="" catalog="" columns="exam_site_id"/>
-      <index name="exams_examsite_bc9dcfc6" unique="true" columns="importer_id"/>
-      <index name="exams_examsite_09631ec7" unique="true" columns="exam_id"/>
-    </table>
-    <table name="exams_madechoice" schema="" catalog="" type="TABLE">
-      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="choice_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="user_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <primary-key columns="id"/>
-      <foreign-key name="#FAKE_exams_madechoice_1" columns="user_id" ref-table="users_member" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="#FAKE_exams_madechoice_2" columns="choice_id" ref-table="exams_choice" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <index name="exams_madechoice_e8701ad4" unique="true" columns="user_id"/>
-      <index name="exams_madechoice_428bb064" unique="true" columns="choice_id"/>
-    </table>
-    <table name="exams_question" schema="" catalog="" type="TABLE">
-      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="order" sqlType="INTEGER UNSIGNED" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="statement" sqlType="TEXT" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
-      <column name="exam_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="is_info" sqlType="BOOL" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <primary-key columns="id"/>
-      <foreign-key name="#FAKE_exams_question_1" columns="exam_id" ref-table="exams_exam" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <exported-key name="#FAKE_exams_choice_1" table="exams_choice" schema="" catalog="" columns="question_id"/>
-      <index name="exams_question_09631ec7" unique="true" columns="exam_id"/>
-      <index name="exams_question_70a17ffa" unique="true" columns="order"/>
-    </table>
-    <table name="exams_questiongroup" schema="" catalog="" type="TABLE">
-      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="order" sqlType="INTEGER UNSIGNED" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="common_info" sqlType="TEXT" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
-      <primary-key columns="id"/>
-    </table>
-    <table name="guardian_groupobjectpermission" schema="" catalog="" type="TABLE">
-      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="permission_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="content_type_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="object_pk" sqlType="VARCHAR(255)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
-      <column name="group_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <primary-key columns="id"/>
-      <foreign-key name="#FAKE_guardian_groupobjectpermission_1" columns="group_id" ref-table="auth_group" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="#FAKE_guardian_groupobjectpermission_2" columns="content_type_id" ref-table="django_content_type" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="#FAKE_guardian_groupobjectpermission_3" columns="permission_id" ref-table="auth_permission" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <index name="guardian_groupobjectpermission_5f412f9a" unique="true" columns="group_id"/>
-      <index name="guardian_groupobjectpermission_37ef4eb4" unique="true" columns="content_type_id"/>
-      <index name="guardian_groupobjectpermission_83d7f98b" unique="true" columns="permission_id"/>
-    </table>
-    <table name="guardian_userobjectpermission" schema="" catalog="" type="TABLE">
-      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="permission_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="content_type_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="object_pk" sqlType="VARCHAR(255)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
-      <column name="user_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <primary-key columns="id"/>
-      <foreign-key name="#FAKE_guardian_userobjectpermission_1" columns="user_id" ref-table="users_member" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="#FAKE_guardian_userobjectpermission_2" columns="content_type_id" ref-table="django_content_type" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="#FAKE_guardian_userobjectpermission_3" columns="permission_id" ref-table="auth_permission" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <index name="guardian_userobjectpermission_6340c63c" unique="true" columns="user_id"/>
-      <index name="guardian_userobjectpermission_37ef4eb4" unique="true" columns="content_type_id"/>
-      <index name="guardian_userobjectpermission_83d7f98b" unique="true" columns="permission_id"/>
-    </table>
-    <table name="resources_resource" schema="" catalog="" type="TABLE">
-      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="resource" sqlType="VARCHAR(5000)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
-      <column name="owner_object_id" sqlType="INTEGER UNSIGNED" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="is_private" sqlType="BOOL" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="filename" sqlType="VARCHAR(1000)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
-      <column name="owner_content_type_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <primary-key columns="id"/>
-      <foreign-key name="#FAKE_resources_resource_1" columns="owner_content_type_id" ref-table="django_content_type" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <index name="resources_resource_3c2924af" unique="true" columns="owner_content_type_id"/>
-    </table>
-    <table name="sqlite_sequence" schema="" catalog="" type="TABLE">
-      <column name="name" sqlType="" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
-      <column name="seq" sqlType="" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
-    </table>
-    <table name="users_member" schema="" catalog="" type="TABLE">
-      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="password" sqlType="VARCHAR(128)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
-      <column name="last_login" sqlType="DATETIME" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
-      <column name="username" sqlType="VARCHAR(250)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
-      <column name="email" sqlType="VARCHAR(250)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
-      <column name="first_name" sqlType="VARCHAR(250)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
-      <column name="last_name" sqlType="VARCHAR(250)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
-      <column name="first_name_en" sqlType="VARCHAR(250)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
-      <column name="last_name_en" sqlType="VARCHAR(250)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
-      <column name="is_active" sqlType="BOOL" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="verification_code" sqlType="VARCHAR(128)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
-      <column name="is_superuser" sqlType="BOOL" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="grade" sqlType="VARCHAR(6)" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
-      <column name="school" sqlType="VARCHAR(250)" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
-      <column name="exam_site_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
-      <primary-key columns="id"/>
-      <foreign-key name="#FAKE_users_member_1" columns="exam_site_id" ref-table="exams_examsite" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <exported-key name="#FAKE_exams_examsite_1" table="exams_examsite" schema="" catalog="" columns="importer_id"/>
-      <exported-key name="#FAKE_exams_madechoice_1" table="exams_madechoice" schema="" catalog="" columns="user_id"/>
-      <exported-key name="#FAKE_guardian_userobjectpermission_1" table="guardian_userobjectpermission" schema="" catalog="" columns="user_id"/>
-      <exported-key name="#FAKE_users_member_groups_2" table="users_member_groups" schema="" catalog="" columns="member_id"/>
-      <exported-key name="#FAKE_users_member_user_permissions_2" table="users_member_user_permissions" schema="" catalog="" columns="member_id"/>
-      <index name="users_member_e59f37ee" unique="true" columns="exam_site_id"/>
-    </table>
-    <table name="users_member_groups" schema="" catalog="" type="TABLE">
-      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="member_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="group_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <primary-key columns="id"/>
-      <foreign-key name="#FAKE_users_member_groups_1" columns="group_id" ref-table="auth_group" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="#FAKE_users_member_groups_2" columns="member_id" ref-table="users_member" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-    </table>
-    <table name="users_member_user_permissions" schema="" catalog="" type="TABLE">
-      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="member_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="permission_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <primary-key columns="id"/>
-      <foreign-key name="#FAKE_users_member_user_permissions_1" columns="permission_id" ref-table="auth_permission" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="#FAKE_users_member_user_permissions_2" columns="member_id" ref-table="users_member" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-    </table>
+    <table name="django_site" schema="" catalog="" type="TABLE"/>
+    <table name="exams_choice" schema="" catalog="" type="TABLE"/>
+    <table name="exams_exam" schema="" catalog="" type="TABLE"/>
+    <table name="exams_examsite" schema="" catalog="" type="TABLE"/>
+    <table name="exams_madechoice" schema="" catalog="" type="TABLE"/>
+    <table name="exams_question" schema="" catalog="" type="TABLE"/>
+    <table name="exams_questiongroup" schema="" catalog="" type="TABLE"/>
+    <table name="guardian_groupobjectpermission" schema="" catalog="" type="TABLE"/>
+    <table name="guardian_userobjectpermission" schema="" catalog="" type="TABLE"/>
+    <table name="resources_resource" schema="" catalog="" type="TABLE"/>
+    <table name="sqlite_sequence" schema="" catalog="" type="TABLE"/>
+    <table name="users_member" schema="" catalog="" type="TABLE"/>
+    <table name="users_member_groups" schema="" catalog="" type="TABLE"/>
+    <table name="users_member_user_permissions" schema="" catalog="" type="TABLE"/>
   </data-source>
   <data-source name="Django default2" uuid="ea798801-b6b9-428f-be93-a34600e30db7">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
