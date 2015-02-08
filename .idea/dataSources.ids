@@ -153,7 +153,7 @@
       <column name="activation_date" sqlType="DATETIME" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
       <primary-key columns="id"/>
       <exported-key name="#FAKE_exams_examsite_2" table="exams_examsite" schema="" catalog="" columns="exam_id"/>
-      <exported-key name="#FAKE_exams_participantresult_1" table="exams_participantresult" schema="" catalog="" columns="exam_id"/>
+      <exported-key name="#FAKE_exams_participantresult_2" table="exams_participantresult" schema="" catalog="" columns="exam_id"/>
       <exported-key name="#FAKE_exams_question_1" table="exams_question" schema="" catalog="" columns="exam_id"/>
     </table>
     <table name="exams_examsite" schema="" catalog="" type="TABLE">
@@ -180,17 +180,17 @@
     </table>
     <table name="exams_participantresult" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="user_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <column name="score" sqlType="INTEGER UNSIGNED" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <column name="correct" sqlType="INTEGER UNSIGNED" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="wrong" sqlType="INTEGER UNSIGNED" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <column name="rank" sqlType="INTEGER UNSIGNED" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <column name="exam_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="user_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="wrong" sqlType="INTEGER UNSIGNED" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <primary-key columns="id"/>
-      <foreign-key name="#FAKE_exams_participantresult_1" columns="exam_id" ref-table="exams_exam" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="#FAKE_exams_participantresult_2" columns="user_id" ref-table="users_member" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <index name="exams_participantresult_09631ec7" unique="true" columns="exam_id"/>
+      <foreign-key name="#FAKE_exams_participantresult_1" columns="user_id" ref-table="users_member" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_exams_participantresult_2" columns="exam_id" ref-table="exams_exam" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <index name="exams_participantresult_e8701ad4" unique="true" columns="user_id"/>
+      <index name="exams_participantresult_09631ec7" unique="true" columns="exam_id"/>
     </table>
     <table name="exams_question" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
@@ -199,7 +199,7 @@
       <column name="exam_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <column name="is_info" sqlType="BOOL" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <column name="correct_score" sqlType="SMALLINT UNSIGNED" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="wrong_score" sqlType="SMALLINT UNSIGNED" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="wrong_penalty" sqlType="SMALLINT UNSIGNED" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <primary-key columns="id"/>
       <foreign-key name="#FAKE_exams_question_1" columns="exam_id" ref-table="exams_exam" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <exported-key name="#FAKE_exams_choice_1" table="exams_choice" schema="" catalog="" columns="question_id"/>
@@ -275,7 +275,7 @@
       <foreign-key name="#FAKE_users_member_1" columns="exam_site_id" ref-table="exams_examsite" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <exported-key name="#FAKE_exams_examsite_1" table="exams_examsite" schema="" catalog="" columns="importer_id"/>
       <exported-key name="#FAKE_exams_madechoice_1" table="exams_madechoice" schema="" catalog="" columns="user_id"/>
-      <exported-key name="#FAKE_exams_participantresult_2" table="exams_participantresult" schema="" catalog="" columns="user_id"/>
+      <exported-key name="#FAKE_exams_participantresult_1" table="exams_participantresult" schema="" catalog="" columns="user_id"/>
       <exported-key name="#FAKE_guardian_userobjectpermission_1" table="guardian_userobjectpermission" schema="" catalog="" columns="user_id"/>
       <exported-key name="#FAKE_users_member_groups_2" table="users_member_groups" schema="" catalog="" columns="member_id"/>
       <exported-key name="#FAKE_users_member_user_permissions_2" table="users_member_user_permissions" schema="" catalog="" columns="member_id"/>
