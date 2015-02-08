@@ -1,11 +1,10 @@
 from django import forms
-from exams.models import Question, ExamSite, MadeChoice
+from exams.models import Question, MadeChoice
 from exams.widget import ExamChoiceInput, LockedExamChoiceInput
 from users.models import Member
 from django.utils.translation import ugettext as _
 from django.core.paginator import Paginator
 from django.forms import formset_factory
-from exams.fields import ShortLabelModelChoiceField
 from codemirror.widgets import CodeMirrorTextarea
 
 
@@ -13,6 +12,7 @@ class AnswerSheetForm(forms.Form):
     question = forms.ModelChoiceField(queryset=Question.objects.filter(is_info=False),
                                       required=True,
                                       widget=forms.HiddenInput(attrs={"class": "hidden-input"}))
+
     def __init__(self, *args, **kwargs):
         super(AnswerSheetForm, self).__init__(*args, **kwargs)
         self.fields['answer'] = forms.ModelChoiceField(queryset=self.initial.get("question").choice_set.all(),
@@ -96,7 +96,7 @@ class OnsiteContestantForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         current_user = kwargs.pop("current_user")
         super(OnsiteContestantForm, self).__init__(*args, **kwargs)
-        self.fields['exam_site'] = ShortLabelModelChoiceField(
+        self.fields['exam_site'] = forms.ModelChoiceField(
             queryset=current_user.examsite_set.all(),
             label=_("Exam Site"),
             empty_label=None

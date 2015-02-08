@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-06 00:10+0000\n"
-"PO-Revision-Date: 2015-02-06 00:11+0326\n"
+"POT-Creation-Date: 2015-02-08 23:41+0000\n"
+"PO-Revision-Date: 2015-02-08 23:42+0326\n"
 "Last-Translator:   <remuslup200@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -49,7 +49,7 @@ msgstr "ورود"
 msgid "Register"
 msgstr "ثبت نام"
 
-#: base/templates/navbar.html:11 exams/models.py:55
+#: base/templates/navbar.html:11 exams/models.py:56
 msgid "Exams"
 msgstr "آزمون ها"
 
@@ -61,27 +61,31 @@ msgstr "مدیریت"
 msgid "Logout"
 msgstr "خروج"
 
-#: exams/forms.py:101 exams/models.py:181 exams/models.py:190
+#: exams/admin.py:33
+msgid "Calculate results for selected exams"
+msgstr "محاسبه ی نتایج برای آزمون های انتخاب شده"
+
+#: exams/forms.py:101 exams/models.py:278 exams/models.py:288
 msgid "Exam Site"
 msgstr "مکان برگزاری"
 
-#: exams/forms.py:132 exams/models.py:41
+#: exams/forms.py:132 exams/models.py:42
 msgid "PDF template"
 msgstr "قالب PDF"
 
-#: exams/forms.py:132 exams/models.py:42
+#: exams/forms.py:132 exams/models.py:43
 msgid "Django-Tex template for creating pdf files"
 msgstr "قالب جانگو-تک برای ساخت فایل های PDF"
 
-#: exams/models.py:21 exams/templates/exams/main_templates/list.html:12
+#: exams/models.py:22 exams/templates/exams/main_templates/list.html:12
 msgid "Name"
 msgstr "نام"
 
-#: exams/models.py:23
+#: exams/models.py:24
 msgid "Activation date"
 msgstr "تاریخ فعال سازی"
 
-#: exams/models.py:24
+#: exams/models.py:25
 msgid ""
 "After this time the exam is considered open. Importers can download the "
 "questions and import answer sheets. Everybody can see their answer sheet."
@@ -90,19 +94,19 @@ msgstr ""
 "سوالات را دریافت کنند و پاسخ برگ ها را وارد کنند. همه می توانند پاسخ برگ خود"
 " را ببینند"
 
-#: exams/models.py:28
+#: exams/models.py:29
 msgid "Online exam start date"
 msgstr "زمان شروع آزمون آنلاین"
 
-#: exams/models.py:29
+#: exams/models.py:30
 msgid "Online exam end date"
 msgstr "زمان پایان آزمون آنلاین"
 
-#: exams/models.py:31
+#: exams/models.py:32
 msgid "Sealing date"
 msgstr "زمان مهر و موم شدن آزمون"
 
-#: exams/models.py:32
+#: exams/models.py:33
 msgid ""
 "After this time the exam is sealed. Importers will no longer be able to "
 "import answer sheets"
@@ -110,43 +114,43 @@ msgstr ""
 "پس از این زمان آزمون مهر و موم می شود. وارد کننده ها دیگر نمی توانند پاسخ "
 "برگ ها را اضافه یا ویرایش کنند"
 
-#: exams/models.py:36
+#: exams/models.py:37
 msgid "Result publishing date"
 msgstr "تاریخ انتشار نتایج"
 
-#: exams/models.py:37
+#: exams/models.py:38
 msgid "After this time the results and correct answers will be published "
 msgstr "پس از این زمان نتایج و پاسخ های صحیح منتشر می شوند"
 
-#: exams/models.py:39
+#: exams/models.py:40
 msgid "Number of questions per column in answer sheet"
 msgstr "تعداد سوالات در هر ستون پاسخ برگ"
 
-#: exams/models.py:54 exams/models.py:179
+#: exams/models.py:55 exams/models.py:276 exams/models.py:293
 msgid "Exam"
 msgstr "آزمون"
 
-#: exams/models.py:57
+#: exams/models.py:58
 msgid "Can view exam"
 msgstr "توانایی دیدن آزمون ها را دارد"
 
-#: exams/models.py:58
+#: exams/models.py:59
 msgid "Can import answer sheets"
 msgstr "اجازه ی وارد کردن پاسخ برگ دارد"
 
-#: exams/models.py:122
+#: exams/models.py:206
 msgid "Related exam"
 msgstr "آزمون مربوطه"
 
-#: exams/models.py:123
+#: exams/models.py:207
 msgid "Question's Statement"
 msgstr "صورت سوال"
 
-#: exams/models.py:125 exams/models.py:132
+#: exams/models.py:209 exams/models.py:226
 msgid "Info"
 msgstr "اطلاعات"
 
-#: exams/models.py:126
+#: exams/models.py:210
 msgid ""
 "If you want to put some info between some of the question write info in "
 "question statement and check this box"
@@ -154,41 +158,81 @@ msgstr ""
 "اگر می خواهید اطلاعاتی بین برخی از سوالات قرار دهید، متن را درون صورت سوال "
 "بنویسید و این گزینه را انتخاب کنید."
 
-#: exams/models.py:130
+#: exams/models.py:213
+msgid "Correct Answer Score"
+msgstr "امتیاز پاسخ صحیح"
+
+#: exams/models.py:214
+msgid "Amount of score which is increased for correct answer"
+msgstr "میزان نمره ای که به ازای پاسخ درست اضافه می شود"
+
+#: exams/models.py:218
+msgid "Wrong Answer Penalty"
+msgstr "جریمه ی پاسخ غلط"
+
+#: exams/models.py:219
+msgid "Amount of score which is decreased for incorrent answer"
+msgstr "میزان نمره ای که به ازای پاسخ غلط کم می شود"
+
+#: exams/models.py:224
 msgid "Question #"
 msgstr "سوال شماره"
 
-#: exams/models.py:140
+#: exams/models.py:234
 msgid "Question"
 msgstr "سوال"
 
-#: exams/models.py:141
+#: exams/models.py:235
 msgid "Questions"
 msgstr "سوالات"
 
-#: exams/models.py:146 exams/models.py:158
+#: exams/models.py:240 exams/models.py:252
 msgid "Choice"
 msgstr "گزینه"
 
-#: exams/models.py:154
+#: exams/models.py:248
 msgid "Correct"
 msgstr "صحیح"
 
-#: exams/models.py:159
+#: exams/models.py:253
 msgid "Choices"
 msgstr "گزینه ها"
 
-#: exams/models.py:174
+#: exams/models.py:268
 msgid "User has another answer for this question in database"
 msgstr "کاربر پاسخ دیگری برای این سوال در دیتابیس دارد"
 
-#: exams/models.py:180
+#: exams/models.py:277
 msgid "Importer"
 msgstr "وارد کننده"
 
-#: exams/models.py:191
+#: exams/models.py:285
+msgid "Number of participants"
+msgstr "تعداد شرکت کننده ها"
+
+#: exams/models.py:289
 msgid "Exam Sites"
 msgstr "مکان های برگزاری"
+
+#: exams/models.py:294
+msgid "Participant"
+msgstr "شرکت کننده"
+
+#: exams/models.py:295
+msgid "Score"
+msgstr "نمره"
+
+#: exams/models.py:296
+msgid "Correct answers"
+msgstr "پاسخ های صحیح"
+
+#: exams/models.py:297
+msgid "Wrong answers"
+msgstr "پاسخ های غلط"
+
+#: exams/models.py:298
+msgid "Rank"
+msgstr "رتبه"
 
 #: exams/templates/exams/base_templates/exam_base.html:24
 msgid "Answer Sheet"
@@ -245,12 +289,21 @@ msgid "Edit"
 msgstr "ویرایش"
 
 #: exams/templates/exams/importer_templates/import_panel.html:36
+#: exams/templates/exams/importer_templates/results.html:32
 msgid "No participants"
 msgstr "شرکت کننده ای وجود ندارد"
 
 #: exams/templates/exams/importer_templates/import_panel.html:42
 msgid "Add New Answer Sheet"
 msgstr "افزودن پاسخ برگ جدید"
+
+#: exams/templates/exams/importer_templates/results.html:22
+msgid "Download detailed report"
+msgstr "دریافت کارنامه"
+
+#: exams/templates/exams/importer_templates/results.html:29
+msgid "Download All"
+msgstr "دریافت همه"
 
 #: exams/templates/exams/main_templates/answer_sheet.html:12
 #: exams/templates/exams/running_exam.html:13
@@ -333,7 +386,7 @@ msgstr "تا پایان آزمون آنلاین"
 msgid "Exam finished"
 msgstr "آزمون تمام شده است"
 
-#: exams/views/admin_views.py:67
+#: exams/views/admin_views.py:47
 msgid "Statements were built successfully"
 msgstr "صورت سوالات با موفقیت ساخته شد"
 
@@ -349,16 +402,15 @@ msgstr "پاسخ ها با موفقیت ذخیره شدند"
 msgid "A problem occured. Please try again"
 msgstr "مشکلی پیش آمده است. لطفا دوباره تلاش کنید"
 
-#: exams/views/importer_views.py:22
-#| msgid "Answer sheet added successfully"
+#: exams/views/importer_views.py:26
 msgid "Answer sheet was removed successfully"
 msgstr "پاسخ برگ با موفقیت حذف شد"
 
-#: exams/views/importer_views.py:40
+#: exams/views/importer_views.py:44
 msgid "Answer sheet updated successfully"
 msgstr "پاسخ برگ با موفقیت بروز شد"
 
-#: exams/views/importer_views.py:69
+#: exams/views/importer_views.py:73
 msgid "Answer sheet added successfully"
 msgstr "پاسخ برگ با موفقیت اضافه شد"
 
@@ -382,15 +434,15 @@ msgstr "منبع"
 msgid "Resources"
 msgstr "منابع"
 
-#: users/admin.py:32
+#: users/admin.py:34
 msgid "Verify selected users"
 msgstr "تایید کاربران انتخاب شده"
 
-#: users/admin.py:44
+#: users/admin.py:46
 msgid "Send selected users info to their email"
 msgstr "ارسال اطلاعات کاربران انتخاب شده به ایمیل آن ها"
 
-#: users/admin.py:51
+#: users/admin.py:53
 msgid "Get selected users email list"
 msgstr "گرفتن ایمیل کاربران انتخاب شده"
 
@@ -512,8 +564,8 @@ msgid "School"
 msgstr "مدرسه"
 
 #: users/models.py:78
-msgid "Dummy"
-msgstr "جعلی"
+msgid "Onsite"
+msgstr "حضوری"
 
 #: users/models.py:86
 msgid "User"
@@ -523,11 +575,11 @@ msgstr "کاربر"
 msgid "Users"
 msgstr "کاربران"
 
-#: users/models.py:113
+#: users/models.py:119
 msgid "Verified"
 msgstr "تایید شده"
 
-#: users/models.py:118
+#: users/models.py:124
 msgid "Staff"
 msgstr "برگزار کننده"
 
@@ -623,6 +675,9 @@ msgstr "کد تایید نامعتبر است"
 
 msgid "Please confirm to continue"
 msgstr "برای ادامه تایید کنید."
+
+#~ msgid "Dummy"
+#~ msgstr "جعلی"
 
 #~ msgid "Add New Participant"
 #~ msgstr "افزودن شرکت کننده ی جدید"

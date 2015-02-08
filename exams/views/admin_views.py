@@ -8,36 +8,16 @@ from django.utils.translation import ugettext as _
 from django.http import HttpResponse
 from django.core.files import File
 from tempfile import mkdtemp
-from django.conf import settings
-import subprocess
+from exams.utils import compile_tex
 import os
 import shutil
-
-
-def build_tex_file(tex_file, output_directory, output_file_name, env=os.environ):
-    compiler = subprocess.Popen(["xelatex", "-jobname=" + output_file_name], env=env, cwd=output_directory,
-                                stdin=subprocess.PIPE,
-                                stderr=subprocess.PIPE,
-                                stdout=subprocess.PIPE)
-    return compiler.communicate(input=tex_file)
-
-
-def get_env_exam_resource(exam):
-    env = os.environ.copy()
-    xelatex_path = getattr(settings, "XELATEX_BIN_PATH", None)
-    if xelatex_path is not None:
-        env["PATH"] = os.pathsep.join([xelatex_path, env["PATH"]])
-    env["TEXINPUTS"] = exam.resources_dir + "//:"
-    env["TTFONTS"] = exam.resources_dir + "//:"
-    env["OPENTYPEFONTS"] = exam.resources_dir + "//:"
-    return env
 
 @guardian_permission_required("exams.change_exam", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
 def preview_statements(request, exam_id):
     exam = get_object_or_404(Exam, id=exam_id)
-    tex_file = exam.get_tex_file()
+    tex_file = exam.get_statements_tex_file()
     tmp_folder = mkdtemp()
-    output = build_tex_file(tex_file, tmp_folder, "statements", get_env_exam_resource(exam))
+    output = compile_tex(tex_file, tmp_folder, "statements", exam.add_tex_resources_to_environ())
     try:
         statement_pdf_file = open(os.path.join(tmp_folder, "statements.pdf"))
         response = HttpResponse(statement_pdf_file.read(), content_type="application/pdf")
@@ -50,15 +30,15 @@ def preview_statements(request, exam_id):
 @guardian_permission_required("exams.change_exam", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
 def show_statements_tex(request, exam_id):
     exam = get_object_or_404(Exam, id=exam_id)
-    tex_file = exam.get_tex_file()
+    tex_file = exam.get_statements_tex_file()
     return HttpResponse(tex_file, content_type="text/plain; charset=utf8")
 
 @guardian_permission_required("exams.change_exam", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
 def publish_statements(request, exam_id):
     exam = get_object_or_404(Exam, id=exam_id)
-    tex_file = exam.get_tex_file()
+    tex_file = exam.get_statements_tex_file()
     tmp_folder = mkdtemp()
-    output = build_tex_file(tex_file, tmp_folder, "statements", get_env_exam_resource(exam))
+    output = compile_tex(tex_file, tmp_folder, "statements", exam.add_tex_resources_to_environ())
     statements_path = os.path.join(tmp_folder, "statements.pdf")
     if os.path.isfile(statements_path):
         statements_file = open(statements_path, 'r')
@@ -70,3 +50,11 @@ def publish_statements(request, exam_id):
         response = HttpResponse(output, content_type="text/plain")
     shutil.rmtree(tmp_folder)
     return response
+
+@guardian_permission_required("exams.change_exam", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
+def all_result(request, exam_id):
+    exam = get_object_or_404(Exam, id=exam_id)
+    for site in exam.examsite_set.all:
+        #Add folder
+        for user in site.member_set.all:
+            pass

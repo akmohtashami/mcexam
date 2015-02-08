@@ -1,6 +1,4 @@
 from django.shortcuts import get_object_or_404, render
-from django.contrib.auth.decorators import permission_required
-from guardian.decorators import permission_required as guardian_permission_required
 from django.contrib import messages
 from exams.models import Exam
 from exams.forms import save_answer_sheet, get_answer_sheet, get_answer_formset
@@ -9,6 +7,8 @@ from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
 import os
+import magic
+
 
 
 def answer_sheet(request, exam_id):
@@ -44,6 +44,8 @@ def statements(request, exam_id):
         raise Http404
     real_file_name, real_file_ext = os.path.splitext(exam.statements_file.name)
     statements_name = "statements_" + exam_id + real_file_ext
-    response = HttpResponse(exam.statements_file, content_type="text/plain")
+    response = HttpResponse(exam.statements_file, content_type=magic.from_buffer(exam.statements_file.read(), mime=True))
     response['Content-Disposition'] = 'attachment; filename=%s' % statements_name
     return response
+
+

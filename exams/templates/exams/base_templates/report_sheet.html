@@ -1,0 +1,178 @@
+{% load staticfiles %}
+{% load i18n %}
+{% load exams_filters %}
+
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>کارنامه </title>
+    <style type="text/css">
+        @font-face {
+            font-family: DroidNaskh;
+            src: url("{% static 'fonts/Droid Naskh.ttf' %}");
+        }
+        html {
+            position: relative;
+            min-height: 100%;
+            width:524.41px;
+            height: 744.09px;
+        }
+        body {
+            direction: rtl;
+            text-align: right;
+            margin-bottom: 80px;
+            font-family: XB Zar, DroidNaskh, Tahoma;
+
+        }
+        @page {
+            size: a5 portrait;
+            margin: 1.5cm;
+            direction: rtl;
+        }
+        .result-sheet {
+            border: 1px dashed #000000;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            padding: 0.2cm;
+            height: 100%;
+        }
+        .information {
+            min-height: 100px;
+        }
+        .logo {
+            position: absolute;
+            transform: rotate(-45deg);
+            top: 60px;
+            left: 0px;
+
+        }
+        .col {
+            width:50%;
+            float: right;
+            min-height: 1px;
+        }
+        .row:before,
+        .row:after {
+            display: table;
+            content: " "
+        }
+        .row:after {
+            clear: both;
+        }
+        .row.ltr {
+            direction: ltr;
+        }
+        .row.ltr .col{
+            float: left;
+        }
+        .answer-sheet {
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+        }
+        .choice {
+            background-color: #fafafa;
+            text-align: center;
+            border: 1px solid #000000;
+            border-radius: 10px;
+            margin: 1px;
+            min-width: 25px;
+            font-size:12px;
+            padding-top: 3px;
+            line-height: 14px;
+            min-height: 14px;
+
+        }
+        .choice.marked {
+            background-color: #000000;
+            color: white;
+        }
+
+        @font-face {
+            font-family: 'Glyphicons Halflings';
+            src: url('{% static 'bootstrap/fonts/glyphicons-halflings-regular.eot' %}');
+            src: url('{% static 'bootstrap/fonts/glyphicons-halflings-regular.eot?#iefix' %}') format('embedded-opentype'), url('{% static 'bootstrap/fonts/glyphicons-halflings-regular.woff' %}') format('woff'), url('{% static 'bootstrap/fonts/glyphicons-halflings-regular.ttf' %}') format('truetype'), url('{% static 'bootstrap/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular' %}') format('svg');
+        }
+        .glyphicon {
+          position: relative;
+
+          display: inline-block;
+          font-family: 'Glyphicons Halflings';
+          font-style: normal;
+          font-weight: normal;
+          line-height: 1;
+          -webkit-font-smoothing: antialiased;
+        }
+        .ok-glyph:before {
+            content: "\e013";
+        }
+        .text-center{
+            text-align: center;
+            font-size: 10px;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="result-sheet">
+            <div class="text-center"> بسمه تعالی</div>
+            <div class="information">
+                <p> نام: {{ user.first_name }} </p>
+                <p> نام خانوادگی: {{ user.last_name }} </p>
+                {% if user.exam_site %}
+                    <p> نحوه‌ی شرکت: حضوری </p>
+                    <p> مدرسه:‌{{user.exam_site}} </p>
+                {% else %}
+                    <p> نحوه‌ی شرکت:‌ برخط </p>
+                    {% if user.school %}
+                        <p> مدرسه:&nbsp; {{ user.school }} </p>
+                    {% endif %}
+                    {% if user.grade %}
+                        <p> پایه:{{ user.grade }} </p>
+                    {% endif %}
+                {% endif %}
+                <div class="logo"><img src="{% static 'images/logo.png' %}" /></div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col">
+                    <p>امتیاز:‌&nbsp; {{exam_details.points}} از {{exam_details.full_points}}({{exam_details.points_percent}} درصد) </p>
+                    <p> رتبه: {{exam_details.rank}}</p>
+                </div>
+                <div class="col">
+                    <p> تعداد پاسخ‌های صحیح: {{exam_details.correct_count}}</p>
+                    <p> تعداد پاسخ‌های غلط: {{exam_details.wrong_count}} </p>
+                </div>
+            </div>
+            <div class="answer-sheet">
+                <div class="row ltr">
+                    {% for column in exam_details.question_columns %}
+                        <div class='col' align="center">
+                            {% for question, marked_choice in column.object_list %}
+                                <table>
+                                <tr>
+                                <td class="question-number"><div>{% get_next_number 1 %}- </div></td>
+                                    {% for choice in question.choice_set.all %}
+                                        <td><div class="choice {% if choice == marked_choice %} marked {% endif %} {% if choice.is_correct %} no-text {% endif %}">
+                                            {% if choice.is_correct %}
+                                                <i class="glyphicon ok-glyph" data-unicode="e013"></i>
+                                            {% else %}
+                                                {{ forloop.counter|choice_character }}
+                                            {% endif %}
+                                        </div></td>
+                                    {% endfor %}
+                                </tr>
+                                </table>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

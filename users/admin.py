@@ -18,12 +18,14 @@ from django.http import HttpResponse
 class MemberAdmin(admin.ModelAdmin):
     form = MemberAdminChangeForm
     add_form = MemberAdminAddForm
-    list_display = ('id', '__unicode__', 'last_login', 'is_verified', 'is_active', 'is_staff')
+    list_display = ('id', '__unicode__', 'last_login', 'is_verified', 'is_active', 'is_staff', 'is_onsite')
     list_display_links = ('__unicode__', )
     list_filter = (
         ('groups__name'),
+        ('exam_site'),
     )
     actions = ['verify_user', 'send_user_information', 'get_email_list']
+
 
     def verify_user(self, request, queryset):
         for user in queryset:

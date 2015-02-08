@@ -1,6 +1,6 @@
 from django import template
 from users.models import Member
-from exams.models import Exam, Choice
+from exams.models import Choice
 from django.utils.translation import ugettext as _
 from django.template.loader import render_to_string
 
@@ -55,3 +55,5 @@ class GetNextNumberNode(template.Node):
         val = int(context.render_context[self])
         context.render_context[self] = str(val + 1)
         return str(val)
+
+

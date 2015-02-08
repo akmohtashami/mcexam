@@ -63,7 +63,7 @@ class Member(auth.models.AbstractBaseUser, auth.models.PermissionsMixin, Guardia
     grade = models.CharField(max_length=6, choices=GRADE_IN_SCHOOL, verbose_name=_("Grade"), blank=True, null=True)
     school = models.CharField(max_length=250, verbose_name=_("School"), blank=True, null=True)
 
-    #Dummy user-related field
+    #Onsite user-related field
     exam_site = models.ForeignKey("exams.ExamSite", null=True, blank=True)
 
     def is_owner(self, user):
@@ -72,11 +72,11 @@ class Member(auth.models.AbstractBaseUser, auth.models.PermissionsMixin, Guardia
         elif user.is_superuser or self.exam_site.importer == user:
             return True
 
-    def is_dummy(self):
-        return self.owner is not None
+    def is_onsite(self):
+        return self.exam_site is not None
 
-    is_dummy.short_description = _("Dummy")
-    is_dummy.boolean = True
+    is_onsite.short_description = _("Onsite")
+    is_onsite.boolean = True
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email', 'first_name', 'last_name', 'first_name_en', 'last_name_en']
@@ -94,6 +94,12 @@ class Member(auth.models.AbstractBaseUser, auth.models.PermissionsMixin, Guardia
 
     def get_short_name(self):
         return self.first_name[0] + ". " + self.last_name
+
+    def get_full_english_name(self):
+        return self.first_name_en + " " + self.last_name_en
+
+    def get_short_english_name(self):
+        return self.first_name_en[0] + ". " + self.last_name_en
 
     def create_verification_code(self):
         salt = hashlib.sha1("Th!siS@salT;,^%#WoW18s" + str(random.random())).hexdigest()

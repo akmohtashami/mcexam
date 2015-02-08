@@ -18,20 +18,16 @@
                                     <tr>
                                         <td> {{ user }} </td>
                                         <td>
-                                            <a class='btn btn-primary' href='{% url "exams:edit_data" exam.id user.id %}'>
-                                                <i class="glyphicon glyphicon-pencil"></i>
-                                                {% trans 'Edit' %}
-                                            </a>
-
-                                            <a data-delete='true' class='btn btn-danger' href='{% url "exams:delete_data" exam.id user.id %}'>
-                                                <i class="glyphicon glyphicon-trash"></i>
-                                                {% trans 'Delete' %}
+                                            <a class='btn btn-primary' href='{% url "exams:user_result" exam.id user.id %}'>
+                                                {% trans 'Download detailed report' %}
                                             </a>
                                         </td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
                         </table>
+                        <div class="text-center"><a class='btn btn-primary' href='{% url "exams:site_result" exam.id site.id %}'> {% trans 'Download All' %} </a></div>
+                        {# <div class="text-center"><a class='btn btn-primary' href='{% url "exams:site_ranking" exam.id site.id %}'> {% trans 'Ranking' %} </a></div> #}
                     {% else %}
                         {% trans 'No participants' %}
                     {% endif %}
@@ -39,5 +35,4 @@
             </div>
         </div>
     {% endfor %}
-    <div class="text-center"><a class='btn btn-primary' href='{% url "exams:add_data" exam.id %}'> {% trans 'Add New Answer Sheet' %} </a></div>
 {% endblock %}
