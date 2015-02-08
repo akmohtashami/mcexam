@@ -34,7 +34,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django_cleanup',
-    'rosetta',
     'resources',
     'guardian',
     "adminsortable",
