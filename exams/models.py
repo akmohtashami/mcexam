@@ -83,7 +83,7 @@ class Exam(models.Model):
             "view_statements": self.mode() > -1,
             "import": (user.has_perm("exams.can_import", self) or user.has_perm("exams.can_import")) and
                       self.mode() > -2 and
-                      self.mode() < 3,
+                      self.mode() < 2,
             "view_results": self.mode() >= 3
         }
         perms = []
