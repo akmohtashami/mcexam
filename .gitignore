@@ -5,3 +5,4 @@ db.sqlite3
 openshift-needs
 heroku-needs
 media
+*/migrations/*

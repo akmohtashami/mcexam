@@ -16,3 +16,4 @@ django-guardian==1.2.5
 django-cleanup==0.1.10
 django-codemirror-widget==0.4.0
 python-magic==0.4.6
+
