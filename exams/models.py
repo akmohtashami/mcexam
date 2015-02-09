@@ -194,7 +194,7 @@ class Exam(models.Model):
         cache_name = "exam_" + str(self.id) + "_total_score"
         if cache.get(cache_name) is None:
             total_score = self.calculate_total_score()
-            cache.set(cache_name, total_score, None)
+            cache.set(cache_name, total_score)
         return cache.get(cache_name)
 
     def get_user_question_details(self, user):
