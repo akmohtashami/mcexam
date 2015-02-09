@@ -1,5 +1,5 @@
 from django import forms
-from exams.models import Question, MadeChoice
+from exams.models import Question, MadeChoice, ExamSite
 from exams.widget import ExamChoiceInput, LockedExamChoiceInput
 from users.models import Member
 from django.utils.translation import ugettext as _
@@ -96,11 +96,18 @@ class OnsiteContestantForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         current_user = kwargs.pop("current_user")
         super(OnsiteContestantForm, self).__init__(*args, **kwargs)
-        self.fields['exam_site'] = forms.ModelChoiceField(
-            queryset=current_user.examsite_set.all(),
-            label=_("Exam Site"),
-            empty_label=None
-        )
+        if current_user.is_superuser:
+            self.fields['exam_site'] = forms.ModelChoiceField(
+                queryset=ExamSite.objects.all(),
+                label=_("Exam Site"),
+                empty_label=None
+            )
+        else:
+            self.fields['exam_site'] = forms.ModelChoiceField(
+                queryset=current_user.examsite_set.all(),
+                label=_("Exam Site"),
+                empty_label=None
+            )
         self.fields['grade'].required = True
 
     class Meta:
