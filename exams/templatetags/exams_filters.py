@@ -41,7 +41,7 @@ def is_official(exam, user):
     if user.has_perm("out_of_competition", exam):
         return False
     else:
-        return len(user.madechoice_set.filter(choice__question__exam=exam)) > 0
+        return True
 
 @register.tag
 def get_next_number(parser, token):

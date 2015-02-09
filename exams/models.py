@@ -88,7 +88,6 @@ class Exam(models.Model):
                       ((self.mode() > -2 and self.mode() < 2) or user.has_perm("exams.import_all", self)),
             "view_results": user.has_perm("exams.see_all_results", self) or self.mode() >= 3
         }
-        print user.has_perm("exams.can_import"), "SALAM"
         perms = []
         for perm in implicit_permissions:
             if implicit_permissions[perm]:

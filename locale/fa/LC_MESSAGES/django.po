@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-09 19:19+0000\n"
-"PO-Revision-Date: 2015-02-09 19:23+0326\n"
+"POT-Creation-Date: 2015-02-09 22:38+0000\n"
+"PO-Revision-Date: 2015-02-09 22:39+0326\n"
 "Last-Translator:   <remuslup200@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -73,8 +73,8 @@ msgstr "محاسبه ی نتایج برای آزمون های انتخاب شد�
 msgid "Calculate ranks for selected exams"
 msgstr "محاسبه ی رتبه ها برای آزمون های انتخاب شده"
 
-#: exams/forms.py:103 exams/forms.py:109 exams/models.py:296
-#: exams/models.py:306
+#: exams/forms.py:103 exams/forms.py:109 exams/models.py:295
+#: exams/models.py:305
 msgid "Exam Site"
 msgstr "مکان برگزاری"
 
@@ -86,7 +86,7 @@ msgstr "قالب PDF"
 msgid "Django-Tex template for creating pdf files"
 msgstr "قالب جانگو-تک برای ساخت فایل های PDF"
 
-#: exams/models.py:22 exams/templates/exams/base_templates/standings.html:11
+#: exams/models.py:22 exams/templates/exams/base_templates/standings.html:13
 #: exams/templates/exams/main_templates/list.html:12
 msgid "Name"
 msgstr "نام"
@@ -136,7 +136,7 @@ msgstr "پس از این زمان نتایج و پاسخ های صحیح منت�
 msgid "Number of questions per column in answer sheet"
 msgstr "تعداد سوالات در هر ستون پاسخ برگ"
 
-#: exams/models.py:55 exams/models.py:294 exams/models.py:311
+#: exams/models.py:55 exams/models.py:293 exams/models.py:310
 msgid "Exam"
 msgstr "آزمون"
 
@@ -160,19 +160,19 @@ msgstr "Can import at any examsite at anytime"
 msgid "Can see all results"
 msgstr "توانایی دیدن تمام نتایج را دارد"
 
-#: exams/models.py:222
+#: exams/models.py:221
 msgid "Related exam"
 msgstr "آزمون مربوطه"
 
-#: exams/models.py:223
+#: exams/models.py:222
 msgid "Question's Statement"
 msgstr "صورت سوال"
 
-#: exams/models.py:225 exams/models.py:242
+#: exams/models.py:224 exams/models.py:241
 msgid "Info"
 msgstr "اطلاعات"
 
-#: exams/models.py:226
+#: exams/models.py:225
 msgid ""
 "If you want to put some info between some of the question write info in "
 "question statement and check this box"
@@ -180,96 +180,95 @@ msgstr ""
 "اگر می خواهید اطلاعاتی بین برخی از سوالات قرار دهید، متن را درون صورت سوال "
 "بنویسید و این گزینه را انتخاب کنید."
 
-#: exams/models.py:229
+#: exams/models.py:228
 msgid "Correct Answer Score"
 msgstr "امتیاز پاسخ صحیح"
 
-#: exams/models.py:230
+#: exams/models.py:229
 msgid "Amount of score which is increased for correct answer"
 msgstr "میزان نمره ای که به ازای پاسخ درست اضافه می شود"
 
-#: exams/models.py:234
+#: exams/models.py:233
 msgid "Wrong Answer Penalty"
 msgstr "جریمه ی پاسخ غلط"
 
-#: exams/models.py:235
+#: exams/models.py:234
 msgid "Amount of score which is decreased for incorrent answer"
 msgstr "میزان نمره ای که به ازای پاسخ غلط کم می شود"
 
-#: exams/models.py:240
+#: exams/models.py:239
 msgid "Question #"
 msgstr "سوال شماره"
 
-#: exams/models.py:250
+#: exams/models.py:249
 msgid "Question"
 msgstr "سوال"
 
-#: exams/models.py:251
+#: exams/models.py:250
 msgid "Questions"
 msgstr "سوالات"
 
-#: exams/models.py:256 exams/models.py:268
+#: exams/models.py:255 exams/models.py:267
 msgid "Choice"
 msgstr "گزینه"
 
-#: exams/models.py:264
+#: exams/models.py:263
 msgid "Correct"
 msgstr "صحیح"
 
-#: exams/models.py:269
+#: exams/models.py:268
 msgid "Choices"
 msgstr "گزینه ها"
 
-#: exams/models.py:284
+#: exams/models.py:283
 msgid "User has another answer for this question in database"
 msgstr "کاربر پاسخ دیگری برای این سوال در دیتابیس دارد"
 
-#: exams/models.py:289
+#: exams/models.py:288
 msgid "Made Choice"
 msgstr "گزینه انتخاب شده"
 
-#: exams/models.py:290
-#| msgid "Made Choice"
+#: exams/models.py:289
 msgid "Made Choices"
 msgstr "گزینه های انتخاب شده"
 
-#: exams/models.py:295
+#: exams/models.py:294
 msgid "Importer"
 msgstr "وارد کننده"
 
-#: exams/models.py:303
+#: exams/models.py:302
 msgid "Number of participants"
 msgstr "تعداد شرکت کننده ها"
 
-#: exams/models.py:307
+#: exams/models.py:306
 msgid "Exam Sites"
 msgstr "مکان های برگزاری"
 
-#: exams/models.py:312
+#: exams/models.py:311
 msgid "Participant"
 msgstr "شرکت کننده"
 
-#: exams/models.py:313 exams/templates/exams/base_templates/standings.html:12
+#: exams/models.py:312 exams/templates/exams/base_templates/standings.html:14
 msgid "Score"
 msgstr "نمره"
 
-#: exams/models.py:314 exams/templates/exams/base_templates/standings.html:13
+#: exams/models.py:313 exams/templates/exams/base_templates/standings.html:15
 msgid "Correct answers"
 msgstr "پاسخ های صحیح"
 
-#: exams/models.py:315 exams/templates/exams/base_templates/standings.html:14
+#: exams/models.py:314 exams/templates/exams/base_templates/standings.html:16
 msgid "Wrong answers"
 msgstr "پاسخ های غلط"
 
-#: exams/models.py:316 exams/templates/exams/base_templates/standings.html:10
+#: exams/models.py:315 exams/templates/exams/base_templates/standings.html:12
 msgid "Rank"
 msgstr "رتبه"
 
-#: exams/models.py:323
+#: exams/models.py:322
 msgid "Participant Result"
 msgstr "نتیجه ی شرکت کننده"
 
-#: exams/models.py:324
+#: exams/models.py:323
 msgid "Participants Results"
 msgstr "نتایج شرکت کنندگان"
 
@@ -312,6 +311,16 @@ msgstr "کد تک صورت سوال"
 #: exams/templates/exams/base_templates/exam_base.html:47
 msgid "Update Statements"
 msgstr "به روز رسانی صورت سوال"
+
+#: exams/templates/exams/base_templates/standings.html:7
+msgid ""
+"You can see detailed result of each participant by clicking on his/her name"
+msgstr "شما می توانید کارنامه ی هر شرکت کننده را با کلیک روی نام او مشاهده کنید"
+
+#: exams/templates/exams/base_templates/standings.html:18
+#| msgid "Participant"
+msgid "Official Participant"
+msgstr "شرکت کننده رسمی"
 
 #: exams/templates/exams/importer_templates/add_data.html:17
 msgid "Submit and add another"
@@ -441,7 +450,7 @@ msgstr "تا پایان آزمون آنلاین"
 msgid "Exam finished"
 msgstr "آزمون تمام شده است"
 
-#: exams/views/admin_views.py:52
+#: exams/views/admin_views.py:53
 msgid "Statements were built successfully"
 msgstr "صورت سوالات با موفقیت ساخته شد"
 
@@ -457,15 +466,15 @@ msgstr "پاسخ ها با موفقیت ذخیره شدند"
 msgid "A problem occured. Please try again"
 msgstr "مشکلی پیش آمده است. لطفا دوباره تلاش کنید"
 
-#: exams/views/importer_views.py:25
+#: exams/views/importer_views.py:26
 msgid "Answer sheet was removed successfully"
 msgstr "پاسخ برگ با موفقیت حذف شد"
 
-#: exams/views/importer_views.py:43
+#: exams/views/importer_views.py:44
 msgid "Answer sheet updated successfully"
 msgstr "پاسخ برگ با موفقیت بروز شد"
 
-#: exams/views/importer_views.py:72
+#: exams/views/importer_views.py:73
 msgid "Answer sheet added successfully"
 msgstr "پاسخ برگ با موفقیت اضافه شد"
 

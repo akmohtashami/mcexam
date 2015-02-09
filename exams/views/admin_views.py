@@ -16,6 +16,7 @@ from django.core.cache import cache
 import cStringIO
 import zipfile
 from django.contrib.auth.decorators import user_passes_test
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 @guardian_permission_required("exams.change_exam", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
 def preview_statements(request, exam_id):
@@ -76,8 +77,17 @@ def all_site_results(request, exam_id):
 @guardian_permission_required("exams.see_all_results", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
 def full_ranking(request, exam_id):
     exam = get_object_or_404(Exam, id=exam_id)
+    all_results = exam.participantresult_set.all()
+    paginator = Paginator(all_results, 100)
+    page = request.GET.get("page")
+    try:
+        current_page = paginator.page(page)
+    except PageNotAnInteger:
+        current_page = paginator.page(1)
+    except EmptyPage:
+        current_page = paginator.page(paginator.num_pages)
     context = {
         "exam": exam,
-        "participants": exam.participantresult_set.all()
+        "participants": current_page
     }
     return render(request, "exams/base_templates/standings.html", context)

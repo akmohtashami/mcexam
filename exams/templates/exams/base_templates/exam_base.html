@@ -31,14 +31,14 @@
                 {% endif %}
                 {% if 'view_results' in exam_implicit_permissions %}
                     <li><a href="{% url 'exams:results' exam.id %}"> {% trans 'Download Results' %} </a></li>
-                    {% if "can_import" in exam_perms or perms.exams.can_import %}
+                    {% if perms.exams.can_import or "can_import" in exam_perms or perms.exams.see_all_results or "see_all_results" in exam_perms %}
                         <li><a href="{% url 'exams:results_panel' exam.id %}"> {% trans 'Students Results' %} </a></li>
                     {% endif %}
                 {% endif %}
                 {% if request.user.is_superuser %}
                     <li><a href="{% url 'exams:all_result' exam.id %}"> {% trans 'Download All Onsite Results' %}</a></li>
                 {% endif %}
-                {% if perms.exams.see_all_results %}
+                {% if "see_all_results" in exam_perms or perms.exams.see_all_results %}
                     <li><a href="{% url 'exams:full_ranking' exam.id %}"> {% trans 'Full Ranking' %}</a></li>
                 {% endif %}
                 {% if "change_exam" in exam_perms or perms.exams.change_exam %}

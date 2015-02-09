@@ -1,8 +1,11 @@
 {% extends 'exams/base_templates/exam_base.html' %}
 {% load i18n %}
 {% load exams_filters %}
-
+{% load guardian_tags %}
+{% get_obj_perms request.user for exam as "exam_perms" %}
 {% block page_content %}
+    <br />
+    <p> <small>* {% trans 'You can see detailed result of each participant by clicking on his/her name' %}</small></p>
     <table class="table table-responsive table-striped">
         <thead>
             <tr>
@@ -12,22 +15,43 @@
                 <th> {% trans 'Score' %} </th>
                 <th> {% trans 'Correct answers' %} </th>
                 <th> {% trans 'Wrong answers' %} </th>
+                {% if "see_all_results" in exam_perms or perms.exams.see_all_results %}
+                    <th> {% trans 'Official Participant' %} </th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
             {% for participant in participants %}
                 {% is_official participant.exam participant.user as official %}
-                {% if official or show_all %}
-                    <tr>
-                        <td> {% get_next_number 1 %} </td>
-                        <td> {{ participant.rank }} </td>
-                        <td> {{ participant.user.get_full_name }} </td>
-                        <td> {{ participant.score }} </td>
-                        <td> {{ participant.correct }} </td>
-                        <td> {{ participant.wrong }} </td>
-                    </tr>
-                {% endif %}
+                <tr>
+                    <td> {% get_next_number 1 %} </td>
+                    <td> {{ participant.rank }} </td>
+                    <td> <a href="{% url 'exams:user_result' exam.id participant.user.id %}"> {{ participant.user.get_full_name }} </a> </td>
+                    <td> {{ participant.score }} </td>
+                    <td> {{ participant.correct }} </td>
+                    <td> {{ participant.wrong }} </td>
+                    {% if "see_all_results" in exam_perms or perms.exams.see_all_results %}
+                        <td>
+                            {% if official %}
+                                <i class="glyphicon glyphicon-ok text-success"></i>
+                            {% else %}
+                                <i class="glyphicon glyphicon-remove text-danger"></i>
+                            {% endif %}
+                        </td>
+                    {% endif %}
+                </tr>
             {% endfor %}
         </tbody>
     </table>
+    <div class="text-center">
+        <ul class="pagination">
+           {% for page in participants.paginator.page_range %}
+                {% if page == participants.number %}
+                    <li class="active"> <a href="#"> {{ page }}</a> </li>
+                {% else %}
+                    <li><a href="?page={{page}}">{{page}}</a></li>
+                {% endif %}
+           {% endfor %}
+        </ul>
+    </div>
 {% endblock %}

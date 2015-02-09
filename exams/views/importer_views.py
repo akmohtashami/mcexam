@@ -6,6 +6,7 @@ from users.models import Member
 from exams.forms import OnsiteContestantForm, save_answer_sheet, get_answer_sheet, get_answer_formset
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.core.exceptions import PermissionDenied
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
 from exams.views import shared_views
@@ -157,10 +158,18 @@ def site_ranking(request, exam_id, site_id):
         raise PermissionDenied
     site = get_object_or_404(ExamSite, exam=exam, id=site_id)
     if request.user.has_perm("exams.see_all_results", exam) or site.importer == request.user:
+        all_results = ParticipantResult.objects.filter(user__exam_site=site)
+        paginator = Paginator(all_results, 100)
+        page = request.GET.get("page")
+        try:
+            current_page = paginator.page(page)
+        except PageNotAnInteger:
+            current_page = paginator.page(1)
+        except EmptyPage:
+            current_page = paginator.page(paginator.num_pages)
         context = {
             "exam": exam,
-            "participants": ParticipantResult.objects.filter(user__exam_site=site),
-            "show_all": True,
+            "participants": current_page,
         }
         return render(request, "exams/base_templates/standings.html", context)
     else:
