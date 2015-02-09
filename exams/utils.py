@@ -9,4 +9,3 @@ def compile_tex(tex_content, output_directory, output_file_name, env=os.environ)
                                 stdout=subprocess.PIPE)
     return compiler.communicate(input=tex_content)
 
-

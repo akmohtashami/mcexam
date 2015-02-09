@@ -35,7 +35,7 @@ def edit_data(request, exam_id, user_id):
     if not user.is_owner(request.user):
         raise PermissionDenied
     if request.method == "POST":
-        user_form = OnsiteContestantForm(request.POST, instance=user, current_user=request.user, prefix="user-data")
+        user_form = OnsiteContestantForm(request.POST, instance=user, current_user=request.user, current_exam=exam, prefix="user-data")
         answer_form = get_answer_formset(exam, user=user, data=request.POST, prefix="answer-data")
         if user_form.is_valid() and answer_form.is_valid():
             user = user_form.save()
@@ -43,7 +43,7 @@ def edit_data(request, exam_id, user_id):
             messages.success(request, _("Answer sheet updated successfully"))
             return HttpResponseRedirect(reverse("exams:import_panel", kwargs={"exam_id": exam_id}))
     else:
-        user_form = OnsiteContestantForm(instance=user, current_user=request.user, prefix="user-data")
+        user_form = OnsiteContestantForm(instance=user, current_user=request.user, current_exam=exam, prefix="user-data")
         answer_form = get_answer_formset(exam, user, prefix="answer-data")
 
     answer_sheet_full_columns = get_answer_sheet(exam, answer_form)
@@ -64,7 +64,7 @@ def add_data(request, exam_id):
     if not exam.check_implicit_permission(request.user, "import"):
         raise PermissionDenied
     if request.method == "POST":
-        user_form = OnsiteContestantForm(request.POST, current_user=request.user, prefix="user-data")
+        user_form = OnsiteContestantForm(request.POST, current_user=request.user, current_exam=exam, prefix="user-data")
         answer_form = get_answer_formset(exam, data=request.POST, prefix="answer-data")
         if user_form.is_valid() and answer_form.is_valid():
             user = user_form.save()
@@ -75,7 +75,7 @@ def add_data(request, exam_id):
             else:
                 return HttpResponseRedirect(reverse("exams:import_panel", kwargs={"exam_id": exam_id}))
     else:
-        user_form = OnsiteContestantForm(current_user=request.user, prefix="user-data")
+        user_form = OnsiteContestantForm(current_user=request.user, current_exam=exam, prefix="user-data")
         answer_form = get_answer_formset(exam, prefix="answer-data")
 
     answer_sheet_full_columns = get_answer_sheet(exam, answer_form)
@@ -93,7 +93,7 @@ def import_panel(request, exam_id):
     exam = get_object_or_404(Exam, id=exam_id)
     if not exam.check_implicit_permission(request.user, "import"):
         raise PermissionDenied
-    if request.user.is_superuser:
+    if request.user.has_perm("exams.import_all", exam):
         available_exam_sites = ExamSite.objects.filter(exam=exam)
     else:
         available_exam_sites = request.user.examsite_set.filter(exam=exam)
@@ -109,7 +109,7 @@ def results_panel(request, exam_id):
     exam = get_object_or_404(Exam, id=exam_id)
     if not exam.check_implicit_permission(request.user, "view_results"):
         raise PermissionDenied
-    if request.user.is_superuser:
+    if request.user.has_perm("exams.see_all_results", exam):
         available_exam_sites = ExamSite.objects.filter(exam=exam)
     else:
         available_exam_sites = request.user.examsite_set.filter(exam=exam)
@@ -126,7 +126,7 @@ def user_result(request, exam_id, user_id):
     if not exam.check_implicit_permission(request.user, "view_results"):
         raise PermissionDenied
     user = get_object_or_404(Member, id=user_id)
-    if request.user.is_superuser or user.is_owner(request.user):
+    if request.user.has_perm("exams.see_all_results", exam) or user.is_owner(request.user):
         result = shared_views.get_user_result(exam, user)
         if result is None:
             raise Http404
@@ -142,7 +142,7 @@ def site_result(request, exam_id, site_id):
     if not exam.check_implicit_permission(request.user, "view_results"):
         raise PermissionDenied
     site = get_object_or_404(ExamSite, exam=exam, id=site_id)
-    if request.user.is_superuser or site.importer == request.user:
+    if request.user.has_perm("exams.see_all_results", exam) or site.importer == request.user:
         response = HttpResponse(shared_views.get_site_result(exam, site), content_type="application/x-zip-compressed")
         response['Content-Disposition'] = 'attachment; filename=%s' % "results.zip"
         return response
@@ -156,7 +156,7 @@ def site_ranking(request, exam_id, site_id):
     if not exam.check_implicit_permission(request.user, "view_results"):
         raise PermissionDenied
     site = get_object_or_404(ExamSite, exam=exam, id=site_id)
-    if request.user.is_superuser or site.importer == request.user:
+    if request.user.has_perm("exams.see_all_results", exam) or site.importer == request.user:
         context = {
             "exam": exam,
             "participants": ParticipantResult.objects.filter(user__exam_site=site),

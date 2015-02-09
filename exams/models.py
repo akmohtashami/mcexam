@@ -57,7 +57,9 @@ class Exam(models.Model):
         permissions = (
             ("can_view", _("Can view exam")),
             ("can_import", _("Can import answer sheets")),
-            ("out_of_competition", _("Participated out of competition"))
+            ("out_of_competition", _("Participated out of competition")),
+            ("import_all", _("Can import at any examsite at anytime")),
+            ("see_all_results", _("Can see all results")),
         )
 
     def __unicode__(self):
@@ -79,19 +81,17 @@ class Exam(models.Model):
 
     def get_all_implicit_permissions(self, user):
         implicit_permissions = {
-            "view_answer_sheet": self.mode() > -2,
-            "save_answer_sheet": self.mode() == 0,
-            "view_statements": self.mode() > -1,
-            "import": (user.has_perm("exams.can_import", self) or user.has_perm("exams.can_import")) and
-                      self.mode() > -2 and
-                      self.mode() < 2,
-            "view_results": self.mode() >= 3
+            "view_answer_sheet": user.has_perm("exams.change_exam", self) or self.mode() > -2,
+            "save_answer_sheet": user.has_perm("exams.change_exam", self) or self.mode() == 0,
+            "view_statements": user.has_perm("exams.change_exam", self) or self.mode() > -1,
+            "import": user.has_perm("exams.can_import", self) and
+                      ((self.mode() > -2 and self.mode() < 2) or user.has_perm("exams.import_all", self)),
+            "view_results": user.has_perm("exams.see_all_results", self) or self.mode() >= 3
         }
+        print user.has_perm("exams.can_import"), "SALAM"
         perms = []
         for perm in implicit_permissions:
-            if user.has_perm("exams:change_exam", self) or \
-                    user.has_perm("exams:change_exam") or \
-                    implicit_permissions[perm]:
+            if implicit_permissions[perm]:
                 perms.append(perm)
         return perms
 
@@ -137,7 +137,7 @@ class Exam(models.Model):
                 participant.rank = last_participant.rank
             participant.save()
             last_participant = participant
-            if participant.user.has_perm("exams.out_of_competition") or participant.user.has_perm("exams.out_of_competition", self):
+            if participant.user.has_perm("exams.out_of_competition", self):
                 pass
             elif len(MadeChoice.objects.filter(choice__question__exam=self, user=participant.user)) > 0:
                 current_rank += 1
@@ -286,6 +286,7 @@ class MadeChoice(models.Model):
 
     class Meta:
         ordering = ['user', 'choice__question__exam', 'choice__question']
+        verbose_name = _("Made Choice")
 
 
 class ExamSite(models.Model):
@@ -308,7 +309,7 @@ class ExamSite(models.Model):
 class ParticipantResult(models.Model):
     exam = models.ForeignKey(Exam, verbose_name=_("Exam"))
     user = models.ForeignKey(Member, verbose_name=_("Participant"))
-    score = models.PositiveIntegerField(verbose_name=_("Score"))
+    score = models.IntegerField(verbose_name=_("Score"))
     correct = models.PositiveIntegerField(verbose_name=_("Correct answers"))
     wrong = models.PositiveIntegerField(verbose_name=_("Wrong answers"))
     rank = models.PositiveIntegerField(verbose_name=_("Rank"))
@@ -318,3 +319,5 @@ class ParticipantResult(models.Model):
 
     class Meta:
         ordering = ['exam', '-score']
+        verbose_name = _("Participant Result")
+        verbose_name_plural = _("Participants Results")

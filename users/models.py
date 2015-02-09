@@ -127,7 +127,10 @@ class Member(auth.models.AbstractBaseUser, auth.models.PermissionsMixin, Guardia
     def has_perm(self, perm, obj=None):
         if not self.is_verified():
             return False
-        return super(Member, self).has_perm(perm, obj)
+        if obj is None:
+            return super(Member, self).has_perm(perm, obj)
+        else:
+            return super(Member, self).has_perm(perm, obj) or super(Member, self).has_perm(perm)
 
     def has_module_perms(self, app_label):
         if not self.is_verified():

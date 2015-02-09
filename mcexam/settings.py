@@ -179,7 +179,7 @@ CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
         'LOCATION': 'cache_table',
-        'TIMEOUT': None,
+        'TIMEOUT': 31536000,  # One year
     }
 }
 

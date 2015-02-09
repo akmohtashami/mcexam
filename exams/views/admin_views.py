@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from guardian.decorators import permission_required as guardian_permission_required
 from django.contrib import messages
-from exams.models import Exam, ParticipantResult
+from exams.models import Exam
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
@@ -15,6 +15,7 @@ import shutil
 from django.core.cache import cache
 import cStringIO
 import zipfile
+from django.contrib.auth.decorators import user_passes_test
 
 @guardian_permission_required("exams.change_exam", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
 def preview_statements(request, exam_id):
@@ -55,7 +56,8 @@ def publish_statements(request, exam_id):
     shutil.rmtree(tmp_folder)
     return response
 
-@guardian_permission_required("exams.change_exam", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
+@user_passes_test(lambda user: user.is_superuser)
+@guardian_permission_required("exams.see_all_results", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
 def all_site_results(request, exam_id):
     exam = get_object_or_404(Exam, id=exam_id)
     exam_cache = "exam_" + str(exam_id) + "_result"
@@ -71,7 +73,7 @@ def all_site_results(request, exam_id):
     return response
 
 
-@guardian_permission_required("exams.change_exam", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
+@guardian_permission_required("exams.see_all_results", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
 def full_ranking(request, exam_id):
     exam = get_object_or_404(Exam, id=exam_id)
     context = {

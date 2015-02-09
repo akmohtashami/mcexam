@@ -95,8 +95,9 @@ class OnsiteContestantForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         current_user = kwargs.pop("current_user")
+        current_exam = kwargs.pop("current_exam")
         super(OnsiteContestantForm, self).__init__(*args, **kwargs)
-        if current_user.is_superuser:
+        if current_user.has_perm("exams.import_all", current_exam):
             self.fields['exam_site'] = forms.ModelChoiceField(
                 queryset=ExamSite.objects.all(),
                 label=_("Exam Site"),
