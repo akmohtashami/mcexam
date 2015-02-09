@@ -1,0 +1,33 @@
+{% extends 'exams/base_templates/exam_base.html' %}
+{% load i18n %}
+{% load exams_filters %}
+
+{% block page_content %}
+    <table class="table table-responsive table-striped">
+        <thead>
+            <tr>
+                <th> </th>
+                <th> {% trans 'Rank' %} </th>
+                <th> {% trans 'Name' %} </th>
+                <th> {% trans 'Score' %} </th>
+                <th> {% trans 'Correct answers' %} </th>
+                <th> {% trans 'Wrong answers' %} </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for participant in participants %}
+                {% is_official participant.exam participant.user as official %}
+                {% if official or show_all %}
+                    <tr>
+                        <td> {% get_next_number 1 %} </td>
+                        <td> {{ participant.rank }} </td>
+                        <td> {{ participant.user.get_full_name }} </td>
+                        <td> {{ participant.score }} </td>
+                        <td> {{ participant.correct }} </td>
+                        <td> {{ participant.wrong }} </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

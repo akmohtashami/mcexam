@@ -6,9 +6,9 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
+from exams.views import shared_views
 import os
 import magic
-
 
 
 def answer_sheet(request, exam_id):
@@ -49,3 +49,13 @@ def statements(request, exam_id):
     return response
 
 
+def results(request, exam_id):
+    exam = get_object_or_404(Exam, id=exam_id)
+    if exam.check_implicit_permission(request.user, "view_results"):
+        result = shared_views.get_user_result(exam, request.user)
+        if result is None:
+            raise Http404
+        else:
+            return HttpResponse(result, content_type="application/pdf")
+    else:
+        raise PermissionDenied

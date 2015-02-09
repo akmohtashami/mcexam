@@ -1,17 +1,16 @@
 from django.shortcuts import get_object_or_404, render
 from guardian.decorators import permission_required as guardian_permission_required
 from django.contrib import messages
-from exams.models import Exam, ExamSite
+from exams.models import Exam, ExamSite, ParticipantResult
 from users.models import Member
 from exams.forms import OnsiteContestantForm, save_answer_sheet, get_answer_sheet, get_answer_formset
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
-from django.core.cache import cache
 from exams.views import shared_views
-import cStringIO
-import zipfile
+
+
 
 @guardian_permission_required("exams.can_import", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
 def delete_data(request, exam_id, user_id):
@@ -88,6 +87,7 @@ def add_data(request, exam_id):
                }
     return render(request, "exams/importer_templates/add_data.html", context)
 
+
 @guardian_permission_required("exams.can_import", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
 def import_panel(request, exam_id):
     exam = get_object_or_404(Exam, id=exam_id)
@@ -104,7 +104,11 @@ def import_panel(request, exam_id):
     return render(request, "exams/importer_templates/import_panel.html", context)
 
 
-def results_panel(request, exam):
+@guardian_permission_required("exams.can_import", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
+def results_panel(request, exam_id):
+    exam = get_object_or_404(Exam, id=exam_id)
+    if not exam.check_implicit_permission(request.user, "view_results"):
+        raise PermissionDenied
     if request.user.is_superuser:
         available_exam_sites = ExamSite.objects.filter(exam=exam)
     else:
@@ -113,11 +117,14 @@ def results_panel(request, exam):
         "exam": exam,
         "sites": available_exam_sites,
     }
-    return render(request, "exams/importer_templates/results.html", context)
+    return render(request, "exams/importer_templates/results_panel.html", context)
+
 
 @guardian_permission_required("exams.can_import", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
 def user_result(request, exam_id, user_id):
     exam = get_object_or_404(Exam, id=exam_id)
+    if not exam.check_implicit_permission(request.user, "view_results"):
+        raise PermissionDenied
     user = get_object_or_404(Member, id=user_id)
     if request.user.is_superuser or user.is_owner(request.user):
         result = shared_views.get_user_result(exam, user)
@@ -128,21 +135,33 @@ def user_result(request, exam_id, user_id):
     else:
         raise PermissionDenied
 
+
 @guardian_permission_required("exams.can_import", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
 def site_result(request, exam_id, site_id):
     exam = get_object_or_404(Exam, id=exam_id)
+    if not exam.check_implicit_permission(request.user, "view_results"):
+        raise PermissionDenied
     site = get_object_or_404(ExamSite, exam=exam, id=site_id)
     if request.user.is_superuser or site.importer == request.user:
-        site_cache = "exam_" + str(exam.id) + "_site_" + str(site.id) + "_result"
-        if cache.get(site_cache) is None:
-            zip_result_file = cStringIO.StringIO()
-            zip_result = zipfile.ZipFile(zip_result_file, "w")
-            for user in site.member_set.all():
-                zip_result.writestr(user.get_full_english_name() + ".pdf", shared_views.get_user_result(exam, user))
-            zip_result.close()
-            cache.set(site_cache, zip_result_file.getvalue())
-        response = HttpResponse(cache.get(site_cache), content_type="application/x-zip-compressed")
+        response = HttpResponse(shared_views.get_site_result(exam, site), content_type="application/x-zip-compressed")
         response['Content-Disposition'] = 'attachment; filename=%s' % "results.zip"
         return response
+    else:
+        raise PermissionDenied
+
+
+@guardian_permission_required("exams.can_import", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
+def site_ranking(request, exam_id, site_id):
+    exam = get_object_or_404(Exam, id=exam_id)
+    if not exam.check_implicit_permission(request.user, "view_results"):
+        raise PermissionDenied
+    site = get_object_or_404(ExamSite, exam=exam, id=site_id)
+    if request.user.is_superuser or site.importer == request.user:
+        context = {
+            "exam": exam,
+            "participants": ParticipantResult.objects.filter(user__exam_site=site),
+            "show_all": True,
+        }
+        return render(request, "exams/base_templates/standings.html", context)
     else:
         raise PermissionDenied

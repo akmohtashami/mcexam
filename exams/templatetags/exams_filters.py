@@ -36,6 +36,13 @@ def exam_countdown(context):
         countdown_context["until"] = None
     return render_to_string("exams/base_templates/countdown.html", countdown_context)
 
+@register.assignment_tag
+def is_official(exam, user):
+    if user.has_perm("out_of_competition") or user.has_perm("out_of_competition", exam):
+        return False
+    else:
+        return len(user.madechoice_set.filter(choice__question__exam=exam)) > 0
+
 @register.tag
 def get_next_number(parser, token):
     try:

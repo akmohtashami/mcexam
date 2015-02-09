@@ -1,5 +1,4 @@
 from django.template.loader import render_to_string
-from django.http import HttpResponse, Http404
 from exams.utils import compile_tex
 from tempfile import mkdtemp
 import shutil
@@ -8,6 +7,8 @@ from django.core.paginator import Paginator
 from exams.models import ParticipantResult
 from django.core.cache import cache
 import os
+import cStringIO
+import zipfile
 
 
 def get_user_result(exam, user):
@@ -27,7 +28,7 @@ def get_user_result(exam, user):
             "exam_question_columns": question_columns_list
         }
         tmpl = render_to_string("exams/base_templates/report_sheet.tex", context).encode("utf-8")
-        tmpl = re.sub(r'\n+', '\n', tmpl) #Remove double new lines
+        tmpl = re.sub(r'\n+', '\n', tmpl) # Remove double new lines
 
         tmp_folder = mkdtemp()
         try:
@@ -41,3 +42,15 @@ def get_user_result(exam, user):
         shutil.rmtree(tmp_folder)
         cache.set(user_cache, response)
     return cache.get(user_cache)
+
+
+def get_site_result(exam, site):
+    site_cache = "exam_" + str(exam.id) + "_site_" + str(site.id) + "_result"
+    if cache.get(site_cache) is None:
+        zip_result_file = cStringIO.StringIO()
+        zip_result = zipfile.ZipFile(zip_result_file, "w")
+        for user in site.member_set.all():
+            zip_result.writestr(user.get_full_english_name() + ".pdf", get_user_result(exam, user))
+        zip_result.close()
+        cache.set(site_cache, zip_result_file.getvalue())
+    return cache.get(site_cache)

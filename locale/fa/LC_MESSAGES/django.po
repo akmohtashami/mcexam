@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-09 01:24+0000\n"
-"PO-Revision-Date: 2015-02-09 01:25+0326\n"
+"POT-Creation-Date: 2015-02-09 02:32+0000\n"
+"PO-Revision-Date: 2015-02-09 02:34+0326\n"
 "Last-Translator:   <remuslup200@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -70,7 +70,6 @@ msgid "Calculate results for selected exams"
 msgstr "محاسبه ی نتایج برای آزمون های انتخاب شده"
 
 #: exams/admin.py:39
-#| msgid "Calculate results for selected exams"
 msgid "Calculate ranks for selected exams"
 msgstr "محاسبه ی رتبه ها برای آزمون های انتخاب شده"
 
@@ -87,7 +86,8 @@ msgstr "قالب PDF"
 msgid "Django-Tex template for creating pdf files"
 msgstr "قالب جانگو-تک برای ساخت فایل های PDF"
 
-#: exams/models.py:22 exams/templates/exams/main_templates/list.html:12
+#: exams/models.py:22 exams/templates/exams/base_templates/standings.html:11
+#: exams/templates/exams/main_templates/list.html:12
 msgid "Name"
 msgstr "نام"
 
@@ -232,19 +232,19 @@ msgstr "مکان های برگزاری"
 msgid "Participant"
 msgstr "شرکت کننده"
 
-#: exams/models.py:311
+#: exams/models.py:311 exams/templates/exams/base_templates/standings.html:12
 msgid "Score"
 msgstr "نمره"
 
-#: exams/models.py:312
+#: exams/models.py:312 exams/templates/exams/base_templates/standings.html:13
 msgid "Correct answers"
 msgstr "پاسخ های صحیح"
 
-#: exams/models.py:313
+#: exams/models.py:313 exams/templates/exams/base_templates/standings.html:14
 msgid "Wrong answers"
 msgstr "پاسخ های غلط"
 
-#: exams/models.py:314
+#: exams/models.py:314 exams/templates/exams/base_templates/standings.html:10
 msgid "Rank"
 msgstr "رتبه"
 
@@ -257,22 +257,37 @@ msgid "Statements"
 msgstr "صورت سوال"
 
 #: exams/templates/exams/base_templates/exam_base.html:30
-msgid "Results"
-msgstr "نتایج"
-
-#: exams/templates/exams/base_templates/exam_base.html:33
 msgid "Add/Edit Answer Sheets"
 msgstr "افزودن/ویرایش پاسخ برگ ها"
 
-#: exams/templates/exams/base_templates/exam_base.html:36
+#: exams/templates/exams/base_templates/exam_base.html:33
+#| msgid "Download All"
+msgid "Download Results"
+msgstr "دریافت کارنامه"
+
+#: exams/templates/exams/base_templates/exam_base.html:35
+#| msgid "Results"
+msgid "Students Results"
+msgstr "نتایج دانش آموزان"
+
+#: exams/templates/exams/base_templates/exam_base.html:39
+#| msgid "Download All"
+msgid "Download All Onsite Results"
+msgstr "دریافت نتایج همه ی شرکت گنندگان حضوری"
+
+#: exams/templates/exams/base_templates/exam_base.html:42
+msgid "Full Ranking"
+msgstr "رتبه بندی کامل"
+
+#: exams/templates/exams/base_templates/exam_base.html:43
 msgid "Preview Statements"
 msgstr "پیش نمایش صورت سوال"
 
-#: exams/templates/exams/base_templates/exam_base.html:37
+#: exams/templates/exams/base_templates/exam_base.html:44
 msgid "Statements Tex Code"
 msgstr "کد تک صورت سوال"
 
-#: exams/templates/exams/base_templates/exam_base.html:38
+#: exams/templates/exams/base_templates/exam_base.html:45
 msgid "Update Statements"
 msgstr "به روز رسانی صورت سوال"
 
@@ -303,7 +318,7 @@ msgid "Edit"
 msgstr "ویرایش"
 
 #: exams/templates/exams/importer_templates/import_panel.html:36
-#: exams/templates/exams/importer_templates/results.html:32
+#: exams/templates/exams/importer_templates/results_panel.html:34
 msgid "No participants"
 msgstr "شرکت کننده ای وجود ندارد"
 
@@ -311,13 +326,18 @@ msgstr "شرکت کننده ای وجود ندارد"
 msgid "Add New Answer Sheet"
 msgstr "افزودن پاسخ برگ جدید"
 
-#: exams/templates/exams/importer_templates/results.html:22
+#: exams/templates/exams/importer_templates/results_panel.html:22
 msgid "Download detailed report"
 msgstr "دریافت کارنامه"
 
-#: exams/templates/exams/importer_templates/results.html:29
+#: exams/templates/exams/importer_templates/results_panel.html:30
 msgid "Download All"
 msgstr "دریافت همه"
+
+#: exams/templates/exams/importer_templates/results_panel.html:31
+#| msgid "Rank"
+msgid "Ranking"
+msgstr "رتبه بندی"
 
 #: exams/templates/exams/main_templates/answer_sheet.html:12
 #: exams/templates/exams/running_exam.html:13
@@ -400,7 +420,7 @@ msgstr "تا پایان آزمون آنلاین"
 msgid "Exam finished"
 msgstr "آزمون تمام شده است"
 
-#: exams/views/admin_views.py:47
+#: exams/views/admin_views.py:51
 msgid "Statements were built successfully"
 msgstr "صورت سوالات با موفقیت ساخته شد"
 
@@ -416,15 +436,15 @@ msgstr "پاسخ ها با موفقیت ذخیره شدند"
 msgid "A problem occured. Please try again"
 msgstr "مشکلی پیش آمده است. لطفا دوباره تلاش کنید"
 
-#: exams/views/importer_views.py:26
+#: exams/views/importer_views.py:25
 msgid "Answer sheet was removed successfully"
 msgstr "پاسخ برگ با موفقیت حذف شد"
 
-#: exams/views/importer_views.py:44
+#: exams/views/importer_views.py:43
 msgid "Answer sheet updated successfully"
 msgstr "پاسخ برگ با موفقیت بروز شد"
 
-#: exams/views/importer_views.py:73
+#: exams/views/importer_views.py:72
 msgid "Answer sheet added successfully"
 msgstr "پاسخ برگ با موفقیت اضافه شد"
 

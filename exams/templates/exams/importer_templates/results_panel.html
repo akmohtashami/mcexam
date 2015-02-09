@@ -26,8 +26,10 @@
                                 {% endfor %}
                             </tbody>
                         </table>
-                        <div class="text-center"><a class='btn btn-primary' href='{% url "exams:site_result" exam.id site.id %}'> {% trans 'Download All' %} </a></div>
-                        {# <div class="text-center"><a class='btn btn-primary' href='{% url "exams:site_ranking" exam.id site.id %}'> {% trans 'Ranking' %} </a></div> #}
+                        <div class="text-center">
+                            <a class='btn btn-primary' href='{% url "exams:site_result" exam.id site.id %}'> {% trans 'Download All' %} </a>
+                            <a class='btn btn-primary' href='{% url "exams:site_ranking" exam.id site.id %}'> {% trans 'Ranking' %} </a>
+                        </div>
                     {% else %}
                         {% trans 'No participants' %}
                     {% endif %}

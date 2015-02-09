@@ -26,13 +26,20 @@
                 {% if 'view_statements' in exam_implicit_permissions %}
                     <li><a href="{% url 'exams:statements' exam.id %}"> {% trans 'Statements' %} </a></li>
                 {% endif %}
-                {% if 'view_results' in exam_implicit_permissions %}
-                    <li><a href="{% url 'exams:results' exam.id %}"> {% trans 'Results' %} </a></li>
-                {% endif %}
                 {% if 'import' in exam_implicit_permissions %}
                     <li><a href="{% url 'exams:import_panel' exam.id %}"> {% trans 'Add/Edit Answer Sheets' %} </a></li>
                 {% endif %}
+                {% if 'view_results' in exam_implicit_permissions %}
+                    <li><a href="{% url 'exams:results' exam.id %}"> {% trans 'Download Results' %} </a></li>
+                    {% if 'import' in exam_implicit_permissions %}
+                        <li><a href="{% url 'exams:results_panel' exam.id %}"> {% trans 'Students Results' %} </a></li>
+                    {% endif %}
+                {% endif %}
+                {% if request.user.is_superuser %}
+                    <li><a href="{% url 'exams:all_result' exam.id %}"> {% trans 'Download All Onsite Results' %}</a></li>
+                {% endif %}
                 {% if "change_exam" in exam_perms or perms.exams.change_exam %}
+                    <li><a href="{% url 'exams:full_ranking' exam.id %}"> {% trans 'Full Ranking' %}</a></li>
                     <li><a href="{% url 'exams:preview_statements' exam.id %}"> {% trans 'Preview Statements' %}</a></li>
                     <li><a href="{% url 'exams:show_statements_tex' exam.id %}"> {% trans 'Statements Tex Code' %}</a><li>
                     <li><a href="{% url 'exams:publish_statements' exam.id %}"> {% trans 'Update Statements' %}</a><li>
