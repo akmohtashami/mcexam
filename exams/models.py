@@ -56,7 +56,8 @@ class Exam(models.Model):
         verbose_name_plural = _("Exams")
         permissions = (
             ("can_view", _("Can view exam")),
-            ("can_import", _("Can import answer sheets"))
+            ("can_import", _("Can import answer sheets")),
+            ("out_of_competition", _("Participated out of competition"))
         )
 
     def __unicode__(self):
@@ -165,7 +166,10 @@ class Exam(models.Model):
                 participant.rank = last_participant.rank
             participant.save()
             last_participant = participant
-            current_rank += 1
+            if user.has_perm("exams.out_of_competition") or user.has_perm("exams.out_of_competition", self):
+                pass
+            else:
+                current_rank += 1
 
     def calculate_total_score(self):
         total_score = 0
