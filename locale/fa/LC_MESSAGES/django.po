@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-08 23:41+0000\n"
-"PO-Revision-Date: 2015-02-08 23:42+0326\n"
+"POT-Creation-Date: 2015-02-09 01:10+0000\n"
+"PO-Revision-Date: 2015-02-09 01:11+0326\n"
 "Last-Translator:   <remuslup200@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -62,10 +62,15 @@ msgid "Logout"
 msgstr "خروج"
 
 #: exams/admin.py:33
+#| msgid "Calculate results for selected exams"
+msgid "Successfully computed results for selected exams"
+msgstr "نتایج برای آزمون های انتخاب شده با موفقیت محاسبه شد"
+
+#: exams/admin.py:34
 msgid "Calculate results for selected exams"
 msgstr "محاسبه ی نتایج برای آزمون های انتخاب شده"
 
-#: exams/forms.py:101 exams/models.py:278 exams/models.py:288
+#: exams/forms.py:101 exams/models.py:282 exams/models.py:292
 msgid "Exam Site"
 msgstr "مکان برگزاری"
 
@@ -126,7 +131,7 @@ msgstr "پس از این زمان نتایج و پاسخ های صحیح منت�
 msgid "Number of questions per column in answer sheet"
 msgstr "تعداد سوالات در هر ستون پاسخ برگ"
 
-#: exams/models.py:55 exams/models.py:276 exams/models.py:293
+#: exams/models.py:55 exams/models.py:280 exams/models.py:297
 msgid "Exam"
 msgstr "آزمون"
 
@@ -138,19 +143,23 @@ msgstr "توانایی دیدن آزمون ها را دارد"
 msgid "Can import answer sheets"
 msgstr "اجازه ی وارد کردن پاسخ برگ دارد"
 
-#: exams/models.py:206
+#: exams/models.py:60
+msgid "Participated out of competition"
+msgstr "به صورت غیررسمی شرکت کرده"
+
+#: exams/models.py:210
 msgid "Related exam"
 msgstr "آزمون مربوطه"
 
-#: exams/models.py:207
+#: exams/models.py:211
 msgid "Question's Statement"
 msgstr "صورت سوال"
 
-#: exams/models.py:209 exams/models.py:226
+#: exams/models.py:213 exams/models.py:230
 msgid "Info"
 msgstr "اطلاعات"
 
-#: exams/models.py:210
+#: exams/models.py:214
 msgid ""
 "If you want to put some info between some of the question write info in "
 "question statement and check this box"
@@ -158,79 +167,79 @@ msgstr ""
 "اگر می خواهید اطلاعاتی بین برخی از سوالات قرار دهید، متن را درون صورت سوال "
 "بنویسید و این گزینه را انتخاب کنید."
 
-#: exams/models.py:213
+#: exams/models.py:217
 msgid "Correct Answer Score"
 msgstr "امتیاز پاسخ صحیح"
 
-#: exams/models.py:214
+#: exams/models.py:218
 msgid "Amount of score which is increased for correct answer"
 msgstr "میزان نمره ای که به ازای پاسخ درست اضافه می شود"
 
-#: exams/models.py:218
+#: exams/models.py:222
 msgid "Wrong Answer Penalty"
 msgstr "جریمه ی پاسخ غلط"
 
-#: exams/models.py:219
+#: exams/models.py:223
 msgid "Amount of score which is decreased for incorrent answer"
 msgstr "میزان نمره ای که به ازای پاسخ غلط کم می شود"
 
-#: exams/models.py:224
+#: exams/models.py:228
 msgid "Question #"
 msgstr "سوال شماره"
 
-#: exams/models.py:234
+#: exams/models.py:238
 msgid "Question"
 msgstr "سوال"
 
-#: exams/models.py:235
+#: exams/models.py:239
 msgid "Questions"
 msgstr "سوالات"
 
-#: exams/models.py:240 exams/models.py:252
+#: exams/models.py:244 exams/models.py:256
 msgid "Choice"
 msgstr "گزینه"
 
-#: exams/models.py:248
+#: exams/models.py:252
 msgid "Correct"
 msgstr "صحیح"
 
-#: exams/models.py:253
+#: exams/models.py:257
 msgid "Choices"
 msgstr "گزینه ها"
 
-#: exams/models.py:268
+#: exams/models.py:272
 msgid "User has another answer for this question in database"
 msgstr "کاربر پاسخ دیگری برای این سوال در دیتابیس دارد"
 
-#: exams/models.py:277
+#: exams/models.py:281
 msgid "Importer"
 msgstr "وارد کننده"
 
-#: exams/models.py:285
+#: exams/models.py:289
 msgid "Number of participants"
 msgstr "تعداد شرکت کننده ها"
 
-#: exams/models.py:289
+#: exams/models.py:293
 msgid "Exam Sites"
 msgstr "مکان های برگزاری"
 
-#: exams/models.py:294
+#: exams/models.py:298
 msgid "Participant"
 msgstr "شرکت کننده"
 
-#: exams/models.py:295
+#: exams/models.py:299
 msgid "Score"
 msgstr "نمره"
 
-#: exams/models.py:296
+#: exams/models.py:300
 msgid "Correct answers"
 msgstr "پاسخ های صحیح"
 
-#: exams/models.py:297
+#: exams/models.py:301
 msgid "Wrong answers"
 msgstr "پاسخ های غلط"
 
-#: exams/models.py:298
+#: exams/models.py:302
 msgid "Rank"
 msgstr "رتبه"
 

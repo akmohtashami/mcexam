@@ -166,9 +166,9 @@ class Exam(models.Model):
                 participant.rank = last_participant.rank
             participant.save()
             last_participant = participant
-            if user.has_perm("exams.out_of_competition") or user.has_perm("exams.out_of_competition", self):
+            if participant.user.has_perm("exams.out_of_competition") or participant.user.has_perm("exams.out_of_competition", self):
                 pass
-            elif len(MadeChoice.objects.filter(exam=self, user=user)) > 0:
+            elif len(MadeChoice.objects.filter(choice__question__exam=self, user=participant.user)) > 0:
                 current_rank += 1
 
     def calculate_total_score(self):

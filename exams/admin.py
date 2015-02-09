@@ -30,6 +30,7 @@ class ExamAdmin(GuardedModelAdmin, NonSortableParentAdmin):
             cache_name = "exam_" + str(exam.id) + "_total_score"
             cache.delete(cache_name)
             exam.calculate_total_score()
+        self.message_user(request, _("Successfully computed results for selected exams"))
     calculate_result.short_description = _("Calculate results for selected exams")
 
 
