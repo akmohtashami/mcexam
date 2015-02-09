@@ -287,6 +287,7 @@ class MadeChoice(models.Model):
     class Meta:
         ordering = ['user', 'choice__question__exam', 'choice__question']
         verbose_name = _("Made Choice")
+        verbose_name_plural = _("Made Choices")
 
 
 class ExamSite(models.Model):

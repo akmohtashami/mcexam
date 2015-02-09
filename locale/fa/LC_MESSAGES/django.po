@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-09 19:10+0000\n"
-"PO-Revision-Date: 2015-02-09 19:13+0326\n"
+"POT-Creation-Date: 2015-02-09 19:19+0000\n"
+"PO-Revision-Date: 2015-02-09 19:23+0326\n"
 "Last-Translator:   <remuslup200@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -73,8 +73,8 @@ msgstr "محاسبه ی نتایج برای آزمون های انتخاب شد�
 msgid "Calculate ranks for selected exams"
 msgstr "محاسبه ی رتبه ها برای آزمون های انتخاب شده"
 
-#: exams/forms.py:103 exams/forms.py:109 exams/models.py:295
-#: exams/models.py:305
+#: exams/forms.py:103 exams/forms.py:109 exams/models.py:296
+#: exams/models.py:306
 msgid "Exam Site"
 msgstr "مکان برگزاری"
 
@@ -136,7 +136,7 @@ msgstr "پس از این زمان نتایج و پاسخ های صحیح منت�
 msgid "Number of questions per column in answer sheet"
 msgstr "تعداد سوالات در هر ستون پاسخ برگ"
 
-#: exams/models.py:55 exams/models.py:293 exams/models.py:310
+#: exams/models.py:55 exams/models.py:294 exams/models.py:311
 msgid "Exam"
 msgstr "آزمون"
 
@@ -153,9 +153,8 @@ msgid "Participated out of competition"
 msgstr "به صورت غیررسمی شرکت کرده"
 
 #: exams/models.py:61
-#| msgid "You can't import data for this exam anymore"
 msgid "Can import at any examsite at anytime"
-msgstr "می تواند برای هر مکان برگزاری در هر زمانی اضافه کند"
+msgstr "Can import at any examsite at anytime"
 
 #: exams/models.py:62
 msgid "Can see all results"
@@ -226,49 +225,51 @@ msgid "User has another answer for this question in database"
 msgstr "کاربر پاسخ دیگری برای این سوال در دیتابیس دارد"
 
 #: exams/models.py:289
-#| msgid "Choice"
 msgid "Made Choice"
 msgstr "گزینه انتخاب شده"
 
-#: exams/models.py:294
+#: exams/models.py:290
+#| msgid "Made Choice"
+msgid "Made Choices"
+msgstr "گزینه های انتخاب شده"
+
+#: exams/models.py:295
 msgid "Importer"
 msgstr "وارد کننده"
 
-#: exams/models.py:302
+#: exams/models.py:303
 msgid "Number of participants"
 msgstr "تعداد شرکت کننده ها"
 
-#: exams/models.py:306
+#: exams/models.py:307
 msgid "Exam Sites"
 msgstr "مکان های برگزاری"
 
-#: exams/models.py:311
+#: exams/models.py:312
 msgid "Participant"
 msgstr "شرکت کننده"
 
-#: exams/models.py:312 exams/templates/exams/base_templates/standings.html:12
+#: exams/models.py:313 exams/templates/exams/base_templates/standings.html:12
 msgid "Score"
 msgstr "نمره"
 
-#: exams/models.py:313 exams/templates/exams/base_templates/standings.html:13
+#: exams/models.py:314 exams/templates/exams/base_templates/standings.html:13
 msgid "Correct answers"
 msgstr "پاسخ های صحیح"
 
-#: exams/models.py:314 exams/templates/exams/base_templates/standings.html:14
+#: exams/models.py:315 exams/templates/exams/base_templates/standings.html:14
 msgid "Wrong answers"
 msgstr "پاسخ های غلط"
 
-#: exams/models.py:315 exams/templates/exams/base_templates/standings.html:10
+#: exams/models.py:316 exams/templates/exams/base_templates/standings.html:10
 msgid "Rank"
 msgstr "رتبه"
 
-#: exams/models.py:322
-#| msgid "Participant"
+#: exams/models.py:323
 msgid "Participant Result"
 msgstr "نتیجه ی شرکت کننده"
 
-#: exams/models.py:323
-#| msgid "Participant"
+#: exams/models.py:324
 msgid "Participants Results"
 msgstr "نتایج شرکت کنندگان"
 
