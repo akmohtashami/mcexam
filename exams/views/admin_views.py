@@ -15,7 +15,7 @@ import shutil
 from django.core.cache import cache
 import cStringIO
 import zipfile
-from django.contrib.auth.decorators import user_passes_test
+from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 @guardian_permission_required("exams.change_exam", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
@@ -57,9 +57,10 @@ def publish_statements(request, exam_id):
     shutil.rmtree(tmp_folder)
     return response
 
-@user_passes_test(lambda user: user.is_superuser)
 @guardian_permission_required("exams.see_all_results", (Exam, 'id', 'exam_id'), accept_global_perms=True, return_403=True)
 def all_site_results(request, exam_id):
+    if not request.user.is_superuser:
+        raise PermissionDenied
     exam = get_object_or_404(Exam, id=exam_id)
     exam_cache = "exam_" + str(exam_id) + "_result"
     if cache.get(exam_cache) is None:
