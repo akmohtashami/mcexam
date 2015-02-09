@@ -21,7 +21,7 @@ class ExamAdmin(GuardedModelAdmin, NonSortableParentAdmin):
         ]
     change_form_template_extends = GuardedModelAdmin.change_form_template
     form = CodeMirrorForm
-    actions = ("calculate_result", )
+    actions = ("calculate_result", "calculate_ranks")
     list_display = ("__unicode__", "total_score")
 
     def calculate_result(self, request, queryset):
@@ -33,6 +33,10 @@ class ExamAdmin(GuardedModelAdmin, NonSortableParentAdmin):
         self.message_user(request, _("Successfully computed results for selected exams"))
     calculate_result.short_description = _("Calculate results for selected exams")
 
+    def calculate_ranks(self, request, queryset):
+        for exam in queryset:
+            exam.calculate_all_ranks()
+    calculate_ranks.short_description = _("Calculate ranks for selected exams")
 
 
 class ChoicesInLine(SortableTabularInline):

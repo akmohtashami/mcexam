@@ -119,6 +119,29 @@ class Exam(models.Model):
         env["OPENTYPEFONTS"] = self.resources_dir + "//:" + env.get("OPENTYPEFONTS", "")
         return env
 
+    def calculate_all_ranks(self):
+        participants = ParticipantResult.objects.filter(exam=self)
+        last_participant = None
+        current_rank = 1
+        for participant in participants:
+
+            user_cache = "exam_" + str(self.id) + "_user_" + str(participant.user.id) + "_result"
+            cache.delete(user_cache)
+            if participant.user.exam_site is not None:
+                site_cache = "exam_" + str(self.id) + "_site_" + str(participant.user.exam_site.id) + "_result"
+                cache.delete(site_cache)
+
+            if last_participant is None or last_participant.score > participant.score:
+                participant.rank = current_rank
+            else:
+                participant.rank = last_participant.rank
+            participant.save()
+            last_participant = participant
+            if participant.user.has_perm("exams.out_of_competition") or participant.user.has_perm("exams.out_of_competition", self):
+                pass
+            elif len(MadeChoice.objects.filter(choice__question__exam=self, user=participant.user)) > 0:
+                current_rank += 1
+
     def calculate_user_score(self, user):
         try:
             result = ParticipantResult.objects.get(exam=self, user=user)
@@ -148,28 +171,17 @@ class Exam(models.Model):
 
         #Calculating score
         for user in Member.objects.all():
+
             user_cache = "exam_" + str(self.id) + "_user_" + str(user.id) + "_result"
             cache.delete(user_cache)
             if user.exam_site is not None:
                 site_cache = "exam_" + str(self.id) + "_site_" + str(user.exam_site.id) + "_result"
                 cache.delete(site_cache)
+
             self.calculate_user_score(user)
 
         #Calculating rank
-        participants = ParticipantResult.objects.filter(exam=self)
-        last_participant = None
-        current_rank = 1
-        for participant in participants:
-            if last_participant is None or last_participant.score > participant.score:
-                participant.rank = current_rank
-            else:
-                participant.rank = last_participant.rank
-            participant.save()
-            last_participant = participant
-            if participant.user.has_perm("exams.out_of_competition") or participant.user.has_perm("exams.out_of_competition", self):
-                pass
-            elif len(MadeChoice.objects.filter(choice__question__exam=self, user=participant.user)) > 0:
-                current_rank += 1
+        self.calculate_all_ranks()
 
     def calculate_total_score(self):
         total_score = 0
