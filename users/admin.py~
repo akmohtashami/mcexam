@@ -65,4 +65,3 @@ class PassKeyAdmin(admin.ModelAdmin):
 	list_display = ('user', 'active') # Columns
 	fields = ['user', 'active', 'key']
 admin.site.register(Member, MemberAdmin)
-admin.site.register(PassKey, PassKeyAdmin)

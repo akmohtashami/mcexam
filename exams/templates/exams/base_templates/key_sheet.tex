@@ -1,0 +1,65 @@
+{% load variables_tags %}
+{% load exams_filters %}
+
+\documentclass[a5paper, 11pt]{article}
+
+\usepackage{pgf, tikz}
+\usepackage[a5paper, margin=0.5cm]{geometry}
+\usepackage{tcolorbox}
+\usepackage{tabularx}
+\tcbuselibrary{skins}
+\usepackage{wrapfig}
+\usetikzlibrary{arrows}
+\usetikzlibrary{shapes}
+\usepackage{dingbat}
+\usepackage{xepersian}
+
+
+\settextfont{XB Zar.ttf}
+\setlatintextfont{XB Zar.ttf}
+\setdigitfont{XB Zar.ttf}
+\linespread{1.5}
+
+\begin{document}
+\begin{tcolorbox}[enhanced, frame hidden, borderline={1pt}{0pt}{black, dashed}, height=\paperheight-1cm ]
+\begin{wrapfigure}{l}{90pt}
+\vspace{-30pt}
+\begin{tikzpicture}
+\node[anchor=north west] at (0, 0) {\includegraphics[scale=0.7, angle=45]{logo.png}};
+\end{tikzpicture}
+\end{wrapfigure}
+\hrule
+\begin{tabular}{p{.45\linewidth} p{.45\linewidth}}
+نمره: ${{exam_data.score}}$ از ${{exam.total_score}}$ &
+رتبه‌ی کل: {{exam_data.rank}}\\
+تعداد پاسخ‌های درست: {{exam_data.correct}} &
+تعداد پاسخ‌های غلط: {{exam_data.wrong}}\\
+\end{tabular}
+\vspace{10pt}
+\begin{tikzpicture}[yscale=-1]
+\clip (-15pt, 0cm) rectangle (\paperwidth-0.5cm, \paperheight-0.5cm);
+{% set_var x_base -10 %}
+{% for question_column in exam_question_columns %}
+    {% set_var y 4.2 %}
+    {% for question, marked_choice in question_column %}
+        {% make_var x x_base %}
+        \node[anchor=north west] at (-0.3cm + {% get_var x %}pt, -0.02cm + {% get_var y %}pt){ ${% get_next_number 1 %}-$ };
+        \tiny
+        {% for choice in question.choice_set.all %}
+            {% add_var x 23 %}
+            {% if choice.is_correct %}
+                    \node[draw=black, anchor=north west, ellipse, minimum height=15pt, minimum width=18pt, fill=black] at ({% get_var x %}pt, .07cm + .3pt + {% get_var y %}pt) {\color{white}\checkmark};
+            {% else %}
+                    \node[draw=black, anchor=north west, ellipse, minimum height=15pt, minimum width=18pt] at ({% get_var x %}pt, .07cm + .3pt + {% get_var y %}pt) { {{ forloop.counter|choice_character}} };
+            {% endif %}
+        {% endfor %}
+        \normalsize
+        {% add_var y 25 %}
+    {% endfor %}
+    {% add_var x_base 225 %}
+{% endfor %}
+
+\end{tikzpicture}
+
+\end{tcolorbox}
+\end{document}

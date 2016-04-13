@@ -83,6 +83,7 @@ def exam_key(request, exam_id):
 		raise PermissionDenied
 	result = shared_views.get_key(exam)
 	if result is None:
+		return HttpResponse(exam.name)
 		raise Http404
 	else:
 		return HttpResponse(result, content_type="application/pdf")

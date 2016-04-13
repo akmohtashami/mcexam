@@ -70,7 +70,7 @@ def get_key(exam):
             response = None
         shutil.rmtree(tmp_folder)
         cache.set(user_cache, response)
-        #return response
+        return response
     return cache.get(user_cache)
 
 def get_site_result(exam, site):

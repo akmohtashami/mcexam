@@ -9,7 +9,7 @@
                 {% csrf_token %}
                 {% trans 'Login' as login %}
                 {% include 'form.html' with form=login_form submit_value=login submit_name='login_button' %}
-                <a href = "{% url 'users:forgot' %}">فراموشی رمز عبور؟</a>
+                pcrB7V1s
             </form>
         </div>
     </div>

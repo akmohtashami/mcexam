@@ -9,5 +9,4 @@ urlpatterns = patterns('',
                        url(r'^register/$', 'users.views.register', name='register'),
                        url(r'^verify/(?P<verification_code>.+)/$', 'users.views.verify', name='verify'),
                        url(r'^forgot/$', 'users.views.forgot', name='forgot'),
-                       url(r'^remember/(?P<key>[0-9a-zA-Z]+)', 'users.views.remember', name='remember'),
 )

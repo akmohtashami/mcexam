@@ -329,12 +329,12 @@ class ParticipantResult(models.Model):
         verbose_name_plural = _("Participants Results")
         
         
-#class Participation(models.Model):
-#	user = models.ForeignKey(Member, verbose_name = "کاربر")
-#	exam = models.ForeignKey(Exam, verbose_name = "مسابقه")
-#	def __unicode__(self):
-#		return self.user.username + '-' + self.exam.name
-#	class Meta:
-#		verbose_name = "شرکت کننده"
-#		verbose_name_plural = "شرکت کنندگان"
+class Participation(models.Model):
+	user = models.ForeignKey(Member, verbose_name = "کاربر")
+	exam = models.ForeignKey(Exam, verbose_name = "مسابقه")
+	def __unicode__(self):
+		return self.user.username + '-' + self.exam.name
+	class Meta:
+		verbose_name = "شرکت کننده"
+		verbose_name_plural = "شرکت کنندگان"
         
