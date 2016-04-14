@@ -41,8 +41,8 @@ def exam_countdown(context):
                else:
 			delta = datetime.timedelta(minutes=d)
 			end_date = p.start_date + delta
-			if exam.online_end_date < end_date:
-			         end_date = exam.online_end_date
+			if exam.online_start_date < end_date:
+			         end_date = exam.online_start_date
 			if timezone.now() <= end_date:
 			         #x = (end_date-timezone.now()).isoformat()
 			         #print(type(end_date-timezone.now()))
