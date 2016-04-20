@@ -138,12 +138,15 @@ class Member(auth.models.AbstractBaseUser, auth.models.PermissionsMixin, Guardia
             return False
         return super(Member, self).has_module_perms(app_label)
 
+
 class PassKey(models.Model):
-	user = models.ForeignKey(Member, verbose_name=_("Participant"))
-	key = models.CharField(max_length=300, verbose_name = "کلید‌")
-	active = models.BooleanField(default=True, verbose_name = "اعتبار")
-	def __unicode__(self):
-		return self.key
-	class Meta:
-		verbose_name = "کلید یاد آوری رمز عبور"
-		verbose_name_plural = "کلید های یاد آوری رمز عبور"
+    user = models.ForeignKey(Member, verbose_name=_("Participant"))
+    key = models.CharField(max_length=300, verbose_name = "کلید‌")
+    active = models.BooleanField(default=True, verbose_name = "اعتبار")
+
+    def __unicode__(self):
+        return self.key
+
+    class Meta:
+        verbose_name = _("Password token")
+        verbose_name_plural = _("Password tokens")

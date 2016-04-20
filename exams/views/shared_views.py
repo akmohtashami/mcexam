@@ -58,12 +58,9 @@ def get_key(exam):
         tmpl = re.sub(r'\n+', '\n', tmpl) # Remove double new lines
 
         tmp_folder = mkdtemp()
-        #response = "KHODA RO SHOKR"
         try:
             job_name = "key_" + str(exam.id)
-            #print(tmpl)
             compile_tex(tmpl, tmp_folder, job_name, exam.add_tex_resources_to_environ())
-            #print(os.path.join(tmp_folder, job_name + ".pdf"))
             statement_pdf_file = open(os.path.join(tmp_folder, job_name + ".pdf"))
             response = statement_pdf_file.read()
             statement_pdf_file.close()
@@ -71,7 +68,6 @@ def get_key(exam):
             response = None
         shutil.rmtree(tmp_folder)
         cache.set(user_cache, response)
-        #return response
     return cache.get(user_cache)
 
 def get_site_result(site):

@@ -16,17 +16,19 @@ import datetime
 # Create your models here.
 
 
-def can_save(exam, user):
-	try:
-		p = Participation.objects.get(user=user,exam=exam)
-		d = int(exam.duration)
-		if d <= 0:
-			return True
-		delta = datetime.timedelta(minutes=d)
-		end_date = p.start_date + delta
-		return timezone.now() <= end_date
-	except Participation.DoesNotExist:
-		return False
+def user_in_its_time_frame(exam, user):
+    d = exam.duration
+    if d == 0:
+        return True
+    else:
+        try:
+            p = Participation.objects.get(user=user,exam=exam)
+            delta = datetime.timedelta(minutes=d)
+            end_date = p.start_date + delta
+            return timezone.now() <= end_date
+        except Participation.DoesNotExist:
+            return False
+
 def get_statement_path(instance, filename):
     return os.path.join(instance.resources_dir, 'statements', filename)
 
@@ -39,7 +41,9 @@ class Exam(models.Model):
                     "Importers can download the questions and import answer sheets. "
                     "Everybody can see their answer sheet."),
     )
-    duration = models.CharField(max_length=500, verbose_name="طول", default="0", help_text="به دقیقه")
+    duration = models.PositiveIntegerField(verbose_name=_("Duration(min)"), default=0,
+                                   help_text=_("If entered each user may participate for a window of \
+                                   this length anytime inside the online exam time frame(USACO-like)"))
     online_start_date = models.DateTimeField(_("Online exam start date"))
     online_end_date = models.DateTimeField(_("Online exam end date"))
     sealing_date = models.DateTimeField(
@@ -96,7 +100,7 @@ class Exam(models.Model):
     def get_all_implicit_permissions(self, user):
         implicit_permissions = {
             "view_answer_sheet": user.has_perm("exams.change_exam", self) or self.mode() > -2,
-            "save_answer_sheet": user.has_perm("exams.change_exam", self) or (self.mode() == 0 and can_save(self, user)),
+            "save_answer_sheet": user.has_perm("exams.change_exam", self) or (self.mode() == 0 and user_in_its_time_frame(self, user)),
             "view_statements": user.has_perm("exams.change_exam", self) or self.mode() > -1,
             "import": user.has_perm("exams.can_import", self) and
                       ((self.mode() > -2 and self.mode() < 2) or user.has_perm("exams.import_all", self)),
@@ -343,12 +347,14 @@ class ParticipantResult(models.Model):
         
         
 class Participation(models.Model):
-	user = models.ForeignKey(Member, verbose_name = "کاربر")
-	exam = models.ForeignKey(Exam, verbose_name = "مسابقه")
-	start_date = models.DateTimeField(_("Online exam start date"))
-	def __unicode__(self):
-		return self.user.username + '-' + self.exam.name
-	class Meta:
-		verbose_name = "شرکت کننده"
-		verbose_name_plural = "شرکت کنندگان"
+    user = models.ForeignKey(Member, verbose_name=_("Participant"))
+    exam = models.ForeignKey(Exam, verbose_name=_("Exam"))
+    start_date = models.DateTimeField(_("Online exam start date"))
+
+    def __unicode__(self):
+        return self.user.username + '-' + self.exam.name
+
+    class Meta:
+        verbose_name = _("Participant")
+        verbose_name_plural = _("Participants")
 
