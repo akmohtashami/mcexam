@@ -99,13 +99,13 @@ class OnsiteContestantForm(forms.ModelForm):
         super(OnsiteContestantForm, self).__init__(*args, **kwargs)
         if current_user.has_perm("exams.import_all", current_exam):
             self.fields['exam_site'] = forms.ModelChoiceField(
-                queryset=ExamSite.objects.all(),
+                queryset=ExamSite.objects.filter(exam=current_exam),
                 label=_("Exam Site"),
                 empty_label=None
             )
         else:
             self.fields['exam_site'] = forms.ModelChoiceField(
-                queryset=current_user.examsite_set.all(),
+                queryset=current_user.examsite_set.filter(exam=current_exam),
                 label=_("Exam Site"),
                 empty_label=None
             )

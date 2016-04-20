@@ -68,7 +68,7 @@ def all_site_results(request, exam_id):
         zip_result_file = cStringIO.StringIO()
         zip_result = zipfile.ZipFile(zip_result_file, "w")
         for site in exam.examsite_set.all():
-            zip_result.writestr("%s.zip" % site.name, shared_views.get_site_result(exam, site))
+            zip_result.writestr("%s.zip" % site.name, shared_views.get_site_result(site))
         zip_result.close()
         cache.set(exam_cache, zip_result_file.getvalue())
     response = HttpResponse(cache.get(exam_cache), content_type="application/x-zip-compressed")

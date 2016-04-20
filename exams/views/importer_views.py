@@ -144,7 +144,7 @@ def site_result(request, exam_id, site_id):
         raise PermissionDenied
     site = get_object_or_404(ExamSite, exam=exam, id=site_id)
     if request.user.has_perm("exams.see_all_results", exam) or site.importer == request.user:
-        response = HttpResponse(shared_views.get_site_result(exam, site), content_type="application/x-zip-compressed")
+        response = HttpResponse(shared_views.get_site_result(site), content_type="application/x-zip-compressed")
         response['Content-Disposition'] = 'attachment; filename=%s' % "results.zip"
         return response
     else:

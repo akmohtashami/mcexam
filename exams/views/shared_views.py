@@ -74,7 +74,8 @@ def get_key(exam):
         #return response
     return cache.get(user_cache)
 
-def get_site_result(exam, site):
+def get_site_result(site):
+    exam = site.exam
     site_cache = "exam_" + str(exam.id) + "_site_" + str(site.id) + "_result"
     if cache.get(site_cache) is None:
         zip_result_file = cStringIO.StringIO()
