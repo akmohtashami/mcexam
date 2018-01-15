@@ -1,4 +1,5 @@
 mcexamvenv
+.openshift
 *.pyc
 db.sqlite3
 .idea

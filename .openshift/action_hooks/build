@@ -1,8 +1,0 @@
-
-if [ ! -d $OPENSHIFT_DATA_DIR/media ]; then
-    mkdir $OPENSHIFT_DATA_DIR/media
-    mkdir $OPENSHIFT_DATA_DIR/media/public
-    mkdir $OPENSHIFT_DATA_DIR/media/private
-fi
-
-ln -sf $OPENSHIFT_DATA_DIR/media/public $OPENSHIFT_REPO_DIR/wsgi/static/media
